@@ -603,12 +603,9 @@ a { color: inherit; }
 
 .ba-photos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
   align-items: start;
 }
-.ba-col { display: grid; gap: var(--space-3); }
-.ba-col-offset { transform: translateY(clamp(18px, 3vw, 34px)); }
 
 .ba-photo {
   position: relative;
@@ -1068,7 +1065,7 @@ a { color: inherit; }
     margin-inline: auto;
     transform: rotate(90deg);
   }
-  .ba-col-offset { transform: translateY(14px); }
+  .ba-photos { grid-template-columns: 1fr 1fr; }
 
   .footer-inner { justify-content: center; text-align: center; }
 }
