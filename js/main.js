@@ -5,7 +5,7 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
   const VIDEO_SLOTS = 3;
-  const PHOTO_SLOTS = 4;
+  const PHOTO_SLOTS = 2;
 
   /* ---------- video slots (shared) ----------
      Every video is a drop-in slot: poster/gradient by default,
