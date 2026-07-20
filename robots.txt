@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arthursideload-star.github.io/artofwalks/sitemap.xml

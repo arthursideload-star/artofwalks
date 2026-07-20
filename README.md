@@ -12,3 +12,17 @@ Live site: https://arthursideload-star.github.io/artofwalks/
 - Texts, prices, labels: edit `index.html`.
 
 Static site, no build step. Push to `main` and GitHub Pages redeploys automatically.
+
+## Custom domain
+
+The plan is to move the site to `artofwalks.com`. The full step-by-step
+guide (DNS records, GitHub Pages settings, URL updates, branded email) is
+in [`docs/DOMAIN-SETUP.md`](docs/DOMAIN-SETUP.md).
+
+## SEO files
+
+- `sitemap.xml` and `robots.txt` live in the repo root. Their URLs (and the
+  canonical/OG tags in `index.html`) must be updated when the custom domain
+  goes live — the sed one-liner in `docs/DOMAIN-SETUP.md` does all of it.
+- `index.html` contains a hidden, commented-out testimonials section.
+  Un-comment it and fill in real customer quotes once you have them.
