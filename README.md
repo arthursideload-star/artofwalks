@@ -2,7 +2,7 @@
 
 Cinematic walkthrough videos for Airbnb listings, made from the photos hosts already have.
 
-Live site: https://arthursideload-star.github.io/artofwalks/
+Live site: https://artofwalks.com/
 
 ## Updating content
 
