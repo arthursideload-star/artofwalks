@@ -50,9 +50,29 @@ CLI und MCP-Server, deshalb wertet die Pipeline die Variable selbst mit aus.
 Ohne jeden Browser läuft es mit `scraping.fetcher: plain` über reines HTTP weiter —
 dann kann Airbnbs Foto-Manifest allerdings unvollständig zurückkommen.
 
+Oder alles auf einmal:
+
+```bash
+./setup.sh
+```
+
+Das Skript installiert die Abhängigkeiten, versucht den Browser-Download und
+trägt bei dessen Scheitern automatisch ein vorhandenes Chromium in die
+`config.yaml` ein. Es eignet sich auch als Setup-Skript einer Cloud-Umgebung —
+dort läuft es nach dem Klonen des Repos, bevor Claude startet.
+
 Der offizielle Scrapling-Skill liegt mit im Repo unter
 `.claude/skills/scrapling-official/` und steht damit in jeder Claude-Code-Session
-auf diesem Repo zur Verfügung.
+auf diesem Repo zur Verfügung. (Was unter `~/.claude/skills/` liegt, wird in
+Cloud-Sessions **nicht** übernommen — nur was im Repo committet ist.)
+
+## Netzwerkanforderungen
+
+Die Pipeline braucht **uneingeschränkten** ausgehenden Zugriff, nicht nur eine
+Allowlist. Airbnb (`www.airbnb.com`, `a0.muscache.com`) und die Suchmaschine
+ließen sich zwar auflisten, aber die Telefon-Anreicherung ruft naturgemäß
+beliebige Gastgeber-Websites auf, die vorher niemand kennt. Auf einer Allowlist
+findet der Lauf Objekte und scheitert dann an fast jeder Nummer.
 
 ## Ausführen
 
