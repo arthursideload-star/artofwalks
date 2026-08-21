@@ -137,7 +137,17 @@ def _first_match(pattern: re.Pattern, text: str) -> int:
     return int(match.group(1)) if match else 0
 
 
-URL_IN_TEXT_RE = re.compile(r"(?:https?://|www\.)[a-z0-9][a-z0-9._~/-]{3,}", re.IGNORECASE)
+# Host-written URLs are messy: ports, query strings, and a sentence-ending period
+# stuck to the end. The pattern takes the whole URL, then the trailing punctuation
+# is trimmed off separately.
+URL_IN_TEXT_RE = re.compile(
+    r"(?:https?://|www\.)"          # scheme or bare www.
+    r"[a-z0-9][a-z0-9.\-]*\.[a-z]{2,}"  # host with a real TLD
+    r"(?::\d{2,5})?"                # optional port
+    r"(?:/[^\s\"'<>]*)?",           # optional path, query and fragment
+    re.IGNORECASE,
+)
+TRAILING_PUNCT = ".,;:!?)]}\u00bb\u201d\u2019\'\""
 IG_RE = re.compile(r"(?:instagram\.com/|@)([a-z0-9._]{3,30})", re.IGNORECASE)
 # Airbnb's own domains and the CDNs it embeds are never a host's own website.
 IGNORED_HOSTS = (
@@ -154,6 +164,7 @@ def _external_links(description: str, page_text: str) -> List[str]:
     """
     found: List[str] = []
     for candidate in URL_IN_TEXT_RE.findall(description or ""):
+        candidate = candidate.rstrip(TRAILING_PUNCT)
         low = candidate.lower()
         if any(bad in low for bad in IGNORED_HOSTS):
             continue

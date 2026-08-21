@@ -28,8 +28,31 @@ dem drei- bis fünffachen.
 cd tools/airbnb-leads
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-scrapling install          # einmalig: lädt den gepatchten Chromium
+scrapling install --force   # einmalig: lädt die Browser-Abhängigkeiten
 ```
+
+Alternativ direkt aus dem Quell-Repo (identische Version 0.4.14):
+
+```bash
+git clone --depth 1 https://github.com/D4Vinci/Scrapling.git
+pip install "./Scrapling[all]"
+```
+
+Auf Debian/Ubuntu kollidiert `[all]` mit dem System-PyJWT. Dann:
+`pip install "./Scrapling[all]" --ignore-installed PyJWT`.
+
+**Wenn `scrapling install` den Browser nicht laden kann** (gesperrtes Netz, CI-Image
+mit eigenem Chromium), zeig auf ein vorhandenes Binary — in `config.yaml` unter
+`scraping.executable_path`, z. B.
+`/opt/pw-browsers/chromium-1194/chrome-linux/chrome`. Die Python-API nimmt das nur
+als Argument entgegen; `SCRAPLING_EXECUTABLE_PATH` lesen ausschließlich Scraplings
+CLI und MCP-Server, deshalb wertet die Pipeline die Variable selbst mit aus.
+Ohne jeden Browser läuft es mit `scraping.fetcher: plain` über reines HTTP weiter —
+dann kann Airbnbs Foto-Manifest allerdings unvollständig zurückkommen.
+
+Der offizielle Scrapling-Skill liegt mit im Repo unter
+`.claude/skills/scrapling-official/` und steht damit in jeder Claude-Code-Session
+auf diesem Repo zur Verfügung.
 
 ## Ausführen
 
@@ -94,11 +117,22 @@ Varianten mit einer echten Kamera fotografiert worden.
 
 ```bash
 python -m unittest discover -s tests -t .
+
+# Zusätzlich den Browser-Pfad mit echtem Chromium prüfen:
+AIRBNB_LEADS_BROWSER_TEST=1 \
+  SCRAPLING_EXECUTABLE_PATH=/pfad/zu/chrome \
+  python -m unittest discover -s tests -t .
 ```
 
-23 Tests, alle offline gegen Fixtures — Foto-Zählung, Feldextraktion,
-Profilfilter, Telefon-Validierung, Erkennung geteilter Plattform-Nummern sowie
-ein kompletter Durchlauf Suche → Listing → Anreicherung → CSV/XLSX.
+28 Tests, alle ohne Internet:
+
+- `test_pipeline.py` — Foto-Zählung und Dedup, Feldextraktion, Profilfilter,
+  URL-Erkennung in Beschreibungen, Telefon-Validierung, Erkennung geteilter
+  Plattform-Nummern, Export.
+- `test_end_to_end.py` — kompletter Durchlauf mit ersetzter Fetch-Schicht,
+  inklusive Wiederaufnahme aus dem Cache.
+- `test_live_local.py` — derselbe Durchlauf durch den **echten Scrapling-Stack**
+  gegen einen lokalen Mini-Airbnb-Server, HTTP-Fetcher und (opt-in) Browser.
 
 ## Rechtlicher Hinweis
 

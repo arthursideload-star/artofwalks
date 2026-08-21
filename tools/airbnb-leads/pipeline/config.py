@@ -33,6 +33,13 @@ class Scraping:
     timeout_ms: int = 45000
     retries: int = 2
     max_search_pages: int = 8
+    # Chromium to drive. Needed wherever `scrapling install` cannot download one
+    # (locked-down networks, CI images that ship their own browser).
+    executable_path: str = ""
+
+    @property
+    def use_browser(self) -> bool:
+        return self.fetcher.lower() not in ("plain", "http", "none")
 
 
 @dataclass

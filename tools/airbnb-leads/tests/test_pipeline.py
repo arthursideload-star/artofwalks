@@ -52,6 +52,20 @@ class TestListingParsing(unittest.TestCase):
         self.assertTrue(any("villa-aurora-mallorca.example" in l for l in links))
         self.assertTrue(any("instagram.com/villaaurora" in l for l in links))
 
+    def test_handles_messy_host_written_urls(self):
+        cases = {
+            "Buchen: www.villa-aurora.com/kontakt?lang=de&ref=x": "https://www.villa-aurora.com/kontakt?lang=de&ref=x",
+            "Mehr auf https://villa-aurora.example.": "https://villa-aurora.example",
+            "Schreib uns (https://villa.example/contact) gerne!": "https://villa.example/contact",
+        }
+        for description, expected in cases.items():
+            record = listing.parse("1", fixtures.airbnb_listing_html(description=description))
+            self.assertIn(expected, record.external_links, f"failed on: {description}")
+
+    def test_ignores_bare_ip_urls(self):
+        record = listing.parse("1", fixtures.airbnb_listing_html(description="Server: http://127.0.0.1:8080/host"))
+        self.assertEqual(record.external_links, [])
+
     def test_ignores_airbnb_own_urls(self):
         record = listing.parse(
             "1", fixtures.airbnb_listing_html(description="See https://www.airbnb.com/rooms/1 and https://a0.muscache.com/x"),

@@ -45,6 +45,12 @@ scraping:
   timeout_ms: 45000
   # Retry a failed fetch this many times before giving up on a listing.
   retries: 2
+  # Set to a Chromium binary when `scrapling install` cannot download one — e.g.
+  # /opt/pw-browsers/chromium-1194/chrome-linux/chrome. Empty means Scrapling's own.
+  executable_path: ""
+  # `stealthy` renders in a browser; `plain` uses HTTP only (no browser needed,
+  # but Airbnb's photo manifest may come back incomplete).
+  # fetcher: plain
   # Airbnb search pages cap out around 15 pages / ~270 results per query.
   max_search_pages: 8
 

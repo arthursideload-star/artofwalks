@@ -1,6 +1,7 @@
 """One polite, cached way to pull a page, used by every stage."""
 
 import logging
+import os
 import time
 from typing import Dict, Optional
 from urllib.parse import urlsplit
@@ -49,7 +50,10 @@ class Fetcher:
             return cached
 
         self._wait_turn(url)
-        html = self._render(url, wait_selector) if render else self._plain(url)
+        # `fetcher: plain` in the config forces the HTTP path everywhere, which is
+        # what you want on a machine with no usable browser.
+        use_browser = render and self.settings.use_browser
+        html = self._render(url, wait_selector) if use_browser else self._plain(url)
         if html:
             self.store.put_page(url, html)
         return html
@@ -74,6 +78,15 @@ class Fetcher:
             time.sleep(2 * (attempt + 1))
         return None
 
+    def _browser_binary(self) -> Dict[str, str]:
+        """Point Scrapling at a specific Chromium when one is configured.
+
+        The Python API takes this as a keyword argument; only Scrapling's CLI and
+        MCP server read SCRAPLING_EXECUTABLE_PATH from the environment.
+        """
+        path = self.settings.executable_path or os.environ.get("SCRAPLING_EXECUTABLE_PATH", "")
+        return {"executable_path": path} if path else {}
+
     def _render(self, url: str, wait_selector: Optional[str]) -> Optional[str]:
         from scrapling.fetchers import StealthyFetcher
 
@@ -82,6 +95,7 @@ class Fetcher:
                 page = StealthyFetcher.fetch(
                     url,
                     headless=self.settings.headless,
+                    **self._browser_binary(),
                     network_idle=True,
                     timeout=self.settings.timeout_ms,
                     wait_selector=wait_selector,
