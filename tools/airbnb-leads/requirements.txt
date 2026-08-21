@@ -1,0 +1,8 @@
+# Core scraping stack
+scrapling[fetchers]==0.4.14
+
+# Export
+openpyxl>=3.1
+PyYAML>=6.0
+# Phone parsing/validation (Google libphonenumber port)
+phonenumbers>=9.0

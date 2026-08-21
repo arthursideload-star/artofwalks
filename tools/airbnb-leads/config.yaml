@@ -1,0 +1,133 @@
+# ArtOfWalks lead pipeline — target profile
+#
+# Goal: large entire-home listings with a rich photo set, plus a reachable
+# phone number for the host or the company managing the property.
+
+target:
+  # How many finished leads (listing + phone number) to collect before stopping.
+  leads_wanted: 100
+  # A lead only counts once a phone number was found and verified.
+  require_phone: true
+
+listing_filters:
+  # "Große Häuser": entire homes only, no private/shared rooms.
+  room_type: "Entire home/apt"
+  min_bedrooms: 4
+  min_guests: 8
+  # "Sehr gute Bilder": a deep, professionally shot gallery.
+  min_photos: 25
+  # Airbnb serves originals up to ~1920px wide. Anything smaller usually means
+  # phone snapshots, which make poor walkthrough source material.
+  min_photo_width: 1200
+  # Skip listings nobody stays at — no reviews usually means no budget either.
+  min_reviews: 5
+  min_rating: 4.5
+
+enrichment:
+  # Where to look for a phone number, in order. The chain stops at the first hit.
+  sources:
+    - listing_text      # tel: links and numbers in the description itself
+    - host_links        # website / Instagram named in the listing or host profile
+    - web_search        # search engine lookup of property name + city
+  # Only accept numbers that parse as a real international number.
+  require_international_format: true
+  # Follow at most this many external pages per listing.
+  max_pages_per_listing: 4
+
+scraping:
+  # Seconds to wait between requests to the same host. Airbnb blocks fast clients,
+  # and hammering someone's small business website is rude.
+  delay_seconds: 3.0
+  # StealthyFetcher renders the page in a patched Chromium. Slower than the plain
+  # Fetcher but Airbnb's listing pages need JS for the full photo manifest.
+  fetcher: stealthy
+  headless: true
+  timeout_ms: 45000
+  # Retry a failed fetch this many times before giving up on a listing.
+  retries: 2
+  # Airbnb search pages cap out around 15 pages / ~270 results per query.
+  max_search_pages: 8
+
+# Worldwide coverage. Each entry becomes one Airbnb search query.
+# Ordered roughly by how many large, professionally photographed homes they hold.
+markets:
+  europe_south:
+    - "Mallorca, Spain"
+    - "Ibiza, Spain"
+    - "Marbella, Spain"
+    - "Costa Brava, Spain"
+    - "Tuscany, Italy"
+    - "Lake Como, Italy"
+    - "Amalfi Coast, Italy"
+    - "Puglia, Italy"
+    - "Sardinia, Italy"
+    - "Algarve, Portugal"
+    - "Lisbon, Portugal"
+    - "Mykonos, Greece"
+    - "Santorini, Greece"
+    - "Crete, Greece"
+    - "Corfu, Greece"
+    - "Split, Croatia"
+    - "Dubrovnik, Croatia"
+    - "Istria, Croatia"
+  europe_west:
+    - "Provence, France"
+    - "Cote d'Azur, France"
+    - "Dordogne, France"
+    - "Brittany, France"
+    - "Chamonix, France"
+    - "Cotswolds, United Kingdom"
+    - "Cornwall, United Kingdom"
+    - "Scottish Highlands, United Kingdom"
+    - "Amsterdam, Netherlands"
+    - "Ardennes, Belgium"
+  europe_dach:
+    - "Bavaria, Germany"
+    - "Allgau, Germany"
+    - "Baltic Sea, Germany"
+    - "Sylt, Germany"
+    - "Tyrol, Austria"
+    - "Salzburg, Austria"
+    - "Zell am See, Austria"
+    - "Zermatt, Switzerland"
+    - "Verbier, Switzerland"
+    - "Engadin, Switzerland"
+  north_america:
+    - "Miami, Florida"
+    - "Orlando, Florida"
+    - "Destin, Florida"
+    - "Scottsdale, Arizona"
+    - "Palm Springs, California"
+    - "Lake Tahoe, California"
+    - "Aspen, Colorado"
+    - "Breckenridge, Colorado"
+    - "Gatlinburg, Tennessee"
+    - "Blue Ridge, Georgia"
+    - "Austin, Texas"
+    - "Hamptons, New York"
+    - "Cape Cod, Massachusetts"
+    - "Whistler, Canada"
+    - "Muskoka, Canada"
+    - "Tulum, Mexico"
+    - "Cabo San Lucas, Mexico"
+    - "Punta Cana, Dominican Republic"
+  rest_of_world:
+    - "Bali, Indonesia"
+    - "Phuket, Thailand"
+    - "Koh Samui, Thailand"
+    - "Dubai, United Arab Emirates"
+    - "Marrakech, Morocco"
+    - "Cape Town, South Africa"
+    - "Byron Bay, Australia"
+    - "Gold Coast, Australia"
+    - "Queenstown, New Zealand"
+    - "Buenos Aires, Argentina"
+    - "Rio de Janeiro, Brazil"
+    - "Tuscany Chianti, Italy"
+
+output:
+  directory: "out"
+  csv_name: "artofwalks-leads.csv"
+  xlsx_name: "artofwalks-leads.xlsx"
+  # Cache of every page fetched, so a re-run resumes instead of starting over.
+  cache_db: "out/cache.sqlite3"
