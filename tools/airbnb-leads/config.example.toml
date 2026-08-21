@@ -1,0 +1,84 @@
+# ArtOfWalks lead generator configuration.
+# Copy to config.toml (setup.sh does this for you) and edit.
+
+[run]
+# How many leads the run should produce.
+target_count = 100
+# Data source: "apollo" | "csv" | "demo"
+#   apollo -> Apollo.io People Search + Bulk Enrich (needs a PAID plan + APOLLO_API_KEY)
+#   csv    -> normalise/score/export a list you already own (see [csv])
+#   demo   -> synthetic sample rows, for testing the pipeline offline
+provider = "demo"
+output_dir = "out"
+
+[icp]
+# Who we sell cinematic walkthrough videos to: companies that manage other
+# people's holiday lets and therefore control the listing photography budget.
+titles = [
+  "owner", "founder", "co-founder", "managing director", "ceo",
+  "property manager", "general manager", "head of marketing",
+  "marketing manager", "operations manager", "revenue manager",
+]
+seniorities = ["owner", "founder", "c_suite", "partner", "director", "manager"]
+keywords = [
+  "vacation rental", "short term rental", "holiday rental",
+  "property management", "airbnb management", "villa rental",
+  "serviced apartments", "holiday lettings",
+]
+employee_ranges = ["1,10", "11,50", "51,200"]
+
+# European holiday regions, weighted by how well they match the showreel.
+# weight feeds the ICP score; see airbnb_leads/scoring.py.
+[[icp.regions]]
+country = "Greece"
+weight = 1.0
+note = "Santorini reference footage lands hardest here"
+
+[[icp.regions]]
+country = "Spain"
+weight = 0.95
+note = "Largest STR management market in the EU"
+
+[[icp.regions]]
+country = "Portugal"
+weight = 0.95
+note = "Dense Lisbon/Porto/Algarve manager scene"
+
+[[icp.regions]]
+country = "Italy"
+weight = 0.9
+note = "Amalfi, Tuscany, lakes - high ADR villas"
+
+[[icp.regions]]
+country = "Croatia"
+weight = 0.85
+note = "Dalmatian coast, strong summer-only inventory"
+
+[[icp.regions]]
+country = "France"
+weight = 0.8
+note = "Cote d'Azur and Provence"
+
+[csv]
+# Used when provider = "csv". Columns are matched case-insensitively;
+# unknown columns are carried through into the lead's notes.
+path = "input/leads.csv"
+
+[apollo]
+# Used when provider = "apollo". The key is read from $APOLLO_API_KEY,
+# never from this file - do not paste secrets here.
+base_url = "https://api.apollo.io/v1"
+# Reveal verified work emails via Bulk Enrich. Each reveal costs 1 credit.
+enrich_emails = true
+# Refuse to start if the run would cost more credits than this.
+max_credits = 120
+# Only keep contacts whose email Apollo marks verified.
+require_verified_email = true
+
+[pdf]
+title = "Lead List - Vacation Rental Managers, Europe"
+brand = "ArtOfWalks"
+accent = "#1f6f5c"
+# Include a per-lead detail section after the summary table.
+include_detail_cards = true
+detail_card_limit = 25
