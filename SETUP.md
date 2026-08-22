@@ -31,16 +31,23 @@ https://buy.stripe.com/REPLACE_FULL_WALKTHROUGH  -> your Full Walkthrough link
 Until you do, `js/main.js` quietly rewrites those buttons into an email order
 to `artofwalks@gmail.com`, so nobody ever hits a dead link.
 
-## 2. Confirm the VAT line
+## 2. Add the VAT line
 
-`index.html` and `terms.html` currently say:
+`index.html` (under the pricing table) and `terms.html` (clause 4) currently
+carry wording that is true either way:
 
-> No VAT is charged under the small business rule (§ 19 UStG).
+> All prices are total prices in euro. What you see is what you pay.
 
-That is the usual case for a new one-person business, **but only you know if it
-is true for you.** If you are not a Kleinunternehmer, both places have to say
-the prices include 19% VAT instead. Getting this wrong is a real problem, so
-check it before you take the first payment.
+That is deliberately neutral, because a wrong tax statement on a page that
+takes money is a real problem. Once you know which case you are in, add the
+matching sentence to **both** places:
+
+- **Kleinunternehmer (§ 19 UStG)** — the usual case for a new one-person
+  business: *"No VAT is charged under the small business rule (§ 19 UStG)."*
+- **Regelbesteuerung** — if you charge VAT: *"All prices include 19% VAT."*
+
+If you don't know which applies to you, your tax advisor or your Finanzamt
+registration (Fragebogen zur steuerlichen Erfassung) will say.
 
 ## 3. The sale end date
 
