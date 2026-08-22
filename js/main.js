@@ -1,24 +1,31 @@
-/* ArtOfWalks · carousel, lazy video slots, reveals */
+/* ArtOfWalks · carousel, video slots, checkout, reveals */
 (() => {
   "use strict";
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const VIDEO_SLOTS = 3;
-  const PHOTO_SLOTS = 2;
+
+  /* Address used when a Stripe link has not been filled in yet. Keep in sync
+     with the address in index.html, legal.html and thanks.html. */
+  const CONTACT_EMAIL = "artofwalks@gmail.com";
 
   /* ---------- video slots (shared) ----------
-     Every video is a drop-in slot: poster/gradient by default,
-     footage fades in when the file exists, discreet hint when it doesn't. */
+     Every video fades in once its file is ready. If a file is missing or the
+     browser can't decode it, the poster/gradient simply stays — no error text
+     ever reaches the visitor. */
   function wireSlot(container, video, { onReady } = {}) {
     if (!video) return;
-    const markMissing = () => container.classList.add("no-video");
+    const markMissing = () => {
+      container.classList.remove("has-video");
+      container.classList.add("no-video");
+    };
     const markReady = () => {
       container.classList.remove("no-video");
       container.classList.add("has-video");
       if (onReady) onReady();
     };
-    video.addEventListener("loadeddata", markReady, { once: true });
+    if (video.readyState >= 2) markReady();
+    else video.addEventListener("loadeddata", markReady, { once: true });
     video.addEventListener("error", markMissing, { once: true });
     const source = video.querySelector("source");
     if (source) source.addEventListener("error", markMissing, { once: true });
@@ -29,28 +36,10 @@
     if (p && p.catch) p.catch(() => {});
   };
 
-  /* probe the drop-in files once so empty slots show their hint immediately
-     (video/img error events stay wired as the source of truth) */
-  if (location.protocol !== "file:") {
-    for (let n = 1; n <= VIDEO_SLOTS; n++) {
-      fetch(`assets/videos/video-${n}.mp4`, { method: "HEAD" })
-        .then((res) => { if (!res.ok) throw new Error(); })
-        .catch(() => document.querySelectorAll(`[data-slot="${n}"]`)
-          .forEach((el) => el.classList.add("no-video")));
-    }
-    for (let n = 1; n <= PHOTO_SLOTS; n++) {
-      fetch(`assets/photos/photo-${n}.jpg`, { method: "HEAD" })
-        .then((res) => { if (!res.ok) throw new Error(); })
-        .catch(() => fetch(`assets/photos/photo-${n}.png`, { method: "HEAD" })
-          .then((res) => { if (!res.ok) throw new Error(); })
-          .then(() => {
-            const img = document.querySelector(`[data-photo="${n}"] img`);
-            if (img) img.src = `assets/photos/photo-${n}.png`;
-          })
-          .catch(() => document.querySelectorAll(`[data-photo="${n}"]`)
-            .forEach((el) => el.classList.add("no-photo"))));
-    }
-  }
+  const isVisible = (el) => {
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight && r.bottom > 0;
+  };
 
   /* ---------- hero carousel ---------- */
   const carousel = document.querySelector("[data-carousel]");
@@ -155,26 +144,43 @@
     startTimer();
   }
 
-  /* ---------- portfolio: hover to preview, click for sound ---------- */
-  const works = [...document.querySelectorAll(".work")];
-  works.forEach((work) => {
-    const media = work.querySelector(".work-media");
-    const video = media.querySelector("video");
-    const playBtn = media.querySelector(".play-btn");
-    wireSlot(media, video);
+  /* ---------- playable films: silent preview, click for sound ----------
+     Used by the portfolio cards and by the before/after result. The video
+     loads lazily and starts muted as soon as it is both ready and on screen;
+     the play button turns on sound and native controls. */
+  const playables = [...document.querySelectorAll("[data-playable]")];
 
-    const isBlocked = () =>
-      media.classList.contains("no-video") || work.classList.contains("no-video");
+  const pauseOtherFilms = (current) => {
+    playables.forEach((other) => {
+      if (other === current) return;
+      const v = other.querySelector("video");
+      if (v && !v.paused) v.pause();
+    });
+  };
+
+  playables.forEach((media) => {
+    const video = media.querySelector("video");
+    if (!video) return;
+    const playBtn = media.querySelector(".play-btn");
+    const autoPreview = media.dataset.playable === "preview";
+
+    const blocked = () => media.classList.contains("no-video");
+    const load = () => { if (video.readyState === 0) video.load(); };
+
+    // The onReady callback is what actually starts the preview. Checking
+    // readiness inline would always run before the file has loaded.
+    wireSlot(media, video, {
+      onReady: () => {
+        if (autoPreview && !reducedMotion.matches && !media.dataset.activated && isVisible(media)) {
+          safePlay(video);
+        }
+      },
+    });
 
     playBtn?.addEventListener("click", () => {
-      if (isBlocked()) return;
-      // one voice at a time
-      works.forEach((other) => {
-        if (other === work) return;
-        const v = other.querySelector("video");
-        if (v && !v.paused) v.pause();
-      });
-      if (video.readyState === 0) video.load();
+      if (blocked()) return;
+      pauseOtherFilms(media);
+      load();
       video.muted = false;
       video.controls = true;
       media.classList.add("is-playing");
@@ -183,10 +189,10 @@
     });
 
     // silent preview on hover, desktop only, until the film was opened for real
-    if (canHover.matches && !reducedMotion.matches) {
+    if (canHover.matches && !reducedMotion.matches && !autoPreview) {
       media.addEventListener("mouseenter", () => {
-        if (isBlocked() || media.dataset.activated) return;
-        if (video.readyState === 0) video.load();
+        if (blocked() || media.dataset.activated) return;
+        load();
         video.muted = true;
         safePlay(video);
       });
@@ -196,7 +202,21 @@
       });
     }
 
-    video?.addEventListener("error", () => {
+    // auto-preview films load and loop as soon as they scroll into view
+    if (autoPreview) {
+      new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          if (!blocked()) load();
+          if (media.classList.contains("has-video") && !reducedMotion.matches && !media.dataset.activated) {
+            safePlay(video);
+          }
+        } else if (!video.paused && !media.dataset.activated) {
+          video.pause();
+        }
+      }, { threshold: 0.3 }).observe(media);
+    }
+
+    video.addEventListener("error", () => {
       media.classList.remove("is-playing");
       delete media.dataset.activated;
       video.controls = false;
@@ -204,32 +224,7 @@
     });
   });
 
-  /* ---------- pricing spotlight ---------- */
-  if (canHover.matches) {
-    document.querySelectorAll(".price-card").forEach((card) => {
-      card.addEventListener("pointermove", (e) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--sx", `${e.clientX - rect.left}px`);
-        card.style.setProperty("--sy", `${e.clientY - rect.top}px`);
-      });
-    });
-  }
-
-  /* ---------- before & after ---------- */
-  const baVideoBox = document.querySelector(".ba-video");
-  if (baVideoBox) {
-    const video = baVideoBox.querySelector("video");
-    wireSlot(baVideoBox, video);
-    new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        if (video.readyState === 0 && !baVideoBox.classList.contains("no-video")) video.load();
-        if (baVideoBox.classList.contains("has-video") && !reducedMotion.matches) safePlay(video);
-      } else if (!video.paused) {
-        video.pause();
-      }
-    }, { threshold: 0.3 }).observe(baVideoBox);
-  }
-
+  /* ---------- before & after photos ---------- */
   document.querySelectorAll(".ba-photo").forEach((box) => {
     const img = box.querySelector("img");
     if (!img) return;
@@ -247,6 +242,102 @@
       });
     }
   });
+
+  /* ---------- checkout ----------
+     Every buy button points at a Stripe payment link. Until a link is filled
+     in, the button falls back to an email order so it is never a dead end. */
+  document.querySelectorAll("[data-buy]").forEach((btn) => {
+    const href = btn.getAttribute("href") || "";
+    if (!href.includes("REPLACE_")) return;
+    const pkg = btn.dataset.package || "a video";
+    const price = btn.dataset.price;
+    const subject = `Order: ${pkg}${price ? ` (€${price})` : ""}`;
+    const body = `Hi! I'd like to order the ${pkg}${price ? ` (€${price})` : ""} for my listing.`;
+    btn.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    btn.dataset.buyFallback = "true";
+  });
+
+  /* ---------- sale countdown ---------- */
+  const sale = document.querySelector("[data-sale-end]");
+  if (sale) {
+    const target = new Date(`${sale.dataset.saleEnd}T23:59:59`);
+    const slot = sale.querySelector("[data-sale-countdown]");
+    if (slot && !Number.isNaN(target.getTime())) {
+      const days = Math.ceil((target - Date.now()) / 86400000);
+      if (days > 1) {
+        slot.textContent = `Ends in ${days} days.`;
+      } else if (days === 1) {
+        slot.textContent = "Ends tomorrow.";
+      } else if (days === 0) {
+        slot.textContent = "Last day.";
+      } else {
+        sale.hidden = true;
+      }
+    }
+  }
+
+  /* ---------- mobile menu ---------- */
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const mobileMenu = document.getElementById("mobile-menu");
+  if (navToggle && mobileMenu) {
+    const setOpen = (open) => {
+      navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      mobileMenu.hidden = !open;
+      document.body.classList.toggle("menu-open", open);
+    };
+    navToggle.addEventListener("click", () => {
+      setOpen(navToggle.getAttribute("aria-expanded") !== "true");
+    });
+    mobileMenu.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") setOpen(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && navToggle.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        navToggle.focus();
+      }
+    });
+  }
+
+  /* ---------- sticky buy bar ----------
+     Appears once the hero is behind you, hides again over the pricing table
+     and the footer so it never covers what it points at. */
+  const buybar = document.querySelector("[data-buybar]");
+  if (buybar) {
+    const hero = document.querySelector(".hero");
+    const pricing = document.getElementById("pricing");
+    const footer = document.querySelector(".site-footer");
+    let pastHero = false;
+    let overTarget = false;
+
+    const sync = () => {
+      const show = pastHero && !overTarget;
+      buybar.hidden = !show;
+      document.body.classList.toggle("has-buybar", show);
+    };
+
+    if (hero) {
+      new IntersectionObserver(([entry]) => {
+        pastHero = !entry.isIntersecting;
+        sync();
+      }, { threshold: 0.05 }).observe(hero);
+    }
+
+    const targets = [pricing, footer].filter(Boolean);
+    if (targets.length) {
+      const seen = new Set();
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) seen.add(entry.target);
+          else seen.delete(entry.target);
+        });
+        overTarget = seen.size > 0;
+        sync();
+      }, { threshold: 0.05 });
+      targets.forEach((t) => io.observe(t));
+    }
+  }
 
   /* ---------- scroll reveals ---------- */
   const revealables = [...document.querySelectorAll(".reveal")];
