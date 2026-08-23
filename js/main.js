@@ -144,10 +144,12 @@
     startTimer();
   }
 
-  /* ---------- playable films: silent preview, click for sound ----------
+  /* ---------- playable films: preview, click to open ----------
      Used by the portfolio cards and by the before/after result. The video
      loads lazily and starts muted as soon as it is both ready and on screen;
-     the play button turns on sound and native controls. */
+     the play button hands over to the native controls. The showcase films
+     currently carry no audio track, but unmuting stays wired so adding music
+     later needs no code change. */
   const playables = [...document.querySelectorAll("[data-playable]")];
 
   const pauseOtherFilms = (current) => {

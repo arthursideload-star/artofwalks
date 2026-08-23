@@ -1,35 +1,26 @@
-# Things you have to fill in yourself
+# Things still on your plate
 
-Two of these are placeholders right now. The site works either way — but until
-you replace them, buy buttons open an email instead of a checkout.
+## 1. Test the four buy buttons once
 
-## 1. The four Stripe payment links
+The real Stripe payment links are in place. Nobody has clicked them yet, and
+the link ids were created out of order (`...400`, `...401`, `...403`, `...402`),
+so a mix-up between the 10 Clip Pack and the Full Walkthrough would not be
+obvious from the URLs alone. **Click each of the four buttons once** and check
+that the Stripe page shows the right package name and amount:
 
-In Stripe: **Payment links → New**. Create one link per package.
+| Button           | Should show |
+| ---------------- | ----------- |
+| Single Clip      | €50         |
+| 5 Clip Pack      | €200        |
+| 10 Clip Pack     | €399        |
+| Full Walkthrough | €749        |
 
-| Package          | Price | Success URL                            |
-| ---------------- | ----- | -------------------------------------- |
-| Single Clip      | €50   | `https://artofwalks.com/thanks.html`   |
-| 5 Clip Pack      | €200  | `https://artofwalks.com/thanks.html`   |
-| 10 Clip Pack     | €399  | `https://artofwalks.com/thanks.html`   |
-| Full Walkthrough | €749  | `https://artofwalks.com/thanks.html`   |
-
-Two settings worth turning on for every link:
+Two settings worth turning on for every link in Stripe, if they are not already:
 
 - **Collect customer email** — you need it to send the video.
 - **Custom field: "Listing name or address"** — saves one email round trip.
 
-Then swap the placeholders in `index.html`:
-
-```
-https://buy.stripe.com/REPLACE_SINGLE_CLIP       -> your Single Clip link
-https://buy.stripe.com/REPLACE_5_CLIP_PACK       -> your 5 Clip Pack link
-https://buy.stripe.com/REPLACE_10_CLIP_PACK      -> your 10 Clip Pack link
-https://buy.stripe.com/REPLACE_FULL_WALKTHROUGH  -> your Full Walkthrough link
-```
-
-Until you do, `js/main.js` quietly rewrites those buttons into an email order
-to `artofwalks@gmail.com`, so nobody ever hits a dead link.
+Also confirm each link's success URL points at `https://artofwalks.com/thanks.html`.
 
 ## 2. Add the VAT line
 
