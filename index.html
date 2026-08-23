@@ -4,19 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ArtOfWalks — Cinematic Walkthrough Videos for Airbnb Listings</title>
-  <meta name="description" content="Turn the photos already on your Airbnb listing into cinematic walkthrough videos. No photoshoot. From €50, delivered in 3 days, money-back guarantee.">
+  <meta name="description" content="ArtOfWalks turns the photos already on your Airbnb listing into cinematic walkthrough videos. No photoshoot. From €50, delivered in 3 days, 14-day money-back guarantee.">
   <meta name="theme-color" content="#0A0A0A">
   <meta property="og:title" content="ArtOfWalks — Cinematic Walkthrough Videos for Airbnb Listings">
   <meta property="og:description" content="Turn the photos already on your Airbnb listing into cinematic walkthrough videos. No photoshoot. From €50, delivered in 3 days.">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtOfWalks">
   <meta property="og:url" content="https://artofwalks.com/">
   <meta property="og:image" content="https://artofwalks.com/assets/posters/poster-1.jpg">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="853">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://artofwalks.com/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0A'/%3E%3Cpath d='M26 20v24l20-12z' fill='%23E8711A'/%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A0A0A'/%3E%3Cpath d='M26 20v24l20-12z' fill='%23E8711A'/%3E%3C/svg%3E">
+  <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
@@ -28,13 +30,45 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": "https://artofwalks.com/#organization",
+        "name": "ArtOfWalks",
+        "alternateName": ["Art of Walks", "Art Of Walks", "ArtOfWalks.com"],
+        "url": "https://artofwalks.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://artofwalks.com/assets/brand/logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": "https://artofwalks.com/assets/posters/poster-1.jpg",
+        "description": "ArtOfWalks turns the photos already on an Airbnb listing into cinematic walkthrough videos. No photoshoot needed.",
+        "email": "artofwalks@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Hans-Sachs-Stra\u00dfe 12",
+          "postalCode": "14471",
+          "addressLocality": "Potsdam",
+          "addressCountry": "DE"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://artofwalks.com/#website",
+        "url": "https://artofwalks.com/",
+        "name": "ArtOfWalks",
+        "alternateName": ["Art of Walks", "Art Of Walks"],
+        "inLanguage": "en",
+        "publisher": { "@id": "https://artofwalks.com/#organization" }
+      },
+      {
         "@type": "Service",
         "name": "ArtOfWalks",
         "description": "Cinematic walkthrough videos for Airbnb listings, created from the photos hosts already have. No photoshoot needed.",
         "url": "https://artofwalks.com/",
         "serviceType": "Real estate video production",
         "areaServed": "Worldwide",
-        "provider": { "@type": "Organization", "name": "ArtOfWalks", "url": "https://artofwalks.com/" },
+        "provider": { "@id": "https://artofwalks.com/#organization" },
         "offers": [
           { "@type": "Offer", "name": "Single Clip", "price": "50", "priceCurrency": "EUR", "url": "https://artofwalks.com/#pricing" },
           { "@type": "Offer", "name": "5 Clip Pack", "price": "200", "priceCurrency": "EUR", "url": "https://artofwalks.com/#pricing" },
@@ -186,7 +220,7 @@
       <div class="container">
         <div class="section-head reveal">
           <h2 class="section-title">From Static Photos to Living Spaces</h2>
-          <p class="section-sub">These are ordinary listing photos on the left. On the right is what we made from them. Press play — the sound is part of it.</p>
+          <p class="section-sub">These are ordinary listing photos on the left. On the right is what we made from them.</p>
         </div>
         <div class="ba reveal">
           <div class="ba-side">
@@ -210,7 +244,7 @@
               <video poster="assets/posters/poster-1.jpg" muted loop playsinline preload="none">
                 <source src="assets/videos/video-1.mp4" type="video/mp4">
               </video>
-              <button class="play-btn" aria-label="Play the walkthrough video with sound">
+              <button class="play-btn" aria-label="Play the walkthrough video">
                 <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
               </button>
             </div>
@@ -249,7 +283,7 @@
       <div class="container">
         <div class="section-head reveal">
           <h2 class="section-title">See the Difference</h2>
-          <p class="section-sub">Every film below was created from standard listing photos — the exact process we use for your property. Click any of them to watch with sound.</p>
+          <p class="section-sub">Every film below was created from standard listing photos — the exact process we use for your property. Click any of them to watch full size.</p>
         </div>
         <div class="portfolio">
           <figure class="work work-a reveal" style="--i:0" data-slot="1">
@@ -282,11 +316,11 @@
               <video poster="assets/posters/poster-3.jpg" muted loop playsinline preload="none">
                 <source src="assets/videos/video-3.mp4" type="video/mp4">
               </video>
-              <button class="play-btn" aria-label="Play film: Cycladic Suite, Santorini">
+              <button class="play-btn" aria-label="Play film: Spain Coast">
                 <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
               </button>
             </div>
-            <figcaption><strong>Cycladic Suite</strong><span>Santorini · Greece</span></figcaption>
+            <figcaption><strong>Spain Coast</strong><span>Spain</span></figcaption>
           </figure>
         </div>
       </div>
@@ -336,7 +370,7 @@
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Delivered in 3 business days</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Perfect for Instagram Reels &amp; Stories</li>
             </ul>
-            <a class="btn btn-outline" data-buy="single" data-package="Single Clip" data-price="50" href="https://buy.stripe.com/REPLACE_SINGLE_CLIP">Buy for €50</a>
+            <a class="btn btn-outline" data-buy="single" data-package="Single Clip" data-price="50" href="https://buy.stripe.com/5kQ8wPg5R7KZ9355ZV7g400">Buy for €50</a>
           </article>
           <article class="price-card is-popular reveal" style="--i:1">
             <p class="badge badge-popular">Most popular</p>
@@ -350,7 +384,7 @@
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Delivered in 5 business days</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Two weeks of social content</li>
             </ul>
-            <a class="btn btn-solid" data-buy="pack5" data-package="5 Clip Pack" data-price="200" href="https://buy.stripe.com/REPLACE_5_CLIP_PACK">Buy for €200</a>
+            <a class="btn btn-solid" data-buy="pack5" data-package="5 Clip Pack" data-price="200" href="https://buy.stripe.com/6oUaEXbPBc1fdjl3RN7g401">Buy for €200</a>
           </article>
           <article class="price-card reveal" style="--i:2">
             <h3>10 Clip Pack</h3>
@@ -363,7 +397,7 @@
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Delivered in 7 business days</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>A month of social content</li>
             </ul>
-            <a class="btn btn-outline" data-buy="pack10" data-package="10 Clip Pack" data-price="399" href="https://buy.stripe.com/REPLACE_10_CLIP_PACK">Buy for €399</a>
+            <a class="btn btn-outline" data-buy="pack10" data-package="10 Clip Pack" data-price="399" href="https://buy.stripe.com/28EeVd9Ht7KZcfh4VR7g403">Buy for €399</a>
           </article>
           <article class="price-card is-featured reveal" style="--i:3">
             <p class="badge">Summer Sale · −25%</p>
@@ -382,7 +416,7 @@
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ideal for Airbnb, Booking.com &amp; your website</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>1 revision round included</li>
             </ul>
-            <a class="btn btn-solid" data-buy="full" data-package="Full Walkthrough" data-price="749" href="https://buy.stripe.com/REPLACE_FULL_WALKTHROUGH">
+            <a class="btn btn-solid" data-buy="full" data-package="Full Walkthrough" data-price="749" href="https://buy.stripe.com/9B64gz5rdd5j4MP1JF7g402">
               Buy for €749
               <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
             </a>

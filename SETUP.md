@@ -1,35 +1,26 @@
-# Things you have to fill in yourself
+# Things still on your plate
 
-Two of these are placeholders right now. The site works either way — but until
-you replace them, buy buttons open an email instead of a checkout.
+## 1. Test the four buy buttons once
 
-## 1. The four Stripe payment links
+The real Stripe payment links are in place. Nobody has clicked them yet, and
+the link ids were created out of order (`...400`, `...401`, `...403`, `...402`),
+so a mix-up between the 10 Clip Pack and the Full Walkthrough would not be
+obvious from the URLs alone. **Click each of the four buttons once** and check
+that the Stripe page shows the right package name and amount:
 
-In Stripe: **Payment links → New**. Create one link per package.
+| Button           | Should show |
+| ---------------- | ----------- |
+| Single Clip      | €50         |
+| 5 Clip Pack      | €200        |
+| 10 Clip Pack     | €399        |
+| Full Walkthrough | €749        |
 
-| Package          | Price | Success URL                            |
-| ---------------- | ----- | -------------------------------------- |
-| Single Clip      | €50   | `https://artofwalks.com/thanks.html`   |
-| 5 Clip Pack      | €200  | `https://artofwalks.com/thanks.html`   |
-| 10 Clip Pack     | €399  | `https://artofwalks.com/thanks.html`   |
-| Full Walkthrough | €749  | `https://artofwalks.com/thanks.html`   |
-
-Two settings worth turning on for every link:
+Two settings worth turning on for every link in Stripe, if they are not already:
 
 - **Collect customer email** — you need it to send the video.
 - **Custom field: "Listing name or address"** — saves one email round trip.
 
-Then swap the placeholders in `index.html`:
-
-```
-https://buy.stripe.com/REPLACE_SINGLE_CLIP       -> your Single Clip link
-https://buy.stripe.com/REPLACE_5_CLIP_PACK       -> your 5 Clip Pack link
-https://buy.stripe.com/REPLACE_10_CLIP_PACK      -> your 10 Clip Pack link
-https://buy.stripe.com/REPLACE_FULL_WALKTHROUGH  -> your Full Walkthrough link
-```
-
-Until you do, `js/main.js` quietly rewrites those buttons into an email order
-to `artofwalks@gmail.com`, so nobody ever hits a dead link.
+Also confirm each link's success URL points at `https://artofwalks.com/thanks.html`.
 
 ## 2. Add the VAT line
 
@@ -62,7 +53,35 @@ the whole sale line hides itself — but the Full Walkthrough card still shows t
 struck-through €999 and the "Summer Sale · −25%" badge, so either extend the
 date or edit that card too.
 
-## 4. Have the legal texts read once
+## 4. Google Search Console
+
+The sitemap entry has to be the sitemap file, not the homepage. Submitting
+`https://artofwalks.com/` gets rejected with "Sitemap ist HTML" — that URL is
+the landing page. The correct one is:
+
+```
+https://artofwalks.com/sitemap.xml
+```
+
+Remove the wrong entry (three dots on its row -> "Sitemap entfernen"), then add
+`sitemap.xml` under "Neue Sitemap hinzufügen".
+
+After that, go to **URL-Prüfung**, paste `https://artofwalks.com/`, and click
+**Indexierung beantragen**. That is the fastest way to get a new site into the
+index; the sitemap alone can take days.
+
+Being found for "art of walks" rather than the exact URL also needs signals
+from outside the site. The markup now tells Google that "Art of Walks" and
+"ArtOfWalks" are the same name, but a domain nobody links to stays invisible.
+The free things that actually move this:
+
+- Social profiles named ArtOfWalks (Instagram, TikTok, YouTube) with
+  artofwalks.com in the bio. Once they exist, add their URLs to the `sameAs`
+  array in the Organization block in `index.html`.
+- A Google Business Profile (Unternehmensprofil) for the business.
+- Any real mention of the brand on a site Google already crawls.
+
+## 5. Have the legal texts read once
 
 `terms.html` (terms + right of withdrawal) and the Stripe section in
 `legal.html` are solid boilerplate written to match how you actually sell, but
