@@ -62,7 +62,35 @@ the whole sale line hides itself — but the Full Walkthrough card still shows t
 struck-through €999 and the "Summer Sale · −25%" badge, so either extend the
 date or edit that card too.
 
-## 4. Have the legal texts read once
+## 4. Google Search Console
+
+The sitemap entry has to be the sitemap file, not the homepage. Submitting
+`https://artofwalks.com/` gets rejected with "Sitemap ist HTML" — that URL is
+the landing page. The correct one is:
+
+```
+https://artofwalks.com/sitemap.xml
+```
+
+Remove the wrong entry (three dots on its row -> "Sitemap entfernen"), then add
+`sitemap.xml` under "Neue Sitemap hinzufügen".
+
+After that, go to **URL-Prüfung**, paste `https://artofwalks.com/`, and click
+**Indexierung beantragen**. That is the fastest way to get a new site into the
+index; the sitemap alone can take days.
+
+Being found for "art of walks" rather than the exact URL also needs signals
+from outside the site. The markup now tells Google that "Art of Walks" and
+"ArtOfWalks" are the same name, but a domain nobody links to stays invisible.
+The free things that actually move this:
+
+- Social profiles named ArtOfWalks (Instagram, TikTok, YouTube) with
+  artofwalks.com in the bio. Once they exist, add their URLs to the `sameAs`
+  array in the Organization block in `index.html`.
+- A Google Business Profile (Unternehmensprofil) for the business.
+- Any real mention of the brand on a site Google already crawls.
+
+## 5. Have the legal texts read once
 
 `terms.html` (terms + right of withdrawal) and the Stripe section in
 `legal.html` are solid boilerplate written to match how you actually sell, but
