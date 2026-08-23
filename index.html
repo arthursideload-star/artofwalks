@@ -4,19 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ArtOfWalks — Cinematic Walkthrough Videos for Airbnb Listings</title>
-  <meta name="description" content="Turn the photos already on your Airbnb listing into cinematic walkthrough videos. No photoshoot. From €50, delivered in 3 days, money-back guarantee.">
+  <meta name="description" content="ArtOfWalks turns the photos already on your Airbnb listing into cinematic walkthrough videos. No photoshoot. From €50, delivered in 3 days, 14-day money-back guarantee.">
   <meta name="theme-color" content="#0A0A0A">
   <meta property="og:title" content="ArtOfWalks — Cinematic Walkthrough Videos for Airbnb Listings">
   <meta property="og:description" content="Turn the photos already on your Airbnb listing into cinematic walkthrough videos. No photoshoot. From €50, delivered in 3 days.">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtOfWalks">
   <meta property="og:url" content="https://artofwalks.com/">
   <meta property="og:image" content="https://artofwalks.com/assets/posters/poster-1.jpg">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="853">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://artofwalks.com/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0A'/%3E%3Cpath d='M26 20v24l20-12z' fill='%23E8711A'/%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A0A0A'/%3E%3Cpath d='M26 20v24l20-12z' fill='%23E8711A'/%3E%3C/svg%3E">
+  <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
@@ -28,13 +30,45 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": "https://artofwalks.com/#organization",
+        "name": "ArtOfWalks",
+        "alternateName": ["Art of Walks", "Art Of Walks", "ArtOfWalks.com"],
+        "url": "https://artofwalks.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://artofwalks.com/assets/brand/logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": "https://artofwalks.com/assets/posters/poster-1.jpg",
+        "description": "ArtOfWalks turns the photos already on an Airbnb listing into cinematic walkthrough videos. No photoshoot needed.",
+        "email": "artofwalks@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Hans-Sachs-Stra\u00dfe 12",
+          "postalCode": "14471",
+          "addressLocality": "Potsdam",
+          "addressCountry": "DE"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://artofwalks.com/#website",
+        "url": "https://artofwalks.com/",
+        "name": "ArtOfWalks",
+        "alternateName": ["Art of Walks", "Art Of Walks"],
+        "inLanguage": "en",
+        "publisher": { "@id": "https://artofwalks.com/#organization" }
+      },
+      {
         "@type": "Service",
         "name": "ArtOfWalks",
         "description": "Cinematic walkthrough videos for Airbnb listings, created from the photos hosts already have. No photoshoot needed.",
         "url": "https://artofwalks.com/",
         "serviceType": "Real estate video production",
         "areaServed": "Worldwide",
-        "provider": { "@type": "Organization", "name": "ArtOfWalks", "url": "https://artofwalks.com/" },
+        "provider": { "@id": "https://artofwalks.com/#organization" },
         "offers": [
           { "@type": "Offer", "name": "Single Clip", "price": "50", "priceCurrency": "EUR", "url": "https://artofwalks.com/#pricing" },
           { "@type": "Offer", "name": "5 Clip Pack", "price": "200", "priceCurrency": "EUR", "url": "https://artofwalks.com/#pricing" },
