@@ -9,6 +9,13 @@ scripts/
 .claude-flow/data/
 .claude-flow/logs/
 .claude-flow/sessions/
+.claude-flow/daemon-state.json
+.claude-flow/daemon.pid
+.claude-flow/harness-active-policy.json
+.claude-flow/metrics/
+.claude-flow/policy/
+.claude/.proven-config-version
+.claude/proven-config.json
 ruvector.db
 .swarm/*.db
 .swarm/*.db-shm
