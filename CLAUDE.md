@@ -259,3 +259,20 @@ When the user has Figma connected, the designer agent uses Figma MCP tools:
 - `use_figma` to create designs directly in Figma
 - `get_design_context` to read existing designs
 - `get_screenshot` to capture design references
+
+### Sleek Mobile App Design
+
+For mobile app design, use the Sleek API (https://sleek.design):
+- Skill: `.claude/skills/sleek-design/SKILL.md`
+- API reference: `.claude/skills/sleek-design/api-reference.json`
+- Slash command: `/app design-mobile <description>`
+
+**Flow**: authenticate → create project → send ONE message with full intent →
+share live link → poll → render screenshots → show to user.
+
+Auth requires `SLEEK_API_KEY`. If not set, use the device flow:
+`POST /device/start` with `{"source": "claude-code"}` → show user the URL and code →
+poll `/device/poll` until approved.
+
+**Combined workflow**: Use Sleek for mobile app screen design, then pass the
+component HTML to the fullstack-developer agent for implementation.
