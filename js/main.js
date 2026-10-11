@@ -259,25 +259,6 @@
     btn.dataset.buyFallback = "true";
   });
 
-  /* ---------- sale countdown ---------- */
-  const sale = document.querySelector("[data-sale-end]");
-  if (sale) {
-    const target = new Date(`${sale.dataset.saleEnd}T23:59:59`);
-    const slot = sale.querySelector("[data-sale-countdown]");
-    if (slot && !Number.isNaN(target.getTime())) {
-      const days = Math.ceil((target - Date.now()) / 86400000);
-      if (days > 1) {
-        slot.textContent = `Ends in ${days} days.`;
-      } else if (days === 1) {
-        slot.textContent = "Ends tomorrow.";
-      } else if (days === 0) {
-        slot.textContent = "Last day.";
-      } else {
-        sale.hidden = true;
-      }
-    }
-  }
-
   /* ---------- mobile menu ---------- */
   const navToggle = document.querySelector("[data-nav-toggle]");
   const mobileMenu = document.getElementById("mobile-menu");

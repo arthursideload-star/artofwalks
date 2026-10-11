@@ -663,15 +663,6 @@ a { color: inherit; }
 
 /* ---------- pricing ---------- */
 
-.pricing-sale {
-  margin-top: calc(clamp(2.75rem, 6.5vw, 4.5rem) * -0.55);
-  margin-bottom: clamp(2rem, 5vw, 3rem);
-  color: var(--accent-bright);
-  font-size: 1.02rem;
-  letter-spacing: 0.01em;
-}
-.pricing-sale strong { font-weight: 700; }
-
 .pricing {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
