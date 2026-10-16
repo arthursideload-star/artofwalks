@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ArtOfWalks">
   <meta property="og:url" content="https://artofwalks.com/">
-  <meta property="og:image" content="https://artofwalks.com/assets/posters/poster-1.jpg">
+  <meta property="og:image" content="https://artofwalks.com/assets/posters/poster-3.jpg">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="853">
   <meta name="twitter:card" content="summary_large_image">
@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,401,500,700,900,901&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/posters/poster-1.jpg">
+  <link rel="preload" as="image" href="assets/posters/poster-3.jpg">
   <link rel="stylesheet" href="css/styles.css">
   <script type="application/ld+json">
   {
@@ -41,7 +41,7 @@
           "width": 512,
           "height": 512
         },
-        "image": "https://artofwalks.com/assets/posters/poster-1.jpg",
+        "image": "https://artofwalks.com/assets/posters/poster-3.jpg",
         "description": "ArtOfWalks turns the photos already on an Airbnb listing into cinematic walkthrough videos. No photoshoot needed.",
         "email": "artofwalks@gmail.com",
         "address": {
@@ -133,7 +133,6 @@
     <div class="nav-inner">
       <a class="wordmark" href="#top" aria-label="ArtOfWalks, back to top">Art<span>Of</span>Walks</a>
       <nav class="nav-links" aria-label="Sections">
-        <a href="#before-after">How It Looks</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#examples">Examples</a>
         <a href="#pricing">Pricing</a>
@@ -146,7 +145,6 @@
       </button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Sections" hidden>
-      <a href="#before-after">How It Looks</a>
       <a href="#how-it-works">How It Works</a>
       <a href="#examples">Examples</a>
       <a href="#pricing">Pricing</a>
@@ -160,13 +158,7 @@
     <!-- 1 · HERO -->
     <section class="hero" aria-label="Showcase">
       <div class="hero-carousel" data-carousel>
-        <div class="slide is-active" data-slot="1">
-          <div class="slide-poster poster-1" aria-hidden="true"></div>
-          <video class="slide-video" poster="assets/posters/poster-1.jpg" muted loop playsinline preload="none" tabindex="-1">
-            <source src="assets/videos/video-1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="slide" data-slot="3">
+        <div class="slide is-active" data-slot="3">
           <div class="slide-poster poster-3" aria-hidden="true"></div>
           <video class="slide-video" poster="assets/posters/poster-3.jpg" muted loop playsinline preload="none" tabindex="-1">
             <source src="assets/videos/video-3.mp4" type="video/mp4">
@@ -186,7 +178,7 @@
             Get Your Video — from €50
             <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
           </a>
-          <a class="btn btn-ghost btn-lg" href="#before-after">See a real example</a>
+          <a class="btn btn-ghost btn-lg" href="#examples">See an example</a>
         </div>
         <ul class="hero-trust">
           <li><svg class="icon" aria-hidden="true"><use href="#i-camera-slash"/></svg>No photoshoot needed</li>
@@ -196,61 +188,12 @@
       </div>
 
       <div class="hero-controls">
-        <div class="dots" role="tablist" aria-label="Showcase videos">
-          <button class="dot is-active" data-goto="0" role="tab" aria-selected="true" aria-label="Video 1"><span class="dot-fill"></span></button>
-          <button class="dot" data-goto="1" role="tab" aria-selected="false" aria-label="Video 2"><span class="dot-fill"></span></button>
-        </div>
         <div class="arrows">
           <button class="ctrl" data-playpause aria-label="Pause showcase">
             <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
             <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
           </button>
-          <button class="ctrl" data-prev aria-label="Previous video">
-            <svg class="icon" aria-hidden="true"><use href="#i-caret-left"/></svg>
-          </button>
-          <button class="ctrl" data-next aria-label="Next video">
-            <svg class="icon" aria-hidden="true"><use href="#i-caret-right"/></svg>
-          </button>
         </div>
-      </div>
-    </section>
-
-    <!-- 2 · BEFORE & AFTER -->
-    <section class="section" id="before-after">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2 class="section-title">From Static Photos to Living Spaces</h2>
-          <p class="section-sub">These are ordinary listing photos on the left. On the right is what we made from them.</p>
-        </div>
-        <div class="ba reveal">
-          <div class="ba-side">
-            <p class="ba-label">Your photos</p>
-            <div class="ba-photos">
-              <div class="ba-photo" data-photo="1">
-                <img src="assets/photos/photo-1.jpg" alt="Original listing photo: pool terrace in Santorini" loading="lazy" width="864" height="576">
-              </div>
-              <div class="ba-photo" data-photo="2">
-                <img src="assets/photos/photo-2.jpg" alt="Original listing photo: aerial view of Santorini" loading="lazy" width="1000" height="667">
-              </div>
-            </div>
-          </div>
-          <div class="ba-arrow" aria-hidden="true">
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-          </div>
-          <div class="ba-side ba-side-result">
-            <p class="ba-label ba-label-accent">Your video</p>
-            <div class="ba-video has-poster" data-slot="1" data-playable="preview">
-              <div class="slide-poster poster-1" aria-hidden="true"></div>
-              <video poster="assets/posters/poster-1.jpg" muted loop playsinline preload="none">
-                <source src="assets/videos/video-1.mp4" type="video/mp4">
-              </video>
-              <button class="play-btn" aria-label="Play the walkthrough video">
-                <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <p class="ba-caption reveal">Same photos. Completely different experience.</p>
       </div>
     </section>
 
@@ -283,34 +226,10 @@
       <div class="container">
         <div class="section-head reveal">
           <h2 class="section-title">See the Difference</h2>
-          <p class="section-sub">Every film below was created from standard listing photos — the exact process we use for your property. Click any of them to watch full size.</p>
+          <p class="section-sub">A sample film in the style we create for your property. Click to watch it full size.</p>
         </div>
-        <div class="portfolio">
-          <figure class="work work-a reveal" style="--i:0" data-slot="1">
-            <div class="work-media has-poster" data-playable="hover">
-              <div class="slide-poster poster-1" aria-hidden="true"></div>
-              <video poster="assets/posters/poster-1.jpg" muted loop playsinline preload="none">
-                <source src="assets/videos/video-1.mp4" type="video/mp4">
-              </video>
-              <button class="play-btn" aria-label="Play film: Caldera Villas, Santorini">
-                <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
-              </button>
-            </div>
-            <figcaption><strong>Caldera Villas</strong><span>Santorini · Greece</span></figcaption>
-          </figure>
-          <figure class="work work-c reveal" style="--i:1" data-slot="2">
-            <div class="work-media has-poster" data-playable="hover">
-              <div class="slide-poster poster-2" aria-hidden="true"></div>
-              <video poster="assets/posters/poster-2.jpg" muted loop playsinline preload="none">
-                <source src="assets/videos/video-2.mp4" type="video/mp4">
-              </video>
-              <button class="play-btn" aria-label="Play film: Panorama Cabin, Iceland">
-                <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
-              </button>
-            </div>
-            <figcaption><strong>Panorama Cabin</strong><span>Iceland</span></figcaption>
-          </figure>
-          <figure class="work work-b reveal" style="--i:2" data-slot="3">
+        <div class="portfolio is-single">
+          <figure class="work work-b reveal" style="--i:0" data-slot="3">
             <div class="work-media has-poster" data-playable="hover">
               <div class="slide-poster poster-3" aria-hidden="true"></div>
               <video poster="assets/posters/poster-3.jpg" muted loop playsinline preload="none">
@@ -320,7 +239,7 @@
                 <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
               </button>
             </div>
-            <figcaption><strong>Spain Coast</strong><span>Spain</span></figcaption>
+            <figcaption><strong>Spain Coast</strong><span>AI-generated sample film</span></figcaption>
           </figure>
         </div>
       </div>

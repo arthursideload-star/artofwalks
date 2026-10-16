@@ -5,10 +5,17 @@
         "source": "github",
         "repo": "JuliusBrussee/caveman"
       }
+    },
+    "hyperframes": {
+      "source": {
+        "source": "github",
+        "repo": "heygen-com/hyperframes"
+      }
     }
   },
   "enabledPlugins": {
-    "caveman@caveman": true
+    "caveman@caveman": true,
+    "hyperframes@hyperframes": true
   },
   "env": {
     "CAVEMAN_DEFAULT_MODE": "caveman"

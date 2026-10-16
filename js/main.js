@@ -100,7 +100,7 @@
     const stopTimer = () => { clearInterval(timer); timer = null; };
     const startTimer = () => {
       stopTimer();
-      if (userPaused || reducedMotion.matches || !heroVisible) return;
+      if (slides.length < 2 || userPaused || reducedMotion.matches || !heroVisible) return;
       timer = setInterval(() => show(index + 1), AUTOPLAY_MS);
     };
 
