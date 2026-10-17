@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>3 · Three cuts</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #s3-root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #ffffff;
+          font-family: Inter, sans-serif;
+        }
+        #s3-root .vwrap {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        #s3-root video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        #s3-scrim {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 1000px;
+          background: linear-gradient(to top, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.78) 30%, rgba(10, 10, 10, 0.35) 62%, rgba(10, 10, 10, 0) 100%);
+        }
+        #s3-root .phrase {
+          position: absolute;
+          left: 90px;
+          width: 810px;
+          bottom: 440px;
+          opacity: 0;
+          font-weight: 900;
+          font-size: 112px;
+          line-height: 1.02;
+          letter-spacing: -0.035em;
+          text-wrap: balance;
+        }
+        #s3-root .txt {
+          transform-origin: 0% 100%;
+        }
+        #s3-root .no {
+          color: #f08a3e;
+        }
+        #s3-root .rule {
+          width: 104px;
+          height: 10px;
+          border-radius: 5px;
+          background: #e8711a;
+          margin-bottom: 36px;
+          transform-origin: 0 50%;
+        }
+        #s3-root .wm {
+          display: inline-block;
+          overflow: hidden;
+          vertical-align: top;
+          padding-bottom: 0.08em;
+          margin-bottom: -0.08em;
+        }
+        #s3-root .w {
+          display: inline-block;
+        }
+        #s3-root[data-format="landscape"] #s3-scrim {
+          height: 640px;
+        }
+        #s3-root[data-format="landscape"] .phrase {
+          left: 120px;
+          width: 1300px;
+          bottom: 140px;
+          font-size: 104px;
+        }
+      </style>
+
+      <div id="s3-root" data-composition-id="s3" data-width="1080" data-height="1920" data-duration="6" data-format="portrait">
+        <!-- hard cuts on the bar downbeats: 6, 8, 10 s in the ad -->
+        <div id="s3-v2wrap" class="vwrap" data-layout-allow-overflow><video id="s3-v2" src="media/v2.mp4" data-start="0" data-duration="2" data-track-index="1" muted playsinline></video></div>
+        <div id="s3-v3wrap" class="vwrap" data-layout-allow-overflow><video id="s3-v3" src="media/v3.mp4" data-start="2" data-duration="2" data-hf-media-start-basis="local" data-track-index="1" muted playsinline></video></div>
+        <div id="s3-v4wrap" class="vwrap" data-layout-allow-overflow><video id="s3-v4" src="media/v4.mp4" data-start="4" data-duration="2" data-hf-media-start-basis="local" data-track-index="1" muted playsinline></video></div>
+        <div id="s3-scrim"></div>
+
+        <div id="s3-ph1" class="phrase">
+          <div class="rule"></div>
+          <div class="txt"><span class="no">No</span> crew.</div>
+        </div>
+        <div id="s3-ph2" class="phrase">
+          <div class="rule"></div>
+          <div class="txt"><span class="no">No</span> scheduling.</div>
+        </div>
+        <div id="s3-ph3" class="phrase">
+          <div class="rule"></div>
+          <div class="txt"><span class="wm" data-layout-allow-overflow><span class="w no" data-layout-allow-occlusion>No</span></span> <span class="wm" data-layout-allow-overflow><span class="w" data-layout-allow-occlusion>strangers</span></span> <span class="wm" data-layout-allow-overflow><span class="w" data-layout-allow-occlusion>in</span></span> <span class="wm" data-layout-allow-overflow><span class="w" data-layout-allow-occlusion>your</span></span> <span class="wm" data-layout-allow-overflow><span class="w" data-layout-allow-occlusion>home.</span></span></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          // scene-local time: 0 here = 6.0 s in the ad
+          const root = document.getElementById("s3-root");
+          const drift = root.dataset.format === "landscape" ? 48 : 36;
+          const tl = gsap.timeline({ paused: true });
+          const ft = (target, from, to, pos) => tl.fromTo(target, from, Object.assign({ immediateRender: false }, to), pos);
+          // first entrance of an element: its hidden from-state applies before the tween starts
+          const enter = (target, from, to, pos) => tl.fromTo(target, from, Object.assign({ immediateRender: true }, to), pos);
+          const cut = (target, from, to, pos) => ft(target, from, Object.assign({ duration: 0 }, to), pos);
+
+          // one camera idea per clip: push, drift, pull
+          ft("#s3-v2wrap", { scale: 1 }, { scale: 1.07, duration: 2, ease: "sine.out" }, 0);
+          ft("#s3-v3wrap", { scale: 1.1, x: drift }, { scale: 1.1, x: -drift, duration: 2, ease: "sine.inOut" }, 2);
+          ft("#s3-v4wrap", { scale: 1.14 }, { scale: 1, duration: 2, ease: "power2.out" }, 4);
+
+          // kinetic-beat-slam: one shared beat array, three distinct entrances
+          cut("#s3-ph1", { opacity: 0 }, { opacity: 1 }, 0);
+          enter("#s3-ph1 .txt", { scale: 1.22, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.34, ease: "expo.out" }, 0);
+          enter("#s3-ph1 .rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 0.02);
+          cut("#s3-ph1", { opacity: 1 }, { opacity: 0 }, 2);
+
+          cut("#s3-ph2", { opacity: 0 }, { opacity: 1 }, 2);
+          enter("#s3-ph2 .txt", { x: -90, opacity: 0, filter: "blur(10px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 2);
+          enter("#s3-ph2 .rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 2.02);
+          cut("#s3-ph2", { opacity: 1 }, { opacity: 0 }, 4);
+
+          cut("#s3-ph3", { opacity: 0 }, { opacity: 1 }, 4);
+          enter("#s3-ph3 .w", { yPercent: 115, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "expo.out", stagger: 0.06 }, 4);
+          enter("#s3-ph3 .rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 4.02);
+
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

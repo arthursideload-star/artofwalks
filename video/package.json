@@ -1,0 +1,20 @@
+{
+  "name": "artofwalks-ad",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "media": "node scripts/sync-media.mjs",
+    "derive": "node scripts/derive-landscape.mjs",
+    "build": "npm run media && npm run derive",
+    "dev": "npm run build && npx --yes hyperframes@0.8.169 preview",
+    "dev:16x9": "npm run build && npx --yes hyperframes@0.8.169 preview landscape",
+    "check": "npm run build && npx --yes hyperframes@0.8.169 check --strict --at-transitions --caption-zone \"x0=0;y0=0.7812;x1=1;y1=1;severity=error;seek=0,.1,.2,.3,.4,.5,.6,.7,.8,.9,.97\" && npx --yes hyperframes@0.8.169 check --strict --samples 24 --caption-zone \"x0=0.834;y0=0.13;x1=1;y1=1;severity=error;seek=0,.05,.1,.2,.3,.4,.5,.6,.7,.75,.8,.85,.9,.95,.99\" && npx --yes hyperframes@0.8.169 check landscape --strict --at-transitions --caption-zone \"x0=0;y0=0.898;x1=1;y1=1;severity=error;seek=0,.1,.2,.3,.4,.5,.6,.7,.8,.9,.97\"",
+    "render:all": "npm run build && node scripts/render-all.mjs",
+    "render:a": "npm run build && node scripts/render-all.mjs A",
+    "render:b": "npm run build && node scripts/render-all.mjs B",
+    "render:c": "npm run build && node scripts/render-all.mjs C",
+    "render:16x9": "npm run build && node scripts/render-all.mjs 16x9",
+    "music": "python3 tools/make_music.py .media/audio/bgm/bgm_001.wav",
+    "placeholders": "python3 tools/make_placeholders.py"
+  }
+}

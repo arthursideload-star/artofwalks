@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- GENERATED from ../ by scripts/derive-landscape.mjs. Do not edit; edit the 9:16 source. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>6 · Logo, then loop</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #s6-root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #ffffff;
+          font-family: Inter, sans-serif;
+        }
+        #s6-tilewrap {
+          position: absolute;
+          left: 420px;
+          top: 780px;
+          width: 240px;
+          height: 240px;
+        }
+        #s6-tile {
+          width: 100%;
+          height: 100%;
+          display: block;
+          overflow: visible;
+        }
+        #s6-root .ln {
+          display: block;
+          overflow: hidden;
+          padding-bottom: 0.08em;
+          margin-bottom: -0.08em;
+        }
+        #s6-root .ln > span {
+          display: block;
+        }
+        #s6-word,
+        #s6-url {
+          position: absolute;
+          left: 180px;
+          width: 720px;
+          text-align: center;
+        }
+        #s6-word {
+          top: 1070px;
+          font-size: 92px;
+          font-weight: 900;
+          letter-spacing: -0.01em;
+          line-height: 1.04;
+        }
+        #s6-of {
+          color: #e8711a;
+        }
+        #s6-url {
+          top: 1196px;
+          font-size: 50px;
+          font-weight: 700;
+          letter-spacing: -0.005em;
+          line-height: 1.1;
+        }
+        #s6-root[data-format="landscape"] #s6-tilewrap {
+          left: 1220px;
+          top: 320px;
+          width: 220px;
+          height: 220px;
+        }
+        #s6-root[data-format="landscape"] #s6-word,
+        #s6-root[data-format="landscape"] #s6-url {
+          left: auto;
+          right: 760px;
+          width: 760px;
+          text-align: right;
+        }
+        #s6-root[data-format="landscape"] #s6-word {
+          top: 318px;
+          font-size: 88px;
+        }
+        #s6-root[data-format="landscape"] #s6-url {
+          top: 440px;
+          font-size: 46px;
+        }
+      </style>
+
+      <div id="s6-root" data-composition-id="s6" data-width="1920" data-height="1080" data-duration="2" data-format="landscape">
+        <div id="s6-tilewrap">
+          <!-- assets/brand/logo.svg, verbatim, plus a hairline ring so the #0A0A0A tile reads on the #0A0A0A canvas -->
+          <svg id="s6-tile" viewBox="0 0 512 512" role="img" aria-label="ArtOfWalks">
+            <g id="s6-tilebg">
+              <rect width="512" height="512" rx="112" fill="#0A0A0A" />
+              <rect x="2.5" y="2.5" width="507" height="507" rx="110" fill="none" stroke="rgba(148,163,184,0.26)" stroke-width="5" />
+            </g>
+            <path id="s6-tri" d="M198 152v208l170-104z" fill="#E8711A" />
+          </svg>
+        </div>
+        <div id="s6-word" class="ln" data-layout-allow-overflow><span data-layout-allow-occlusion>Art<span id="s6-of">Of</span>Walks</span></div>
+        <div id="s6-url" class="ln" data-layout-allow-overflow><span data-layout-allow-occlusion>artofwalks.com</span></div>
+      </div>
+
+      <script>
+        (function () {
+          // scene-local time: 0 here = 22.0 s in the ad
+          const tl = gsap.timeline({ paused: true });
+          const ft = (target, from, to, pos) => tl.fromTo(target, from, Object.assign({ immediateRender: false }, to), pos);
+          // first entrance of an element: its hidden from-state applies before the tween starts
+          const enter = (target, from, to, pos) => tl.fromTo(target, from, Object.assign({ immediateRender: true }, to), pos);
+
+          // logo-assemble-lockup: the play mark springs in on the downbeat, wordmark and URL follow
+          enter("#s6-tri", { scale: 0, rotation: -14, opacity: 1, svgOrigin: "256 256" }, { scale: 1, rotation: 0, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, 0);
+          enter("#s6-word > span", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.15);
+          enter("#s6-url > span", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.35);
+
+          // hand-off to the loop: copy clears, the mark goes, the tile becomes the card's window (index.html)
+          ft(["#s6-word", "#s6-url"], { opacity: 1, y: 0 }, { opacity: 0, y: -24, duration: 0.28, ease: "power3.in", stagger: 0.05 }, 1.1);
+          ft("#s6-tri", { scale: 1, opacity: 1 }, { scale: 0.6, opacity: 0, duration: 0.22, ease: "power2.in" }, 1.12);
+          ft("#s6-tilebg", { opacity: 1 }, { opacity: 0, duration: 0.2, ease: "sine.inOut" }, 1.2);
+
+          // the tile shares the photo card's float (3 s sine cycle, global time = 22 + local)
+          const wrap = document.getElementById("s6-tilewrap");
+          const driver = { t: 0 };
+          tl.fromTo(
+            driver,
+            { t: 0 },
+            {
+              t: 2,
+              duration: 2,
+              ease: "none",
+              immediateRender: false,
+              onUpdate() {
+                const g = 22 + driver.t;
+                const k = (g % 3) / 1.5;
+                const p = k <= 1 ? k : 2 - k;
+                wrap.style.transform = `translateY(${(-8 * (0.5 - 0.5 * Math.cos(Math.PI * p))).toFixed(3)}px)`;
+              },
+            },
+            0,
+          );
+
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

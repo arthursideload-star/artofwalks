@@ -1,0 +1,22 @@
+# The repo root ignores every "scripts/" folder; this project's scripts must ship.
+!scripts/
+
+# Staged media (regenerate with `npm run media`); the marked placeholders are committed.
+media/*.jpg
+media/*.mp4
+media/manifest.js
+media/.stamp.json
+
+# Copies made by `npm run derive` (the derived HTML itself is committed)
+landscape/media/
+landscape/.media/
+landscape/vendor/
+landscape/.hyperframes/
+
+# HyperFrames working state, local renders
+.hyperframes/
+renders/
+node_modules/
+
+# Python bytecode from tools/
+__pycache__/

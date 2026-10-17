@@ -1,0 +1,61 @@
+{
+  "$comment": "Media slots for the ad. Put the files in ../assets/video-src/ and run `npm run media`. Missing files render as marked placeholders. Set \"ai\": true for any file made with an AI model; the composition then shows the label \"AI-generated sample\" wherever that slot is on screen. An optional file with the suffix -16x9 before the extension (e.g. v1-hero-film-16x9.mp4) is used by the 16:9 render instead of a centre crop.",
+  "slots": [
+    {
+      "id": "p1",
+      "kind": "photo",
+      "file": "p1-listing-photo.jpg",
+      "scenes": ["1 Hook 0-1.5s", "2 Comes alive 1.5-2.1s", "6 Loop morph 23.2-24s"],
+      "what": "One real listing photo exactly as it appears on the host's listing. Landscape 3:2, at least 1500 px wide. The hero of the ad.",
+      "ai": false
+    },
+    {
+      "id": "v1",
+      "kind": "film",
+      "file": "v1-hero-film.mp4",
+      "scenes": ["2 Comes alive 1.5-6s"],
+      "what": "The film you made FROM p1, first frame matching the photo. At least 5 s. Vertical 9:16 1080x1920 preferred.",
+      "ai": true
+    },
+    {
+      "id": "v2",
+      "kind": "film",
+      "file": "v2-cut-a.mp4",
+      "scenes": ["3 Cuts 6-8s, under 'No crew.'"],
+      "what": "Film clip of another room or angle, at least 2.5 s, slow camera move. Vertical preferred.",
+      "ai": true
+    },
+    {
+      "id": "v3",
+      "kind": "film",
+      "file": "v3-cut-b.mp4",
+      "scenes": ["3 Cuts 8-10s, under 'No scheduling.'"],
+      "what": "Film clip, a different space again, at least 2.5 s. Vertical preferred.",
+      "ai": true
+    },
+    {
+      "id": "v4",
+      "kind": "film",
+      "file": "v4-cut-c.mp4",
+      "scenes": ["3 Cuts 10-12s, under 'No strangers in your home.'"],
+      "what": "Film clip, ideally a calm wide shot (living room, terrace), at least 2.5 s. Vertical preferred.",
+      "ai": true
+    },
+    {
+      "id": "p2",
+      "kind": "photo",
+      "file": "p2-split-photo.jpg",
+      "scenes": ["4 Split 12-16s (left side)"],
+      "what": "A second listing photo. Its framing must match v5. Can be the same file as p1.",
+      "ai": false
+    },
+    {
+      "id": "v5",
+      "kind": "film",
+      "file": "v5-split-film.mp4",
+      "scenes": ["4 Split 12.5-17s (right side)", "5 Price 17-22s (blurred background)"],
+      "what": "The film made FROM p2, first frame matching p2, at least 10 s (or it holds its last frame). Can be the same file as v1.",
+      "ai": true
+    }
+  ]
+}

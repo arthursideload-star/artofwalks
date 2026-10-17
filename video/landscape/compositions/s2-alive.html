@@ -1,0 +1,176 @@
+<!doctype html>
+<!-- GENERATED from ../ by scripts/derive-landscape.mjs. Do not edit; edit the 9:16 source. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>2 · The card comes alive</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #s2-root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #ffffff;
+          font-family: Inter, sans-serif;
+        }
+        #s2-root .vwrap {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          opacity: 0;
+        }
+        #s2-root video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        #s2-root .ln {
+          display: block;
+          overflow: hidden;
+          padding-bottom: 0.08em;
+          margin-bottom: -0.08em;
+        }
+        #s2-root .ln > span {
+          display: block;
+        }
+        #s2-root .statement {
+          font-weight: 900;
+          font-size: 96px;
+          line-height: 1.02;
+          letter-spacing: -0.035em;
+          text-wrap: balance;
+        }
+        #s2-root .label {
+          font-weight: 700;
+          font-size: 28px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          line-height: 1;
+        }
+        #s2-root .chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 14px;
+          height: 60px;
+          padding: 0 26px;
+          border-radius: 999px;
+          background: rgba(10, 10, 10, 0.62);
+          box-shadow: inset 0 0 0 2px rgba(148, 163, 184, 0.26);
+          white-space: nowrap;
+        }
+        #s2-root .dot {
+          display: block;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #e8711a;
+        }
+        #s2-hud {
+          position: absolute;
+          left: 90px;
+          top: 330px;
+          width: 810px;
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          opacity: 0;
+        }
+        #s2-track {
+          flex: 1;
+          height: 6px;
+          border-radius: 3px;
+          background: rgba(255, 255, 255, 0.28);
+          overflow: hidden;
+        }
+        #s2-fill {
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: #e8711a;
+          transform-origin: 0 50%;
+        }
+        #s2-scrim {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 1000px;
+          background: linear-gradient(to top, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.78) 30%, rgba(10, 10, 10, 0.35) 62%, rgba(10, 10, 10, 0) 100%);
+          opacity: 0;
+        }
+        #s2-copy {
+          position: absolute;
+          left: 90px;
+          width: 810px;
+          bottom: 440px;
+        }
+        #s2-b {
+          color: #f08a3e;
+        }
+        #s2-root[data-format="landscape"] .statement {
+          font-size: 88px;
+        }
+        #s2-root[data-format="landscape"] #s2-hud {
+          left: 120px;
+          top: 160px;
+          width: 760px;
+        }
+        #s2-root[data-format="landscape"] #s2-scrim {
+          height: 640px;
+        }
+        #s2-root[data-format="landscape"] #s2-copy {
+          left: 120px;
+          width: 1150px;
+          bottom: 140px;
+        }
+      </style>
+
+      <div id="s2-root" data-composition-id="s2" data-width="1920" data-height="1080" data-duration="4.5" data-format="landscape">
+        <div id="s2-v1wrap" class="vwrap" data-layout-allow-overflow>
+          <video id="s2-v1" src="media/v1.mp4" data-start="0" data-duration="4.5" data-track-index="1" muted playsinline></video>
+        </div>
+        <div id="s2-scrim"></div>
+        <div id="s2-hud">
+          <span class="chip label"><span class="dot"></span>Film</span>
+          <span id="s2-track"><span id="s2-fill"></span></span>
+        </div>
+        <div id="s2-copy" class="statement">
+          <span id="s2-a" class="ln" data-layout-allow-overflow><span data-layout-allow-occlusion>Same photo.</span></span>
+          <span id="s2-b" class="ln" data-layout-allow-overflow><span data-layout-allow-occlusion>6 seconds later.</span></span>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          // scene-local time: 0 here = 1.5 s in the ad
+          const tl = gsap.timeline({ paused: true });
+          const ft = (target, from, to, pos) => tl.fromTo(target, from, Object.assign({ immediateRender: false }, to), pos);
+          // first entrance of an element: its hidden from-state applies before the tween starts
+          const enter = (target, from, to, pos) => tl.fromTo(target, from, Object.assign({ immediateRender: true }, to), pos);
+
+          // the film crossfades over the pushed-in photo on the downbeat (2.0 s), then keeps a slow push
+          ft("#s2-v1wrap", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.inOut" }, 0.4);
+          ft("#s2-v1wrap", { scale: 1 }, { scale: 1.08, duration: 4.1, ease: "sine.inOut" }, 0.4);
+
+          // HUD: PHOTO has become FILM; the hairline fills across the shot
+          enter("#s2-hud", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, 0.05);
+          enter("#s2-fill", { scaleX: 0 }, { scaleX: 1, duration: 4, ease: "none" }, 0.5);
+          ft("#s2-hud", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power3.in" }, 4.2);
+
+          // copy on beats: 2.5 s and 3.5 s in the ad
+          ft("#s2-scrim", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.inOut" }, 0.7);
+          enter("#s2-a > span", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 1.0);
+          enter("#s2-b > span", { yPercent: 110, opacity: 0, letterSpacing: "0.02em" }, { yPercent: 0, opacity: 1, letterSpacing: "-0.035em", duration: 0.75, ease: "expo.out" }, 2.0);
+          ft("#s2-copy .ln", { opacity: 1, y: 0 }, { opacity: 0, y: -40, duration: 0.3, ease: "power3.in", stagger: 0.05 }, 4.05);
+
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
