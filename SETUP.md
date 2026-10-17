@@ -88,6 +88,31 @@ The free things that actually move this:
 no lawyer has seen them. Selling to consumers in the EU is the point where that
 starts to matter. One hour with a lawyer is cheap compared to one warning letter.
 
+### The right of withdrawal still applies
+
+The 14-day money-back guarantee was removed as a marketing claim in October
+2026 (landing page, thanks page, former terms clause 9). That only removes a
+voluntary promise. It does **not** remove statutory rights: consumers still
+have the 14-day right of withdrawal in `terms.html#withdrawal`, and that text
+and its model form were deliberately left unchanged.
+
+Have a lawyer, the IHK Potsdam or a trader association (for example
+Händlerbund) confirm the withdrawal wording for **custom-made digital
+content**, in particular:
+
+- whether a video made to order and delivered as a file counts as a service
+  or as digital content (§ 356 (4) or (5) BGB), because the early-expiry
+  wording and the model text differ between the two;
+- how the customer's express consent to an early start, and their
+  acknowledgement that the right of withdrawal then lapses, is collected
+  (today: by email after checkout) and confirmed on a durable medium
+  (§ 312f BGB);
+- whether the terms need a paragraph on compensation for work already done
+  when a customer withdraws after asking for an early start.
+
+Customers who ordered while the guarantee was advertised bought with it.
+Honour it for those orders.
+
 ## Updating content
 
 - Video: `assets/videos/video-3.mp4` is the only showcase film (AI-generated
