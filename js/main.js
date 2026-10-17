@@ -145,7 +145,7 @@
   }
 
   /* ---------- playable films: preview, click to open ----------
-     Used by the portfolio cards and by the before/after result. The video
+     Used by the portfolio cards. The video
      loads lazily and starts muted as soon as it is both ready and on screen;
      the play button hands over to the native controls. The showcase films
      currently carry no audio track, but unmuting stays wired so adding music
@@ -224,25 +224,6 @@
       video.controls = false;
       video.muted = true;
     });
-  });
-
-  /* ---------- before & after photos ---------- */
-  document.querySelectorAll(".ba-photo").forEach((box) => {
-    const img = box.querySelector("img");
-    if (!img) return;
-    const ready = () => box.classList.add("has-photo");
-    if (img.complete && img.naturalWidth > 0) ready();
-    else {
-      img.addEventListener("load", ready);
-      img.addEventListener("error", () => {
-        if (!img.dataset.retried) {
-          img.dataset.retried = "true";
-          img.src = img.src.replace(/\.jpg$/, ".png");
-        } else {
-          box.classList.add("no-photo");
-        }
-      });
-    }
   });
 
   /* ---------- checkout ----------

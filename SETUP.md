@@ -90,9 +90,11 @@ starts to matter. One hour with a lawyer is cheap compared to one warning letter
 
 ## Updating content
 
-- Videos: replace `assets/videos/video-1..3.mp4` (keep the names).
-- Posters: `assets/posters/poster-1..3.jpg`, one frame out of each video.
-- Before/after photos: `assets/photos/photo-1..2.jpg`.
+- Video: `assets/videos/video-3.mp4` is the only showcase film (AI-generated
+  sample, labelled as such in the hero and under Examples). See
+  `assets/videos/README.txt` before adding another one: only footage you hold
+  the rights to.
+- Poster: `assets/posters/poster-3.jpg`, one frame out of the video.
 - Texts, prices, labels: edit `index.html`.
 
 Static site, no build step. Push to `main` and GitHub Pages redeploys.

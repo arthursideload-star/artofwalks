@@ -4,7 +4,7 @@ SHOWCASE VIDEO
   video-3.mp4  -> Spain coast sample film (landscape, 1920x1080), AI-generated.
                   Hero + portfolio card. Labelled "AI-generated sample film".
 
-video-1 (Santorini) and video-2 (Iceland) were removed: the source photos were
+Two earlier showcase videos were removed because their source photos were
 not licensed for use. Only add a video here if you own the rights to the
 source photos, or the whole film is AI-generated / made from licensed images.
 
