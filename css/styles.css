@@ -411,6 +411,18 @@ a { color: inherit; }
 .ctrl:hover { border-color: var(--accent); color: var(--accent-bright); transform: translateY(-1px); }
 .ctrl:active { transform: translateY(0) scale(0.95); }
 
+.hero-label {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(10, 10, 10, 0.45);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
 .ctrl .icon-play { display: none; }
 .is-paused .ctrl[data-playpause] .icon-pause { display: none; }
 .is-paused .ctrl[data-playpause] .icon-play { display: block; }
