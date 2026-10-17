@@ -1152,51 +1152,29 @@ body.menu-open { overflow: hidden; }
   color: var(--ink-muted);
 }
 
-/* ---------- guarantee ---------- */
+/* ---------- free sample ---------- */
 
-.guarantee { text-align: center; }
-
-.guarantee-icon {
-  width: 46px;
-  height: 46px;
-  color: var(--accent);
+.free-sample {
+  text-align: center;
+  padding: clamp(var(--space-6), 5vw, var(--space-8)) clamp(var(--space-5), 4vw, var(--space-7));
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-card);
+  background: rgba(20, 27, 45, 0.45);
 }
-
-.guarantee-title {
-  margin-top: var(--space-4);
+.free-sample-title {
   font-size: clamp(1.7rem, 3.6vw, 2.4rem);
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.12;
 }
-
-.guarantee-text {
+.free-sample p {
   margin-top: var(--space-4);
   margin-inline: auto;
-  max-width: 58ch;
+  max-width: 52ch;
   font-size: 1.08rem;
   color: var(--ink-soft);
 }
-
-.guarantee-sample {
-  margin-top: clamp(2.25rem, 5vw, 3.25rem);
-  padding: clamp(var(--space-5), 4vw, var(--space-7));
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-card);
-  background: rgba(20, 27, 45, 0.45);
-}
-.guarantee-sample h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-.guarantee-sample p {
-  margin-top: var(--space-3);
-  margin-inline: auto;
-  max-width: 52ch;
-  color: var(--ink-soft);
-}
-.guarantee-sample .btn { margin-top: var(--space-5); }
+.free-sample .btn { margin-top: var(--space-6); }
 
 /* ---------- contact actions ---------- */
 
