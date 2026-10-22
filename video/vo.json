@@ -1,0 +1,33 @@
+{
+  "$comment": "Voiceover cue sheet. One ElevenLabs take holds every line; in/out are seconds in that take, at is where the line starts in the ad. scripts/voiceover.mjs places the lines for one hook variant into media/vo.wav (24 s), which <audio id=\"voiceover\"> plays. Levels: a gentle 2:1 compressor above -18 dBFS, gainDb of make-up, then a -3 dBFS peak limiter; the track measures about -13.8 LUFS (dual mono); the full mix lands near -14 LUFS.",
+  "take": ".media/audio/voice/voice_001.mp3",
+  "seconds": 24,
+  "fadeIn": 0.008,
+  "fadeOut": 0.04,
+  "gainDb": 8.3,
+  "hooks": {
+    "A": [
+      { "in": 0.0, "out": 1.9, "at": 0.04, "text": "This is your Airbnb photo." },
+      { "in": 2.11, "out": 3.0, "at": 2.06, "text": "Now watch." }
+    ],
+    "B": [
+      { "in": 3.2, "out": 5.56, "at": 0.04, "text": "Your listing photos are lying still." }
+    ],
+    "C": [
+      { "in": 5.66, "out": 6.64, "at": 0.04, "text": "No photoshoot." },
+      { "in": 6.86, "out": 8.0, "at": 1.22, "text": "Just your photos." }
+    ]
+  },
+  "body": [
+    { "in": 8.2, "out": 9.2, "at": 3.055, "text": "Same photo." },
+    { "in": 9.47, "out": 10.78, "at": 4.1, "text": "Six seconds later." },
+    { "in": 11.04, "out": 11.88, "at": 6.015, "text": "No crew." },
+    { "in": 11.9, "out": 12.935, "at": 8.03, "text": "No scheduling." },
+    { "in": 12.94, "out": 14.68, "at": 10.04, "text": "No strangers in your home." },
+    { "in": 14.92, "out": 17.15, "at": 12.97, "text": "Your photos, made cinematic." },
+    { "in": 21.5, "out": 23.62, "at": 15.32, "text": "Delivered in days, not weeks." },
+    { "in": 17.27, "out": 18.72, "at": 17.59, "text": "From fifty euros." },
+    { "in": 18.84, "out": 21.3, "at": 19.19, "text": "Full walkthrough, seven hundred forty-nine." },
+    { "in": 23.84, "out": 25.35, "at": 22.1, "text": "Art of walks dot com." }
+  ]
+}

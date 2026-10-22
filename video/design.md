@@ -82,6 +82,8 @@ card → logo tile → photo card again, which is what makes the loop seamless.
 - Left-aligned, edge-anchored copy. Centered only for the price card and the
   logo lockup, where symmetry is the point.
 - One visual idea per scene. No decoration that adds a claim.
+- The voiceover only repeats the on-screen copy (numbers spelled out), so the ad
+  reads the same muted and with sound.
 
 ## Motion rules
 
@@ -110,7 +112,12 @@ Until real media exists in `../assets/video-src/`, every slot shows a marked
 plate: surface #141B2D, a one-point-perspective line drawing of a room (so the
 camera moves still read as space), and the label `PLACEHOLDER · <slot>` with the
 exact file name to add. Any slot flagged `"ai": true` in `slots.json` shows the
-chip **AI-generated sample** in every frame where it is on screen.
+label **AI sample** in every frame where it is on screen: a deliberately tiny
+pill (Inter 600, 20 px, 34 px high) 28 px from the bottom-right corner in both
+formats, the owner's wording and position. It sits inside the platform-UI zone
+of the 9:16 frame on purpose (`data-layout-allow-caption-zone`); on Reels and
+TikTok the app's buttons can cover it, so declare AI content in the upload
+settings as well.
 
 ## Don'ts
 

@@ -4,6 +4,7 @@
 # Staged media (regenerate with `npm run media`); the marked placeholders are committed.
 media/*.jpg
 media/*.mp4
+media/*.wav
 media/manifest.js
 media/.stamp.json
 

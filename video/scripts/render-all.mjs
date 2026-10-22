@@ -5,6 +5,8 @@
 // Every file must be H.264, yuv420p, +faststart, 24 s and under 8 MB. HyperFrames
 // renders at a capped bitrate; the result is remuxed with +faststart, and
 // re-encoded two-pass to a computed bitrate only if it still exceeds the limit.
+// Before each job the voiceover for that hook is rebuilt into media/vo.wav (and
+// landscape/media/); hook A is restored at the end.
 //
 // Usage: node scripts/render-all.mjs [A] [B] [C] [16x9]   (run `npm run build` first)
 
@@ -12,6 +14,7 @@ import { execFileSync } from "node:child_process";
 import { closeSync, existsSync, mkdirSync, openSync, readSync, renameSync, rmSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { stageVoiceover } from "./voiceover.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "out");
@@ -61,6 +64,7 @@ mkdirSync(TMP, { recursive: true });
 for (const job of jobs) {
   const raw = join(TMP, job.file);
   const final = join(OUT, job.file);
+  stageVoiceover(job.hook);
   run("npx", [
     "--yes", "hyperframes@0.8.169", "render", job.dir,
     "--variables", JSON.stringify({ hook: job.hook }),
@@ -82,6 +86,7 @@ for (const job of jobs) {
   renameSync(tmpFinal, final);
   rmSync(raw, { force: true });
 }
+stageVoiceover("A");
 
 // verify every deliverable present in out/, including ones rendered by earlier runs
 const report = [];

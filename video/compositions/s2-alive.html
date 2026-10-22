@@ -161,10 +161,10 @@
           enter("#s2-fill", { scaleX: 0 }, { scaleX: 1, duration: 4, ease: "none" }, 0.5);
           ft("#s2-hud", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power3.in" }, 4.2);
 
-          // copy on beats: 2.5 s and 3.5 s in the ad
-          ft("#s2-scrim", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.inOut" }, 0.7);
-          enter("#s2-a > span", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 1.0);
-          enter("#s2-b > span", { yPercent: 110, opacity: 0, letterSpacing: "0.02em" }, { yPercent: 0, opacity: 1, letterSpacing: "-0.035em", duration: 0.75, ease: "expo.out" }, 2.0);
+          // copy on beats, with the voiceover: 3.0 s and 4.0 s in the ad
+          ft("#s2-scrim", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.inOut" }, 1.2);
+          enter("#s2-a > span", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 1.5);
+          enter("#s2-b > span", { yPercent: 110, opacity: 0, letterSpacing: "0.02em" }, { yPercent: 0, opacity: 1, letterSpacing: "-0.035em", duration: 0.75, ease: "expo.out" }, 2.5);
           ft("#s2-copy .ln", { opacity: 1, y: 0 }, { opacity: 0, y: -40, duration: 0.3, ease: "power3.in", stagger: 0.05 }, 4.05);
 
           window.__timelines["s2"] = tl;

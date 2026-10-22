@@ -5,6 +5,7 @@
 // hand. Only mechanical substitutions happen:
 //   canvas 1080x1920 -> 1920x1080 and data-format portrait -> landscape
 //   media/<slot>-16x9.<ext> is copied in as landscape/media/<slot>.<ext>
+//   the music, the voiceover take and the staged media/vo.wav are copied as they are
 // Every layout difference lives in the source files as [data-format="landscape"]
 // CSS and per-format geometry constants.
 //
@@ -34,7 +35,7 @@ function derive(src) {
 }
 
 rmSync(OUT, { recursive: true, force: true });
-for (const d of ["compositions", "media", "vendor", ".media/audio/bgm"]) mkdirSync(join(OUT, d), { recursive: true });
+for (const d of ["compositions", "media", "vendor", ".media/audio/bgm", ".media/audio/voice"]) mkdirSync(join(OUT, d), { recursive: true });
 
 writeFileSync(join(OUT, "index.html"), derive(readFileSync(join(ROOT, "index.html"), "utf8")));
 const scenes = readdirSync(join(ROOT, "compositions")).filter((f) => f.endsWith(".html"));
@@ -49,7 +50,7 @@ for (const f of readdirSync(media)) {
   if (m) copyFileSync(join(media, f), join(OUT, "media", `${m[1]}.${m[2]}`));
 }
 copyFileSync(join(media, "manifest.js"), join(OUT, "media", "manifest.js"));
-copyFileSync(join(ROOT, ".media/audio/bgm/bgm_001.wav"), join(OUT, ".media/audio/bgm/bgm_001.wav"));
+for (const f of [".media/audio/bgm/bgm_001.wav", ".media/audio/voice/voice_001.mp3", "media/vo.wav"]) copyFileSync(join(ROOT, f), join(OUT, f));
 copyFileSync(join(ROOT, "vendor/gsap-3.14.2.min.js"), join(OUT, "vendor/gsap-3.14.2.min.js"));
 copyFileSync(join(ROOT, "hyperframes.json"), join(OUT, "hyperframes.json"));
 writeFileSync(join(OUT, "meta.json"), JSON.stringify({ id: "video-16x9", name: "ArtOfWalks ad 16:9 (derived)" }, null, 2) + "\n");

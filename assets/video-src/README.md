@@ -17,10 +17,17 @@ for photos, `.mp4/.mov/.webm` for films are all accepted):
 Optional: a `-16x9` version of any file (e.g. `v1-hero-film-16x9.mp4`, 1920×1080)
 is used for the 16:9 render instead of a centre crop.
 
-**AI label.** In `video/slots.json`, every film slot is flagged `"ai": true` and
-every photo slot `"ai": false`. Where a real file sits in an `"ai": true` slot,
-the ad shows the label "AI-generated sample" for as long as that file is on
-screen. Set the flag to match how each file was really made.
+**AI label.** In `video/slots.json` every slot is flagged `"ai": true` (the villa
+photos are AI-generated, and the films will be made from them with Kling). Where
+a real file sits in an `"ai": true` slot, the ad shows a small "AI sample" label
+in the bottom-right corner for as long as that file is on screen. Set the flag
+to match how each file was really made.
+
+**What is here now (2026-10-22).** `p1-listing-photo.jpg` and
+`p2-split-photo.jpg` are villa photos #1 and #11 from the owner's collage,
+upscaled 4× with Real-ESRGAN. `collage/` holds all 12 photos as cut from the
+collage (about 350 × 250 px each) for making the films; the ad never reads that
+folder. The five films are still missing: see `video/KLING_SHOTS.md`.
 
 **Licences.** Only add files you own or can show a licence for, and record each
 one in `assets/CREDITS.md`.

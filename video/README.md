@@ -14,6 +14,9 @@ HyperFrames 0.8.169 (`/hyperframes` → `/general-video`).
 | `slots.json` | The seven media slots and their "ai" flags |
 | `media/placeholders/` | Marked placeholder plates used until real files exist |
 | `.media/audio/bgm/bgm_001.wav` | Original 24 s loop-safe music bed (`tools/make_music.py`) |
+| `.media/audio/voice/voice_001.mp3` | Voiceover take (ElevenLabs "Everett"), every line once |
+| `vo.json` | Voiceover cue sheet: where each line sits in the take and in the ad, per hook |
+| `KLING_SHOTS.md` | Shot list and prompts for the five Kling films |
 | `out/` | Rendered MP4s |
 
 ```bash
@@ -25,3 +28,14 @@ npm run render:all   # four MP4s into out/, verified H.264 / yuv420p / faststart
 
 Hook variant is a composition variable: `--variables '{"hook":"B"}'` (A, B, C).
 Media goes in `../assets/video-src/` (see its README); licences in `../assets/CREDITS.md`.
+
+**Sound.** `scripts/voiceover.mjs [A|B|C]` builds `media/vo.wav` from the take
+and `vo.json` (the build stages hook A; `render:all` rebuilds it per hook, so
+each render speaks the hook it shows). The music carries a HyperFrames
+voiceover carve. After changing `vo.json`, rebuild and re-carve:
+
+```bash
+npm run voiceover
+node <hyperframes-audio skill>/scripts/carve.mjs --comp index.html --bed music --voice voiceover
+npm run loop-carve   # starts and ends every carve envelope at the same value, for the loop
+```

@@ -9,7 +9,8 @@
 //     (media/<slot>-16x9.*); otherwise the 16:9 render centre-crops the same file;
 //   - a missing file falls back to the marked plate in media/placeholders/.
 // It also writes media/manifest.js, which tells the composition which slots are
-// placeholders and which carry the "AI-generated sample" label.
+// placeholders and which carry the "AI sample" label, and builds the
+// voiceover for hook A into media/vo.wav (scripts/voiceover.mjs).
 //
 // Usage: node scripts/sync-media.mjs        (run from video/, needs ffmpeg)
 
@@ -17,6 +18,7 @@ import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, extname, join, parse, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { stageVoiceover } from "./voiceover.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = join(ROOT, "..", "assets", "video-src");
@@ -97,7 +99,7 @@ for (const slot of slots) {
     const d = duration(main);
     if (d < MIN_SECONDS[slot.id]) note += `  (only ${d.toFixed(1)} s, needs ${MIN_SECONDS[slot.id]} s: last frame will hold)`;
   }
-  if (main && slot.ai) note += "  [AI-generated sample label ON]";
+  if (main && slot.ai) note += "  [AI sample label ON]";
   rows.push(`  ${slot.id.padEnd(3)} ${slot.file.padEnd(24)} ${note}`);
 }
 
@@ -107,4 +109,7 @@ writeFileSync(
     `window.AOW_MEDIA = ${JSON.stringify(manifest, null, 2)};\n`,
 );
 writeFileSync(STAMP, JSON.stringify(stamp, null, 2));
+// the voiceover for preview and checks; render-all.mjs rebuilds it per hook variant
+const hookLine = stageVoiceover("A");
+rows.push(`  vo  media/vo.wav             hook A: "${hookLine}" + body lines (vo.json)`);
 console.log(`media staged from ${relative(ROOT, SRC)}:\n${rows.join("\n")}`);

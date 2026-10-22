@@ -1,5 +1,5 @@
 {
-  "$comment": "Media slots for the ad. Put the files in ../assets/video-src/ and run `npm run media`. Missing files render as marked placeholders. Set \"ai\": true for any file made with an AI model; the composition then shows the label \"AI-generated sample\" wherever that slot is on screen. An optional file with the suffix -16x9 before the extension (e.g. v1-hero-film-16x9.mp4) is used by the 16:9 render instead of a centre crop.",
+  "$comment": "Media slots for the ad. Put the files in ../assets/video-src/ and run `npm run media`. Missing files render as marked placeholders. Set \"ai\": true for any file made with an AI model; the composition then shows the small label \"AI sample\" (bottom-right) wherever that slot is on screen. An optional file with the suffix -16x9 before the extension (e.g. v1-hero-film-16x9.mp4) is used by the 16:9 render instead of a centre crop.",
   "slots": [
     {
       "id": "p1",
@@ -7,7 +7,7 @@
       "file": "p1-listing-photo.jpg",
       "scenes": ["1 Hook 0-1.5s", "2 Comes alive 1.5-2.1s", "6 Loop morph 23.2-24s"],
       "what": "One real listing photo exactly as it appears on the host's listing. Landscape 3:2, at least 1500 px wide. The hero of the ad.",
-      "ai": false
+      "ai": true
     },
     {
       "id": "v1",
@@ -47,7 +47,7 @@
       "file": "p2-split-photo.jpg",
       "scenes": ["4 Split 12-16s (left side)"],
       "what": "A second listing photo. Its framing must match v5. Can be the same file as p1.",
-      "ai": false
+      "ai": true
     },
     {
       "id": "v5",

@@ -6,9 +6,12 @@ the photo as the first frame and asks for one slow, stabilised drone-style move
 with nothing added. Generate in the highest quality available (1080p "pro" or
 better), no audio (the ad has its own music).
 
-Use the **full-resolution originals**: the collage holds each photo at only
-~350 × 250 px, which Kling accepts (min 300 px) but turns into soft, invented
-detail, and which the ad would show 2.6× (card) to ~7× (split screen) enlarged.
+There are no larger originals (the photos are AI-generated and exist only as
+the collage, ~350 × 250 px each; all 12 are in `../assets/video-src/collage/`).
+Feed Kling the **4× upscales** instead: `../assets/video-src/p1-listing-photo.jpg`
+(for V1) and `p2-split-photo.jpg` (for V5) are ready; upscale tiles 3, 4 and 6
+the same way (Real-ESRGAN x4plus, see `../assets/CREDITS.md`) for V2–V4. Kling
+accepts the raw tiles (min 300 px) but turns them into soft, invented detail.
 
 | Slot | Photo (collage position) | Length | Camera move | Where it plays |
 | ---- | ------------------------ | ------ | ----------- | -------------- |
@@ -44,7 +47,8 @@ detail, and which the ad would show 2.6× (card) to ~7× (split screen) enlarged
 
 ## After generation
 
-Save as `assets/video-src/p1-listing-photo.jpg`, `v1-hero-film.mp4`,
-`v2-cut-a.mp4`, `v3-cut-b.mp4`, `v4-cut-c.mp4`, `p2-split-photo.jpg`,
-`v5-split-film.mp4`; set the `"ai"` flags in `slots.json`; record source and
-licence in `assets/CREDITS.md`; then `npm run check` and `npm run render:all`.
+Save as `assets/video-src/v1-hero-film.mp4`, `v2-cut-a.mp4`, `v3-cut-b.mp4`,
+`v4-cut-c.mp4`, `v5-split-film.mp4` (P1 and P2 are already there; every slot is
+already flagged `"ai": true`, so the "AI sample" label follows the films);
+record source and licence in `assets/CREDITS.md`; then `npm run check` and
+`npm run render:all`.

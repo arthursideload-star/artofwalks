@@ -15,6 +15,11 @@
     "render:c": "npm run build && node scripts/render-all.mjs C",
     "render:16x9": "npm run build && node scripts/render-all.mjs 16x9",
     "music": "python3 tools/make_music.py .media/audio/bgm/bgm_001.wav",
-    "placeholders": "python3 tools/make_placeholders.py"
+    "placeholders": "python3 tools/make_placeholders.py",
+    "voiceover": "node scripts/voiceover.mjs",
+    "loop-carve": "node scripts/loop-carve.mjs"
+  },
+  "devDependencies": {
+    "@hyperframes/core": "^0.8.169"
   }
 }
