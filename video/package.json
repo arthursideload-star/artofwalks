@@ -17,7 +17,10 @@
     "music": "python3 tools/make_music.py .media/audio/bgm/bgm_001.wav",
     "placeholders": "python3 tools/make_placeholders.py",
     "voiceover": "node scripts/voiceover.mjs",
-    "loop-carve": "node scripts/loop-carve.mjs"
+    "loop-carve": "node scripts/loop-carve.mjs",
+    "clip:build": "node clip-ad/build.mjs",
+    "clip:check": "node clip-ad/build.mjs && npx --yes hyperframes@0.8.169 check clip-ad --strict --at-transitions --caption-zone \"x0=0;y0=0.7812;x1=1;y1=1;severity=error;seek=0,.1,.2,.3,.4,.5,.6,.7,.8,.9,.97\" && npx --yes hyperframes@0.8.169 check clip-ad --strict --samples 24 --caption-zone \"x0=0.834;y0=0.13;x1=1;y1=1;severity=error;seek=0,.05,.1,.2,.3,.4,.5,.6,.7,.75,.8,.85,.9,.95,.99\"",
+    "clip:render": "node clip-ad/render.mjs"
   },
   "devDependencies": {
     "@hyperframes/core": "^0.8.169"

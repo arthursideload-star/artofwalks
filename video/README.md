@@ -19,6 +19,7 @@ HyperFrames 0.8.169 (`/hyperframes` → `/general-video`).
 | `KLING_SHOTS.md` | Shot list and prompts for the five Kling films |
 | `KLING_SESSION.md` | Runbook for the session that makes the Kling clips and finishes the ad |
 | `out/` | Rendered MP4s; `out/audio/` holds each one's soundtrack (M4A) |
+| `clip-ad/` | A separate 16 s 9:16 spot built only from the owner's first Kling clip (`npm run clip:check`, `npm run clip:render` → `out/clip-ad/`) |
 
 ```bash
 npm run build        # stage ../assets/video-src/ into media/, regenerate landscape/

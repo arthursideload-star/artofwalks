@@ -1,0 +1,23 @@
+{
+  "$comment": "Voiceover cue sheet for the 16 s clip ad. Same take and format as ../vo.json (in/out = seconds in the take, at = seconds in this ad); built into media/vo.wav by build.mjs.",
+  "take": ".media/audio/voice/voice_001.mp3",
+  "seconds": 16,
+  "fadeIn": 0.008,
+  "fadeOut": 0.04,
+  "gainDb": 8.3,
+  "hooks": {
+    "A": [
+      { "in": 0.0, "out": 1.9, "at": 0.04, "text": "This is your Airbnb photo." },
+      { "in": 2.11, "out": 3.0, "at": 2.06, "text": "Now watch." }
+    ]
+  },
+  "body": [
+    { "in": 14.92, "out": 17.15, "at": 3.1, "text": "Your photos, made cinematic." },
+    { "in": 11.04, "out": 11.88, "at": 5.55, "text": "No crew." },
+    { "in": 5.66, "out": 6.64, "at": 6.45, "text": "No photoshoot." },
+    { "in": 17.27, "out": 18.72, "at": 7.75, "text": "From fifty euros." },
+    { "in": 18.84, "out": 21.3, "at": 9.3, "text": "Full walkthrough, seven hundred forty-nine." },
+    { "in": 21.5, "out": 23.62, "at": 11.85, "text": "Delivered in days, not weeks." },
+    { "in": 23.84, "out": 25.35, "at": 14.25, "text": "Art of walks dot com." }
+  ]
+}

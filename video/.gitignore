@@ -14,6 +14,11 @@ landscape/.media/
 landscape/vendor/
 landscape/.hyperframes/
 
+# clip-ad/: staged media and the vendored GSAP copy (rebuild with `npm run clip:build`)
+clip-ad/media/
+clip-ad/vendor/
+clip-ad/.hyperframes/
+
 # HyperFrames working state, local renders
 .hyperframes/
 renders/

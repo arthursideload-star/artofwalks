@@ -15,8 +15,9 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-export function stageVoiceover(hook = "A") {
-  const cues = JSON.parse(readFileSync(join(ROOT, "vo.json"), "utf8"));
+// `cues` / `dest` let another project (clip-ad/) build its own track from the same take
+export function stageVoiceover(hook = "A", { cues: cuesPath = join(ROOT, "vo.json"), dest = join(ROOT, "media", "vo.wav") } = {}) {
+  const cues = JSON.parse(readFileSync(cuesPath, "utf8"));
   if (!cues.hooks[hook]) throw new Error(`voiceover: no hook "${hook}" in vo.json`);
   const lines = [...cues.hooks[hook], ...cues.body];
   const len = cues.seconds;
@@ -40,7 +41,6 @@ export function stageVoiceover(hook = "A") {
     `alimiter=limit=0.7079:attack=5:release=60:level=0:latency=1,apad,asetpts=N/SR/TB,atrim=0:${len},` +
     // dual mono: the same level in both channels, so no upmix decides the voice's loudness
     `pan=stereo|c0=c0|c1=c0[out]`;
-  const dest = join(ROOT, "media", "vo.wav");
   execFileSync(
     "ffmpeg",
     ["-hide_banner", "-loglevel", "error", "-y", "-i", join(ROOT, cues.take),
@@ -49,7 +49,7 @@ export function stageVoiceover(hook = "A") {
     { stdio: "inherit" },
   );
   const wide = join(ROOT, "landscape", "media");
-  if (existsSync(wide)) copyFileSync(dest, join(wide, "vo.wav"));
+  if (dest === join(ROOT, "media", "vo.wav") && existsSync(wide)) copyFileSync(dest, join(wide, "vo.wav"));
   return cues.hooks[hook].map((l) => l.text).join(" ");
 }
 
