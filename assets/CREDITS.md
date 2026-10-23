@@ -15,6 +15,7 @@ Add a row whenever a file lands in `assets/video-src/`.
 | P2 | `p2-split-photo.jpg` | The owner's villa photo #11 (collage row 3, 3rd; `collage/tile-11.png`, 346 × 251 px), sent 2026-10-22. Upscaled 4× to 1352 × 972 with Real-ESRGAN; nothing added or removed. | As P1. | **Yes**: "AI sample" label on | in the renders |
 | V5 | `v5-split-film.mp4` | — | — | — | **missing** (placeholder renders) |
 | — | `collage/tile-01.png` … `tile-12.png` | The 12 villa photos cut out of the owner's collage (2026-10-22), unchanged. Kept as the source for the Kling clips. | As P1. | **Yes** | not used directly |
+| — | `kling/tile-03-x4.jpg`, `tile-04-x4.jpg`, `tile-06-x4.jpg`; `kling/v1…v5-start-9x16.jpg`, `-16x9.jpg` | Photos #3, #4, #6 upscaled 4× with Real-ESRGAN, and the ten Kling start frames: centred 9:16 and 16:9 crops of P1, those three, and P2. Cropped only, nothing added. | As P1. | **Yes** | inputs for the Kling clips, not used by the ad |
 
 **Upscaling.** Real-ESRGAN x4plus (Xintao Wang et al., github.com/xinntao/Real-ESRGAN,
 release v0.2.5.0 ncnn model), BSD-3-Clause, run once on CPU with the `ncnn`

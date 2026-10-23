@@ -17,13 +17,14 @@ HyperFrames 0.8.169 (`/hyperframes` → `/general-video`).
 | `.media/audio/voice/voice_001.mp3` | Voiceover take (ElevenLabs "Everett"), every line once |
 | `vo.json` | Voiceover cue sheet: where each line sits in the take and in the ad, per hook |
 | `KLING_SHOTS.md` | Shot list and prompts for the five Kling films |
-| `out/` | Rendered MP4s |
+| `KLING_SESSION.md` | Runbook for the session that makes the Kling clips and finishes the ad |
+| `out/` | Rendered MP4s; `out/audio/` holds each one's soundtrack (M4A) |
 
 ```bash
 npm run build        # stage ../assets/video-src/ into media/, regenerate landscape/
 npm run check        # strict HyperFrames check: 9:16 (both safe bands) and 16:9
 npm run dev          # Studio preview (9:16); npm run dev:16x9 for the 16:9 cut
-npm run render:all   # four MP4s into out/, verified H.264 / yuv420p / faststart / < 8 MB
+npm run render:all   # four MP4s into out/ (+ soundtracks in out/audio/), verified H.264 / yuv420p / faststart / < 8 MB
 ```
 
 Hook variant is a composition variable: `--variables '{"hook":"B"}'` (A, B, C).

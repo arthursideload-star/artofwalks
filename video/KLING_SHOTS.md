@@ -8,10 +8,27 @@ better), no audio (the ad has its own music).
 
 There are no larger originals (the photos are AI-generated and exist only as
 the collage, ~350 × 250 px each; all 12 are in `../assets/video-src/collage/`).
-Feed Kling the **4× upscales** instead: `../assets/video-src/p1-listing-photo.jpg`
-(for V1) and `p2-split-photo.jpg` (for V5) are ready; upscale tiles 3, 4 and 6
-the same way (Real-ESRGAN x4plus, see `../assets/CREDITS.md`) for V2–V4. Kling
-accepts the raw tiles (min 300 px) but turns them into soft, invented detail.
+So Kling gets the **4× upscales** (Real-ESRGAN x4plus, see `../assets/CREDITS.md`),
+already cut into ready start frames in `../assets/video-src/kling/`: one 9:16 and
+one 16:9 per film, each a centred crop, because the ad frames every slot with a
+centred `object-fit: cover` (so V1 starts exactly where the push into P1 ends,
+and V5 matches P2 in the split screen).
+
+## Start frames → output files
+
+| Slot | 9:16 start frame → file | 16:9 start frame → file | Length |
+| ---- | ----------------------- | ----------------------- | ------ |
+| V1 | `kling/v1-start-9x16.jpg` → `v1-hero-film.mp4` | `kling/v1-start-16x9.jpg` → `v1-hero-film-16x9.mp4` | 5 s |
+| V2 | `kling/v2-start-9x16.jpg` → `v2-cut-a.mp4` | `kling/v2-start-16x9.jpg` → `v2-cut-a-16x9.mp4` | 5 s |
+| V3 | `kling/v3-start-9x16.jpg` → `v3-cut-b.mp4` | `kling/v3-start-16x9.jpg` → `v3-cut-b-16x9.mp4` | 5 s |
+| V4 | `kling/v4-start-9x16.jpg` → `v4-cut-c.mp4` | `kling/v4-start-16x9.jpg` → `v4-cut-c-16x9.mp4` | 5 s |
+| V5 | `kling/v5-start-9x16.jpg` → `v5-split-film.mp4` | `kling/v5-start-16x9.jpg` → `v5-split-film-16x9.mp4` | 10 s |
+
+Paths are relative to `../assets/video-src/`; the output files go straight into
+that folder. The 9:16 files feed the three vertical ads, the `-16x9` files the
+landscape ad (without them it would centre-crop the vertical clips). The output
+must keep the start frame's aspect ratio. The ad uses 4.1 s of V1, the first
+2 s of V2–V4 and 9.5 s of V5.
 
 | Slot | Photo (collage position) | Length | Camera move | Where it plays |
 | ---- | ------------------------ | ------ | ----------- | -------------- |
@@ -47,8 +64,8 @@ accepts the raw tiles (min 300 px) but turns them into soft, invented detail.
 
 ## After generation
 
-Save as `assets/video-src/v1-hero-film.mp4`, `v2-cut-a.mp4`, `v3-cut-b.mp4`,
-`v4-cut-c.mp4`, `v5-split-film.mp4` (P1 and P2 are already there; every slot is
-already flagged `"ai": true`, so the "AI sample" label follows the films);
-record source and licence in `assets/CREDITS.md`; then `npm run check` and
-`npm run render:all`.
+Save the ten clips under the names in the table above, in `assets/video-src/`
+(P1 and P2 are already there; every slot is already flagged `"ai": true`, so the
+"AI sample" label follows the films); record source and licence in
+`assets/CREDITS.md`; then `npm run check` and `npm run render:all`. The full
+step-by-step for a session that does all of this is `KLING_SESSION.md`.

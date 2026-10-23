@@ -2,6 +2,7 @@
 // Render the four deliverables into out/ and verify each one:
 //   artofwalks-ad-9x16-hookA.mp4 / -hookB / -hookC   (index.html, 1080x1920)
 //   artofwalks-ad-16x9-hookA.mp4                       (landscape/, 1920x1080)
+// plus each one's soundtrack as out/audio/<name>.m4a (the same AAC stream, copied).
 // Every file must be H.264, yuv420p, +faststart, 24 s and under 8 MB. HyperFrames
 // renders at a capped bitrate; the result is remuxed with +faststart, and
 // re-encoded two-pass to a computed bitrate only if it still exceeds the limit.
@@ -18,6 +19,7 @@ import { stageVoiceover } from "./voiceover.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "out");
+const AUDIO = join(OUT, "audio");
 const TMP = join(ROOT, ".hyperframes", "render-tmp");
 const LIMIT = 8 * 1000 * 1000; // 8 MB, decimal, with headroom below 8 MiB
 const VIDEO_BITRATE = "2200k"; // ~6.6 MB of video in 24 s, leaves room for AAC
@@ -59,7 +61,7 @@ const faststart = (file) => {
   }
 };
 
-mkdirSync(OUT, { recursive: true });
+mkdirSync(AUDIO, { recursive: true });
 mkdirSync(TMP, { recursive: true });
 for (const job of jobs) {
   const raw = join(TMP, job.file);
@@ -85,6 +87,8 @@ for (const job of jobs) {
   }
   renameSync(tmpFinal, final);
   rmSync(raw, { force: true });
+  // the soundtrack on its own, bit-identical to the video's audio
+  run("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-i", final, "-vn", "-c:a", "copy", "-movflags", "+faststart", join(AUDIO, job.file.replace(/\.mp4$/, ".m4a"))]);
 }
 stageVoiceover("A");
 
