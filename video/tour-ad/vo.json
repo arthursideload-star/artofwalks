@@ -1,0 +1,22 @@
+{
+  "$comment": "Voiceover cue sheet for the 18 s tour ad. The new lines come from voice_002 (per-line take), the offer lines from the main ad's take voice_001; in/out = seconds in the take, at = seconds in this ad. Built into media/vo.wav by build.mjs.",
+  "take": ".media/audio/voice/voice_001.mp3",
+  "seconds": 18,
+  "fadeIn": 0.008,
+  "fadeOut": 0.04,
+  "gainDb": 8.3,
+  "hooks": {
+    "A": [
+      { "take": ".media/audio/voice/voice_002.mp3", "in": 0.0, "out": 1.55, "at": 0.1, "text": "Don't just show a photo." },
+      { "take": ".media/audio/voice/voice_002.mp3", "in": 1.68, "out": 3.2, "at": 1.8, "text": "Show them the walkthrough." }
+    ]
+  },
+  "body": [
+    { "take": ".media/audio/voice/voice_002.mp3", "in": 3.52, "out": 4.5, "at": 3.3, "text": "The living room." },
+    { "take": ".media/audio/voice/voice_002.mp3", "in": 4.62, "out": 5.45, "at": 6.85, "text": "The kitchen." },
+    { "in": 17.27, "out": 18.72, "at": 9.5, "text": "From fifty euros." },
+    { "in": 18.84, "out": 21.3, "at": 11.05, "text": "Full walkthrough, seven hundred forty-nine." },
+    { "in": 21.5, "out": 23.62, "at": 13.6, "text": "Delivered in days, not weeks." },
+    { "in": 23.84, "out": 25.35, "at": 16.0, "text": "Art of walks dot com." }
+  ]
+}

@@ -18,6 +18,9 @@ landscape/.hyperframes/
 clip-ad/media/
 clip-ad/vendor/
 clip-ad/.hyperframes/
+tour-ad/media/
+tour-ad/vendor/
+tour-ad/.hyperframes/
 
 # HyperFrames working state, local renders
 .hyperframes/

@@ -25,9 +25,15 @@ Python package (Tencent, BSD-3-Clause). It sharpens and invents fine texture at
 4× scale; the composition and content of each photo are unchanged. Neither tool
 ships with the project.
 
-The site's own files in `assets/videos/` and `assets/photos/` were deliberately
-**not** used: the brief allows only `assets/video-src/`, and their licence is
-not on record here.
+The site's own files in `assets/videos/` and `assets/photos/` stay out of the
+main ad (the brief allows only `assets/video-src/`). One exception, at the
+owner's explicit request on 2026-10-23: the tour ad `video/tour-ad/` uses
+`assets/videos/video-3.mp4`, the site's "Spain Coast" coastal walkthrough
+(2.0–11.9 s: living room and kitchen), read in place and never modified. Its
+origin and licence are not on record here; it is the site's own showcase film.
+Whether it is AI-generated is not recorded either, so the tour ad shows the
+"AI sample" label while it is on screen; remove it only if the film is real
+footage.
 
 ## Placeholder plates
 
@@ -51,6 +57,7 @@ ad. No sound effects from any library are used.
 | Asset | Source | Licence |
 | ----- | ------ | ------- |
 | `video/.media/audio/voice/voice_001.mp3` (25.5 s, every line in one take) | **AI-generated speech**: ElevenLabs, voice "Everett - Confident American Ads" (voice_id `TdGSaGM0xJze6GHo3qqb`), model `eleven_v4`, generated 2026-10-22 in the owner's connected ElevenLabs workspace (flow `SrGV8R1qmY3KLxzJ9Cq6`, generation `7ijlsGhqjD0DWrDufkiF`). Script = the on-screen copy, numbers spelled out. Cut and placed by `video/vo.json` + `video/scripts/voiceover.mjs`. | ElevenLabs terms of the owner's plan. Commercial use needs a paid plan (Starter or higher); on the free plan the audio may not be used in an ad. Check the plan before publishing. |
+| `video/.media/audio/voice/voice_002.mp3` (5.5 s) | **AI-generated speech**, same voice and model, generated 2026-10-23 (flow `SrGV8R1qmY3KLxzJ9Cq6`, generation `3d0Z3pdz3GbRUmQ0E4Xe`): "Don't just show a photo. Show them the walkthrough. The living room. The kitchen." Used by the tour ad (`video/tour-ad/vo.json`). | As above. |
 
 ## Brand, type, code
 

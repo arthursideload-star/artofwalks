@@ -22,7 +22,14 @@ export function stageVoiceover(hook = "A", { cues: cuesPath = join(ROOT, "vo.jso
   const lines = [...cues.hooks[hook], ...cues.body];
   const len = cues.seconds;
   const n = (v) => Number(v.toFixed(4));
-  const split = `[0:a]aresample=48000,asplit=${lines.length}${lines.map((_, i) => `[s${i}]`).join("")}`;
+  // a line may name its own take (tour-ad/ mixes two); each take is split once per line it feeds
+  const takes = [...new Set(lines.map((l) => l.take ?? cues.take))];
+  const split = takes
+    .map((take, k) => {
+      const outs = lines.map((l, i) => ((l.take ?? cues.take) === take ? `[s${i}]` : "")).join("");
+      return `[${k}:a]aresample=48000,asplit=${outs.split("[").length - 1}${outs}`;
+    })
+    .join(";");
   const parts = lines.map((l, i) => {
     const d = l.out - l.in;
     const ms = Math.round(l.at * 1000);
@@ -43,7 +50,7 @@ export function stageVoiceover(hook = "A", { cues: cuesPath = join(ROOT, "vo.jso
     `pan=stereo|c0=c0|c1=c0[out]`;
   execFileSync(
     "ffmpeg",
-    ["-hide_banner", "-loglevel", "error", "-y", "-i", join(ROOT, cues.take),
+    ["-hide_banner", "-loglevel", "error", "-y", ...takes.flatMap((t) => ["-i", join(ROOT, t)]),
       "-filter_complex", [split, ...parts, mix].join(";"), "-map", "[out]",
       "-ar", "48000", "-c:a", "pcm_s16le", dest],
     { stdio: "inherit" },
