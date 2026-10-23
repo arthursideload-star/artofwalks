@@ -84,7 +84,7 @@ anchor while the picture changes underneath.
 - src: compositions/s45-split-offer.html
 - transition_in: cut (12.0)
 - scene: Full-bleed photo; a divider sweeps in and turns the right half into the film, then the whole frame.
-- media: P2 (photo) | V5 (film made from P2)
+- media: P2 (photo #2, the pool deck by day) | V5 (film from P2 that turns to dusk, ending on photo #11)
 - motion: comparison-split (blueprint), nudge-curve divider sweep
 - copy: "Your photos," / **"made cinematic."** (13.0 s)
 - vo: "Your photos, made cinematic." (13.0 s) · "Delivered in days, not weeks." (15.3 s, over the wipe to the film)

@@ -24,7 +24,7 @@ in the bottom-right corner for as long as that file is on screen. Set the flag
 to match how each file was really made.
 
 **What is here now (2026-10-22).** `p1-listing-photo.jpg` and
-`p2-split-photo.jpg` are villa photos #1 and #11 from the owner's collage,
+`p2-split-photo.jpg` are villa photos #1 and #2 from the owner's collage,
 upscaled 4× with Real-ESRGAN. `collage/` holds all 12 photos as cut from the
 collage (about 350 × 250 px each); `kling/` holds the Kling start and end frames
 (9:16 and 16:9 per film) and the upscaled photos 3, 4 and 6. The ad never reads
