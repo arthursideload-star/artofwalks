@@ -1,71 +1,54 @@
-# Kling 3.0 shot list for the ad
+# Kling shot list for the ad
 
-Image-to-video, one clip per slot, from the villa photos (collage of 12 sent on
-2026-10-22; positions below count row by row, left to right). Each prompt keeps
-the photo as the first frame and asks for one slow, stabilised drone-style move
-with nothing added. Generate in the highest quality available (1080p "pro" or
-better), no audio (the ad has its own music).
+Five films, each made twice (9:16 for the three vertical ads, 16:9 for the
+landscape ad) with Kling's **start & end frame** image-to-video mode, so the
+camera move is pinned at both ends: one slow, stabilised move, nothing added.
+Highest quality (Kling 3.0, 1080p / professional; if 3.0 offers no end frame,
+the newest Kling model that does), no audio.
 
-There are no larger originals (the photos are AI-generated and exist only as
-the collage, ~350 × 250 px each; all 12 are in `../assets/video-src/collage/`).
-So Kling gets the **4× upscales** (Real-ESRGAN x4plus, see `../assets/CREDITS.md`),
-already cut into ready start frames in `../assets/video-src/kling/`: one 9:16 and
-one 16:9 per film, each a centred crop, because the ad frames every slot with a
-centred `object-fit: cover` (so V1 starts exactly where the push into P1 ends,
-and V5 matches P2 in the split screen).
+The photos are AI-generated and exist only as the owner's collage
+(~350 × 250 px each, all 12 in `../assets/video-src/collage/`), so every frame
+is a crop of a 4× upscale (Real-ESRGAN x4plus, see `../assets/CREDITS.md`),
+resized to 1080 × 1920 or 1920 × 1080. V1 starts exactly where the push into P1
+ends, and V5 starts on P2 as the split screen frames it (the ad shows every slot
+with a centred `object-fit: cover`).
 
-## Start frames → output files
+## Frames → output files
 
-| Slot | 9:16 start frame → file | 16:9 start frame → file | Length |
-| ---- | ----------------------- | ----------------------- | ------ |
-| V1 | `kling/v1-start-9x16.jpg` → `v1-hero-film.mp4` | `kling/v1-start-16x9.jpg` → `v1-hero-film-16x9.mp4` | 5 s |
-| V2 | `kling/v2-start-9x16.jpg` → `v2-cut-a.mp4` | `kling/v2-start-16x9.jpg` → `v2-cut-a-16x9.mp4` | 5 s |
-| V3 | `kling/v3-start-9x16.jpg` → `v3-cut-b.mp4` | `kling/v3-start-16x9.jpg` → `v3-cut-b-16x9.mp4` | 5 s |
-| V4 | `kling/v4-start-9x16.jpg` → `v4-cut-c.mp4` | `kling/v4-start-16x9.jpg` → `v4-cut-c-16x9.mp4` | 5 s |
-| V5 | `kling/v5-start-9x16.jpg` → `v5-split-film.mp4` | `kling/v5-start-16x9.jpg` → `v5-split-film-16x9.mp4` | 10 s |
+All paths under `../assets/video-src/`; frames in `kling/`, outputs next to the photos.
 
-Paths are relative to `../assets/video-src/`; the output files go straight into
-that folder. The 9:16 files feed the three vertical ads, the `-16x9` files the
-landscape ad (without them it would centre-crop the vertical clips). The output
-must keep the start frame's aspect ratio. The ad uses 4.1 s of V1, the first
-2 s of V2–V4 and 9.5 s of V5.
+| Slot | Photo | Move | Length | 9:16 frames → file | 16:9 frames → file |
+| ---- | ----- | ---- | ------ | ------------------ | ------------------ |
+| V1 | #1 villa on the cliff (P1) | glide forward and down to the pool | 5 s | `v1-9x16-start/end.jpg` → `v1-hero-film.mp4` | `v1-16x9-start/end.jpg` → `v1-hero-film-16x9.mp4` |
+| V2 | #3 living room | dolly forward to the windows | 5 s | `v2-9x16-start/end.jpg` → `v2-cut-a.mp4` | `v2-16x9-start/end.jpg` → `v2-cut-a-16x9.mp4` |
+| V3 | #4 bedroom | lateral glide right → left, ending on the window | 5 s | `v3-9x16-start/end.jpg` → `v3-cut-b.mp4` | `v3-16x9-start/end.jpg` → `v3-cut-b-16x9.mp4` |
+| V4 | #6 breakfast terrace | pull back from the table | 5 s | `v4-9x16-start/end.jpg` → `v4-cut-c.mp4` | `v4-16x9-start/end.jpg` → `v4-cut-c-16x9.mp4` |
+| V5 | #11 villa at dusk (P2) | low glide along the pool to the villa | 10 s | `v5-9x16-start/end.jpg` → `v5-split-film.mp4` | `v5-16x9-start/end.jpg` → `v5-split-film-16x9.mp4` |
 
-| Slot | Photo (collage position) | Length | Camera move | Where it plays |
-| ---- | ------------------------ | ------ | ----------- | -------------- |
-| P1 | #1 villa on the cliff with infinity pool (row 1, 1st) | photo | — | hook card, loop ending |
-| V1 | from #1 | 5 s | slow aerial glide forward and slightly down toward the pool and terrace | "Same photo. 6 seconds later." |
-| V2 | #3 living room with sea view (row 1, 3rd) | 5 s | slow dolly forward toward the windows | "No crew." |
-| V3 | #4 bedroom with sea view (row 1, 4th) | 5 s | slow lateral glide left → right, revealing the view | "No scheduling." |
-| V4 | #6 breakfast terrace under bougainvillea (row 2, 2nd) | 5 s | slow pull-back revealing terrace and sea | "No strangers in your home." |
-| P2 | #11 villa at dusk with lit pool (row 3, 3rd) | photo | — | split screen, left |
-| V5 | from #11 | 10 s | slow low aerial glide along the pool toward the villa | split screen right, behind the price card |
+Where they play: V1 under "Same photo. 6 seconds later." (4.1 s used), V2–V4
+under the three "No …" cuts (2 s each), V5 in the split screen and behind the
+price card (9.5 s). The crop rectangles live in `tools/make_kling_frames.py`.
 
-## Prompt (shared part, prepend to each shot)
+## Prompts (one per clip, the same for both formats)
 
-> Cinematic real-estate walkthrough filmed like a stabilised drone: one slow,
-> continuous, perfectly smooth camera move at constant speed. Keep every object,
-> material, colour and the architecture exactly as in the photo. Realistic
-> natural light. No people, no animals, no new objects, no text.
+- **V1**: Smooth cinematic drone shot. The camera glides slowly forward and slightly down from the cliff toward the infinity pool and the villa terrace, in one continuous move at constant speed, from the first frame to the last frame. Stabilized, no shake. Keep the villa, pool, rocks, plants, sea and light exactly as in the images. No people, no new objects, no text.
+- **V2**: Smooth cinematic gimbal shot at eye level. The camera dollies slowly forward through the living room toward the floor-to-ceiling windows and the sea view, in one continuous move at constant speed, from the first frame to the last frame. Keep the furniture, materials, colors and light exactly as in the images. No people, no new objects, no text.
+- **V3**: Smooth cinematic gimbal shot at eye level. The camera glides slowly sideways from right to left across the bedroom, parallel to the bed, ending on the large window with the sea view, in one continuous move at constant speed, from the first frame to the last frame. Keep the bed, curtains, lamps, materials and light exactly as in the images. No people, no new objects, no text.
+- **V4**: Smooth cinematic gimbal shot at eye level. The camera pulls back slowly from the breakfast table under the bougainvillea pergola, revealing more of the terrace, the pool and the sea, in one continuous move at constant speed, from the first frame to the last frame. Keep the food, table, flowers, pool and light exactly as in the images. No people, no new objects, no text.
+- **V5**: Smooth cinematic drone shot at dusk. The camera glides slowly forward, low over the illuminated infinity pool, toward the villa with its warm lit windows, in one continuous move at constant speed, from the first frame to the last frame. Stabilized, no shake. Keep the villa, pool lights, loungers, sea and sky exactly as in the images. No people, no new objects, no text.
 
-## Shot prompts
+## Negative prompt (all clips, where the app has the field)
 
-- **V1**: Slow aerial glide forward and slightly downward from the cliff toward the infinity pool and the villa terrace, the sea on the left, steady altitude.
-- **V2**: Slow, steady dolly forward through the living room toward the floor-to-ceiling windows and the sea view, at eye level.
-- **V3**: Slow lateral glide from left to right across the bedroom, parallel to the bed, revealing the sea view through the window, at eye level.
-- **V4**: Slow pull-back away from the breakfast table under the bougainvillea pergola, revealing more of the terrace and the sea, at eye level.
-- **V5**: Slow low aerial glide forward along the illuminated infinity pool toward the villa at dusk, steady altitude.
-
-## Negative prompt (all shots)
-
-> people, person, hands, animals, cars, boats, text, logo, watermark, extra
-> furniture, new objects, changed architecture, warping, morphing, melting,
-> stretching, flicker, glitch, jitter, camera shake, fast motion, sudden zoom,
-> cuts, transitions, distortion, blur, artifacts
+> people, hands, animals, cars, boats, text, logo, watermark, new objects, extra
+> furniture, changed architecture, warping, morphing, flicker, glitch, jitter,
+> camera shake, fast motion, sudden zoom, cuts, distortion, blur
 
 ## After generation
 
-Save the ten clips under the names in the table above, in `assets/video-src/`
-(P1 and P2 are already there; every slot is already flagged `"ai": true`, so the
-"AI sample" label follows the films); record source and licence in
-`assets/CREDITS.md`; then `npm run check` and `npm run render:all`. The full
-step-by-step for a session that does all of this is `KLING_SESSION.md`.
+Save the clips under the names in the table, in `assets/video-src/` (P1 and P2
+are already there; every slot is flagged `"ai": true`, so the "AI sample" label
+follows the films); record source and licence in `assets/CREDITS.md`; then
+`npm run check` and `npm run render:all`. For V2–V4 pick the liveliest 2 s of
+each clip with `data-media-start` in `compositions/s3-cuts.html` if the first
+2 s barely move. A session with API access can do the whole round from
+`KLING_SESSION.md`.

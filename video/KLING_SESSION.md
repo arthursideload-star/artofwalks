@@ -7,10 +7,11 @@ The owner writes in German; answer in German.
 
 ## 0 · What you have
 
-- `video/KLING_SHOTS.md`: the shot list, the shared prompt, one prompt per shot,
-  the negative prompt, and the table of start frames → output files.
-- `assets/video-src/kling/`: ten ready start frames (`v1…v5-start-9x16.jpg`,
-  `v1…v5-start-16x9.jpg`), centred crops of the 4× upscaled villa photos.
+- `video/KLING_SHOTS.md`: the shot list, one prompt per clip, the negative
+  prompt, and the table of start/end frames → output files.
+- `assets/video-src/kling/`: a start and an end frame per clip and format
+  (`v1…v5-9x16-start.jpg` / `-end.jpg`, `v1…v5-16x9-start.jpg` / `-end.jpg`),
+  crops of the 4× upscaled villa photos.
 - The owner's Abacus.AI API key in the environment variable `ABACUS_API_KEY`.
   Never print, log or commit it; pass it only in request headers.
 
@@ -39,11 +40,10 @@ or other footage.
 
 ## 2 · Generate the ten clips
 
-- Kling v3, image-to-video, the start frame as the first frame, highest quality
-  (1080p / "pro"), no audio, output in the start frame's aspect ratio.
-- Prompt = the shared prompt + the shot's prompt from `KLING_SHOTS.md`; add the
-  negative prompt and the lowest creativity / highest faithfulness setting if
-  the API has them.
+- Kling v3, image-to-video with start **and** end frame, highest quality
+  (1080p / "pro"), no audio, output in the frames' aspect ratio.
+- Prompt = the clip's prompt from `KLING_SHOTS.md`; add the negative prompt and
+  the lowest creativity / highest faithfulness setting if the API has them.
 - Lengths: V1–V4 5 s, V5 10 s. One 9:16 and one 16:9 clip per slot, ten in all.
   The owner asked for exactly these; generate nothing extra.
 - Check every clip before using it: pull frames at 0, 1, 2, 3 s and the last

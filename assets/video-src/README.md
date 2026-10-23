@@ -26,7 +26,7 @@ to match how each file was really made.
 **What is here now (2026-10-22).** `p1-listing-photo.jpg` and
 `p2-split-photo.jpg` are villa photos #1 and #11 from the owner's collage,
 upscaled 4× with Real-ESRGAN. `collage/` holds all 12 photos as cut from the
-collage (about 350 × 250 px each); `kling/` holds the ready Kling start frames
+collage (about 350 × 250 px each); `kling/` holds the Kling start and end frames
 (9:16 and 16:9 per film) and the upscaled photos 3, 4 and 6. The ad never reads
 those two folders. The five films (plus their `-16x9` versions) are still
 missing: see `video/KLING_SHOTS.md` and `video/KLING_SESSION.md`.
