@@ -1,18 +1,23 @@
-THE 2 "BEFORE" LISTING PHOTOS LIVE IN THIS FOLDER
-==================================================
+AUSGANGSFOTOS FÜR EINEN VORHER/NACHHER-VERGLEICH
+================================================
 
-  photo-1.jpg   (or photo-1.png)  -> pool terrace photo
-  photo-2.jpg   (or photo-2.png)  -> Santorini aerial photo
+Dieser Ordner ist derzeit leer. Die Startseite hat keinen Vorher/Nachher-
+Abschnitt mehr.
 
-They appear in the "From Static Photos to Living Spaces" section, on the left,
-at their natural aspect ratio (no cropping), labelled "Your photos". The video
-on the right, labelled "Your video", is assets/videos/video-1.mp4.
+Grund: Ein Vergleich ist nur ehrlich, wenn links genau die Fotos stehen, aus
+denen das Video rechts entstanden ist. Für das aktuelle Beispiel (video-3)
+liegen diese Ausgangsfotos nicht vor. Die früheren photo-1.jpg und photo-2.jpg
+wurden entfernt, weil für sie keine Nutzungsrechte bestanden.
 
-The whole section only works if the video on the right was genuinely made from
-the photos on the left. Right now photo-2 (aerial view) and the opening frame
-of video-1 are near-identical shots, which makes the "before" and the "after"
-look like the same picture. Replacing these two photos with the actual source
-photos of video-1 is the single biggest improvement you can make here.
+Den Abschnitt nur wieder einbauen, wenn
+  - die tatsächlichen Ausgangsfotos eines gezeigten Videos vorliegen,
+  - die Rechte daran geklärt sind (bei Kundenobjekten: schriftliche
+    Einwilligung, AGB § 11),
+  - die Kennzeichnung stimmt (KI-generierte Ausgangsfotos als solche
+    benennen).
 
-Recommended: around 800-1000px wide, under 300 KB each.
-If you change the file names or add a third photo, index.html needs editing too.
+Niemals Standbilder aus dem Video als "Vorher" ausgeben.
+
+Empfehlung für die Dateien: ca. 1000 px breit, unter 300 KB, als
+photo-1.jpg, photo-2.jpg usw. Das Layout dafür muss in index.html und
+css/styles.css neu gebaut werden.

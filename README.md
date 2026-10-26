@@ -1,28 +1,38 @@
 # ArtOfWalks
 
-Cinematic walkthrough videos for Airbnb listings, made from the photos hosts already have.
+KI-animierte Immobilienvideos für Makler, erstellt aus den vorhandenen
+Exposé-Fotos: Querformat-Film für Website und Portal, Hochkant-Reel für Social
+Media. Angebot ausschließlich für Unternehmer (B2B).
 
-Live site: https://artofwalks.com/
+Live: https://artofwalks.com/
 
-## Before you take the first payment
+## Vor dem Livegang
 
-See **[SETUP.md](SETUP.md)** — the four Stripe payment links are still
-placeholders, and the VAT line needs confirming.
+Siehe **[SETUP.md](SETUP.md)**: Stripe-Links und Kundenportal sind noch
+Platzhalter (`REPLACE_…`), die AGB sind ein Entwurf, und in der
+Datenschutzerklärung fehlen die Angaben zu den KI-Anbietern.
 
-## Pages
+## Seiten
 
-| File          | What it is                                    |
-| ------------- | --------------------------------------------- |
-| `index.html`  | the landing page                              |
-| `thanks.html` | order confirmation, Stripe's success URL      |
-| `terms.html`  | terms and conditions + right of withdrawal    |
-| `legal.html`  | legal notice (Impressum) + privacy policy     |
+| Datei         | Inhalt                                              |
+| ------------- | --------------------------------------------------- |
+| `index.html`  | Startseite                                          |
+| `thanks.html` | Bestätigung nach dem Kauf, Success-URL für Stripe   |
+| `terms.html`  | AGB (B2B, Entwurf)                                  |
+| `legal.html`  | Impressum und Datenschutzerklärung                  |
 
-## Updating content
+## Inhalte pflegen
 
-- Videos: replace `assets/videos/video-1..3.mp4` (keep the names). See `assets/videos/README.txt`.
-- Before/after photos: `assets/photos/photo-1..2.jpg` (or `.png`). See `assets/photos/README.txt`.
-- Poster thumbnails: `assets/posters/poster-1..3.jpg`, extracted from the videos.
-- Texts, prices, labels: edit `index.html`.
+- **Texte, Preise, FAQ:** in `index.html`. Bei Änderungen an der FAQ auch den
+  `FAQPage`-Block im `<head>` anpassen, bei Preisänderungen die `Offer`-Einträge
+  im `Service`-Block.
+- **Beispielvideos:** `assets/videos/`, Anleitung für weitere Beispiele in
+  `assets/videos/README.txt`. Jedes Beispiel ist ein eigener
+  `<article class="example">`-Block im Abschnitt „2 · BEISPIELE“.
+- **Poster:** `assets/posters/`, je ein Standbild pro Video.
+- **Schriften:** Newsreader und Instrument Sans liegen als woff2 unter
+  `assets/fonts/` (SIL Open Font License, Lizenztexte daneben). Die Seite lädt
+  nichts von fremden Servern.
+- **Farben und Abstände:** Variablen am Anfang von `css/styles.css`.
 
-Static site, no build step. Push to `main` and GitHub Pages redeploys automatically.
+Statische Seite ohne Build-Schritt. Ein Push auf `main` deployt über GitHub Pages.
