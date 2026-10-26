@@ -1,98 +1,129 @@
-# Things still on your plate
+# Was vor dem Livegang noch zu tun ist
 
-## 1. Test the four buy buttons once
+Die Seite ist fertig umgebaut, kann aber erst live gehen, wenn die Punkte 1 bis 6
+erledigt sind. Bis dahin funktionieren alle Kaufbuttons trotzdem: Solange ein
+Stripe-Link noch `REPLACE_` enthält, macht `js/main.js` daraus automatisch eine
+vorausgefüllte Bestell-E-Mail an artofwalks@gmail.com. Gleiches gilt für den Link
+„Abo verwalten“.
 
-The real Stripe payment links are in place. Nobody has clicked them yet, and
-the link ids were created out of order (`...400`, `...401`, `...403`, `...402`),
-so a mix-up between the 10 Clip Pack and the Full Walkthrough would not be
-obvious from the URLs alone. **Click each of the four buttons once** and check
-that the Stripe page shows the right package name and amount:
+## 1. Kleinunternehmer-Anmeldung abwarten
 
-| Button           | Should show |
-| ---------------- | ----------- |
-| Single Clip      | €50         |
-| 5 Clip Pack      | €200        |
-| 10 Clip Pack     | €399        |
-| Full Walkthrough | €749        |
+Die Seite sagt an drei Stellen „Gemäß § 19 UStG wird keine Umsatzsteuer
+berechnet“: unter den Preisen (`index.html`), in den AGB (`terms.html`, § 4) und
+im Impressum (`legal.html`). **Erst live schalten, wenn das Finanzamt die
+Kleinunternehmerregelung bestätigt hat.** Bis dahin den Branch nicht in `main`
+mergen – ein Push auf `main` geht sofort live.
 
-Two settings worth turning on for every link in Stripe, if they are not already:
+## 2. Drei Stripe Payment Links anlegen
 
-- **Collect customer email** — you need it to send the video.
-- **Custom field: "Listing name or address"** — saves one email round trip.
+| Paket       | Preis         | Abrechnung              | Platzhalter in `index.html`                  |
+| ----------- | ------------- | ----------------------- | -------------------------------------------- |
+| Objekt-Film | 199 €         | einmalig                | `https://buy.stripe.com/REPLACE_OBJEKT_FILM` |
+| Abo Starter | 349 € / Monat | wiederkehrend, monatlich | `https://buy.stripe.com/REPLACE_ABO_STARTER` |
+| Abo Büro    | 790 € / Monat | wiederkehrend, monatlich | `https://buy.stripe.com/REPLACE_ABO_BUERO`   |
 
-Also confirm each link's success URL points at `https://artofwalks.com/thanks.html`.
+Für jeden Link in Stripe einstellen:
 
-## 2. Add the VAT line
+- **E-Mail-Adresse erfassen** (ohne sie kann das Video nicht verschickt werden).
+- **Firmenname erfassen** (Option „Unternehmensname“ bzw. eigenes Feld) und
+  **Rechnungsadresse erfassen** – das Angebot gilt nur für Unternehmer.
+- **Nach der Zahlung weiterleiten** auf `https://artofwalks.com/thanks.html`.
+- **Keine Steuer** berechnen (Stripe Tax aus), Kleinunternehmer.
+- Beim Objekt-Film: **Rechnung nach der Zahlung erstellen** einschalten. Abos
+  erzeugen Rechnungen automatisch.
+- In Stripe unter Einstellungen → Rechnungen eine **Standard-Fußzeile** setzen:
+  „Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“ (Pflichthinweis auf
+  Rechnungen von Kleinunternehmern.)
+- Empfohlen: in den öffentlichen Unternehmensdaten die AGB-URL
+  `https://artofwalks.com/terms.html` hinterlegen und im Payment Link
+  „Zustimmung zu den Nutzungsbedingungen verlangen“ einschalten.
 
-`index.html` (under the pricing table) and `terms.html` (clause 4) currently
-carry wording that is true either way:
+Danach die drei Platzhalter in `index.html` (Abschnitt „5 · PREISE“) durch die
+echten Links ersetzen. Die E-Mail-Ersatzfunktion schaltet sich dann von selbst ab.
+**Jeden Button einmal klicken** und prüfen: richtiges Produkt, richtiger Betrag,
+Weiterleitung auf `thanks.html`.
 
-> All prices are total prices in euro. What you see is what you pay.
+## 3. Kundenportal aktivieren und Link eintragen
 
-That is deliberately neutral, because a wrong tax statement on a page that
-takes money is a real problem. Once you know which case you are in, add the
-matching sentence to **both** places:
+Stripe → Einstellungen → Billing → Kundenportal:
 
-- **Kleinunternehmer (§ 19 UStG)** — the usual case for a new one-person
-  business: *"No VAT is charged under the small business rule (§ 19 UStG)."*
-- **Regelbesteuerung** — if you charge VAT: *"All prices include 19% VAT."*
+- Portal aktivieren.
+- Kündigung erlauben, **zum Ende des Abrechnungszeitraums** (so steht es auf der
+  Seite und in den AGB).
+- Zahlungsmethode ändern und Rechnungen ansehen erlauben.
+- Optional: Wechsel zwischen Abo Starter und Abo Büro erlauben.
 
-If you don't know which applies to you, your tax advisor or your Finanzamt
-registration (Fragebogen zur steuerlichen Erfassung) will say.
+Dann den Login-Link des Portals (`https://billing.stripe.com/p/login/…`) kopieren
+und `https://billing.stripe.com/p/login/REPLACE_KUNDENPORTAL` überall ersetzen:
 
-## 3. The sale end date
+| Datei         | Stellen                                       |
+| ------------- | --------------------------------------------- |
+| `index.html`  | Abo-Regeln unter den Preisen, Footer          |
+| `terms.html`  | Footer                                        |
+| `legal.html`  | Footer                                        |
+| `thanks.html` | Text unter der Checkliste, Footer             |
 
-In `index.html`, the pricing headline carries:
+Schnell finden: nach `REPLACE_` suchen.
 
-```html
-<p class="pricing-sale" data-sale-end="2026-09-15">
-```
+## 4. Alte Payment Links deaktivieren
 
-Change that date and the countdown follows automatically. When the date passes,
-the whole sale line hides itself — but the Full Walkthrough card still shows the
-struck-through €999 and the "Summer Sale · −25%" badge, so either extend the
-date or edit that card too.
+Die vier Links der alten Pakete in Stripe unter Payment Links
+**deaktivieren** (nicht löschen, damit die Historie bleibt):
 
-## 4. Google Search Console
+| Link-Endung | altes Paket      |
+| ----------- | ---------------- |
+| `…7g400`    | Single Clip, 50 €     |
+| `…7g401`    | 5 Clip Pack, 200 €    |
+| `…7g403`    | 10 Clip Pack, 399 €   |
+| `…7g402`    | Full Walkthrough, 749 € |
 
-The sitemap entry has to be the sitemap file, not the homepage. Submitting
-`https://artofwalks.com/` gets rejected with "Sitemap ist HTML" — that URL is
-the landing page. The correct one is:
+## 5. Rechtstexte anwaltlich prüfen lassen
 
-```
-https://artofwalks.com/sitemap.xml
-```
+- `terms.html` ist als **Entwurf** markiert (Kommentar ganz oben). Besonders
+  prüfen lassen: Vertragsschluss über Stripe, Übertragung und Verfall im Abo,
+  Objekttreue-Garantie neben den Mängelrechten, Pflicht zur KI-Kennzeichnung,
+  Nutzungsrechte, Haftung, ob ein Auftragsverarbeitungsvertrag nötig ist.
+- Mitprüfen: Abschnitt „Rechtssicher vermarkten“ und die FAQ zu KI-Kennzeichnung,
+  ImmoScout24 und Energieausweis in `index.html`.
 
-Remove the wrong entry (three dots on its row -> "Sitemap entfernen"), then add
-`sitemap.xml` under "Neue Sitemap hinzufügen".
+## 6. Platzhalter in der Datenschutzerklärung füllen
 
-After that, go to **URL-Prüfung**, paste `https://artofwalks.com/`, and click
-**Indexierung beantragen**. That is the fastest way to get a new site into the
-index; the sitemap alone can take days.
+In `legal.html` stehen drei HTML-Kommentare „VOM BETREIBER ZU PRÜFEN“:
 
-Being found for "art of walks" rather than the exact URL also needs signals
-from outside the site. The markup now tells Google that "Art of Walks" and
-"ArtOfWalks" are the same name, but a domain nobody links to stays invisible.
-The free things that actually move this:
+- **Abschnitt 8 (KI-Dienste):** tatsächliche Anbieter mit Sitz eintragen
+  (Platzhalter `[Luma AI, Inc., USA]` und `[weitere Anbieter …]`), Grundlage der
+  Übermittlung in die USA, ob der Anbieter die Fotos zum Training nutzt und wie
+  lange er sie speichert.
+- **Abschnitt 7:** stimmt, dass das Postfach bei Gmail liegt?
+- **Abschnitt 9:** Speicherfristen (12 Monate für Fotos/Videos, 6 Monate für
+  Probevideo-Anfragen) sind Vorschläge – bestätigen oder ändern.
 
-- Social profiles named ArtOfWalks (Instagram, TikTok, YouTube) with
-  artofwalks.com in the bio. Once they exist, add their URLs to the `sameAs`
-  array in the Organization block in `index.html`.
-- A Google Business Profile (Unternehmensprofil) for the business.
-- Any real mention of the brand on a site Google already crawls.
+## 7. Abläufe, die Stripe nicht abbildet
 
-## 5. Have the legal texts read once
+- **Kontingent und Übertragung im Abo** führt Stripe nicht. Pro Abo-Kunde eine
+  kleine Tabelle führen: Abrechnungsmonat, Kontingent, genutzt, übertragen.
+  Übertragene Objekte werden zuerst verbraucht und verfallen am Ende des
+  Folgemonats.
+- **Probevideo:** nur eins pro Maklerbüro – Anfragen in derselben Tabelle notieren.
+- **Lieferzeit:** 24 Stunden (werktags) gilt auch, wenn ein Büro-Kunde fünf
+  Objekte am selben Tag schickt. Wenn das nicht zu schaffen ist, vorher Text und
+  AGB § 7 anpassen.
 
-`terms.html` (terms + right of withdrawal) and the Stripe section in
-`legal.html` are solid boilerplate written to match how you actually sell, but
-no lawyer has seen them. Selling to consumers in the EU is the point where that
-starts to matter. One hour with a lawyer is cheap compared to one warning letter.
+## 8. Annahmen, die du bestätigen solltest
 
-## Updating content
+- Foto-Empfehlung in FAQ und Danke-Seite: 10 bis 20 Fotos, mindestens 1920 px an
+  der langen Seite.
+- Badge „Beliebt“ am Abo Büro: Ohne Kunden ist das streng genommen noch nicht
+  belegt. „Empfohlen“ wäre bis dahin die ehrlichere Variante.
+- Das Probevideo darf laut AGB nicht veröffentlicht werden (§ 2 Abs. 5).
 
-- Videos: replace `assets/videos/video-1..3.mp4` (keep the names).
-- Posters: `assets/posters/poster-1..3.jpg`, one frame out of each video.
-- Before/after photos: `assets/photos/photo-1..2.jpg`.
-- Texts, prices, labels: edit `index.html`.
+## Google Search Console
 
-Static site, no build step. Push to `main` and GitHub Pages redeploys.
+Als Sitemap `https://artofwalks.com/sitemap.xml` einreichen (nicht die
+Startseite). Nach dem Livegang unter „URL-Prüfung“ `https://artofwalks.com/`
+eingeben und „Indexierung beantragen“ klicken, damit Google die neue deutsche
+Seite schnell neu einliest.
+
+## Inhalte pflegen
+
+Siehe [README.md](README.md).
