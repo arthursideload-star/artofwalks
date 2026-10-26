@@ -3,7 +3,7 @@
    Akzent nur für Buttons, Links, Häkchen, Fokus und das Badge.
    Radien: 4px für Karten und Buttons, 2px für Medien. Sonst nichts.   */
 
-/* ---------- fonts (selbst gehostet, OFL, siehe assets/fonts/) ---------- */
+/* ---------- fonts (lokal eingebunden, OFL, siehe assets/fonts/) ---------- */
 
 @font-face {
   font-family: "Newsreader";
@@ -215,14 +215,14 @@ a { color: inherit; }
   color: #fff;
 }
 
-.btn-ghost {
+.btn-glass {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
   border-color: rgba(255, 255, 255, 0.55);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
-.btn-ghost:hover {
+.btn-glass:hover {
   background: rgba(255, 255, 255, 0.18);
   border-color: #fff;
 }
@@ -259,8 +259,9 @@ a { color: inherit; }
   backdrop-filter: none;
   border-bottom-color: transparent;
 }
+body.menu-open .site-nav,
 html.js body.menu-open .site-nav[data-overlay]:not(.is-scrolled) {
-  background: rgba(246, 243, 238, 0.98);
+  background: var(--paper);
   border-bottom-color: var(--line);
 }
 
