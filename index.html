@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ArtOfWalks — Cinematic Walkthrough Videos for Airbnb Listings</title>
-  <meta name="description" content="ArtOfWalks turns the photos already on your Airbnb listing into cinematic walkthrough videos. No photoshoot. From €50, delivered in 3 days, 14-day money-back guarantee.">
-  <meta name="theme-color" content="#0A0A0A">
-  <meta property="og:title" content="ArtOfWalks — Cinematic Walkthrough Videos for Airbnb Listings">
-  <meta property="og:description" content="Turn the photos already on your Airbnb listing into cinematic walkthrough videos. No photoshoot. From €50, delivered in 3 days.">
+  <title>ArtOfWalks – Immobilienvideos aus Ihren Exposé-Fotos, für Makler</title>
+  <meta name="description" content="Aus den Fotos, die Sie ohnehin fürs Exposé haben, wird ein KI-animierter Immobilienfilm: Querformat und Hochkant-Reel, ohne Dreh und ohne Termin. Ab 199 €, Lieferung in 24 Stunden (werktags).">
+  <meta name="theme-color" content="#F6F3EE">
+  <meta property="og:title" content="ArtOfWalks – Immobilienvideos aus Ihren Exposé-Fotos">
+  <meta property="og:description" content="Sie schicken die Exposé-Fotos, wir liefern Querformat-Film und Hochkant-Reel. Kein Dreh, kein Termin. Ab 199 €, Lieferung in 24 Stunden (werktags).">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="ArtOfWalks">
   <meta property="og:url" content="https://artofwalks.com/">
-  <meta property="og:image" content="https://artofwalks.com/assets/posters/poster-1.jpg">
-  <meta property="og:image:width" content="1280">
-  <meta property="og:image:height" content="853">
+  <meta property="og:image" content="https://artofwalks.com/assets/brand/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ArtOfWalks – Immobilienvideos aus Exposé-Fotos. Beispielobjekt, Ausgangsfotos KI-generiert.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://artofwalks.com/">
   <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <script>document.documentElement.classList.add('js');</script>
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,401,500,700,900,901&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/posters/poster-1.jpg">
+  <link rel="preload" href="assets/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/posters/poster-3.jpg" media="(min-aspect-ratio: 4/5)">
+  <link rel="preload" as="image" href="assets/posters/poster-3-hochkant.jpg" media="(max-aspect-ratio: 4/5)">
   <link rel="stylesheet" href="css/styles.css">
   <script type="application/ld+json">
   {
@@ -41,12 +43,12 @@
           "width": 512,
           "height": 512
         },
-        "image": "https://artofwalks.com/assets/posters/poster-1.jpg",
-        "description": "ArtOfWalks turns the photos already on an Airbnb listing into cinematic walkthrough videos. No photoshoot needed.",
+        "image": "https://artofwalks.com/assets/brand/og-image.jpg",
+        "description": "ArtOfWalks macht aus den vorhandenen Exposé-Fotos einer Immobilie KI-animierte Immobilienvideos für Makler, im Querformat und als Hochkant-Reel. Kein Dreh vor Ort nötig.",
         "email": "artofwalks@gmail.com",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Hans-Sachs-Stra\u00dfe 12",
+          "streetAddress": "Hans-Sachs-Straße 12",
           "postalCode": "14471",
           "addressLocality": "Potsdam",
           "addressCountry": "DE"
@@ -58,51 +60,120 @@
         "url": "https://artofwalks.com/",
         "name": "ArtOfWalks",
         "alternateName": ["Art of Walks", "Art Of Walks"],
-        "inLanguage": "en",
+        "inLanguage": "de",
         "publisher": { "@id": "https://artofwalks.com/#organization" }
       },
       {
         "@type": "Service",
-        "name": "ArtOfWalks",
-        "description": "Cinematic walkthrough videos for Airbnb listings, created from the photos hosts already have. No photoshoot needed.",
+        "name": "ArtOfWalks Objekt-Film",
+        "description": "KI-animierte Immobilienvideos aus vorhandenen Exposé-Fotos: Querformat-Film 16:9 und Hochkant-Reel 9:16 mit Makler-Branding, lizenzierter Musik und KI-Kennzeichnung. Lieferung innerhalb von 24 Stunden (werktags).",
         "url": "https://artofwalks.com/",
-        "serviceType": "Real estate video production",
-        "areaServed": "Worldwide",
+        "inLanguage": "de",
+        "serviceType": "Immobilienvideo-Produktion",
+        "areaServed": [
+          { "@type": "Country", "name": "Deutschland" },
+          { "@type": "Country", "name": "Österreich" },
+          { "@type": "Country", "name": "Schweiz" }
+        ],
+        "audience": { "@type": "BusinessAudience", "audienceType": "Immobilienmakler" },
         "provider": { "@id": "https://artofwalks.com/#organization" },
         "offers": [
-          { "@type": "Offer", "name": "Single Clip", "price": "50", "priceCurrency": "EUR", "url": "https://artofwalks.com/#pricing" },
-          { "@type": "Offer", "name": "5 Clip Pack", "price": "200", "priceCurrency": "EUR", "url": "https://artofwalks.com/#pricing" },
-          { "@type": "Offer", "name": "10 Clip Pack", "price": "399", "priceCurrency": "EUR", "url": "https://artofwalks.com/#pricing" },
-          { "@type": "Offer", "name": "Full Walkthrough", "price": "749", "priceCurrency": "EUR", "url": "https://artofwalks.com/#pricing" }
+          {
+            "@type": "Offer",
+            "name": "Objekt-Film",
+            "description": "Querformat-Film 16:9 (45–60 s) und Hochkant-Reel 9:16 (20–30 s) für ein Objekt.",
+            "price": "199",
+            "priceCurrency": "EUR",
+            "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+            "url": "https://artofwalks.com/#preise"
+          },
+          {
+            "@type": "Offer",
+            "name": "Abo Starter",
+            "description": "2 Objekt-Filme pro Monat, monatlich kündbar.",
+            "price": "349",
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "349",
+              "priceCurrency": "EUR",
+              "unitCode": "MON",
+              "unitText": "Monat"
+            },
+            "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+            "url": "https://artofwalks.com/#preise"
+          },
+          {
+            "@type": "Offer",
+            "name": "Abo Büro",
+            "description": "5 Objekt-Filme pro Monat mit bevorzugter Bearbeitung, monatlich kündbar.",
+            "price": "790",
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "790",
+              "priceCurrency": "EUR",
+              "unitCode": "MON",
+              "unitText": "Monat"
+            },
+            "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+            "url": "https://artofwalks.com/#preise"
+          }
         ]
       },
       {
         "@type": "FAQPage",
+        "inLanguage": "de",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What photos do I need to send?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Just the ones already on your Airbnb or Instagram listing. We work with standard property photos, no professional photography required." }
+            "name": "Welche Fotos brauche ich?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Die Fotos, die Sie ohnehin fürs Exposé haben. Gut funktionieren 10 bis 20 Fotos, die Außenansicht und die wichtigsten Räume zeigen, idealerweise im Querformat und mit mindestens 1920 Pixeln an der langen Seite. Je schärfer und ruhiger belichtet die Fotos sind, desto besser wird der Film. Ein Fotograf oder ein neuer Termin ist nicht nötig." }
           },
           {
             "@type": "Question",
-            "name": "How long does delivery take?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Single clips within 3 business days, clip packs within 5 to 7 business days, full walkthrough videos within 5 business days. The clock starts when your photos arrive." }
+            "name": "Erfindet die KI Dinge dazu?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Das kann passieren: Bei Kamerabewegungen ergänzt ein KI-Modell Bildbereiche, die auf dem Foto nicht zu sehen sind. Deshalb gleichen wir jedes Video vor der Auslieferung mit Ihren Fotos ab und verwerfen Szenen mit hinzugefügten oder veränderten Bauteilen, falschen Farben oder Bildfehlern. Rutscht trotzdem etwas durch, greift die Objekttreue-Garantie: Wir korrigieren kostenlos, so oft wie nötig." }
           },
           {
             "@type": "Question",
-            "name": "What if I don't like the result?",
-            "acceptedAnswer": { "@type": "Answer", "text": "You get your money back. Tell us within 14 days of delivery and we refund the full amount, no questions asked." }
+            "name": "Muss das Video als KI gekennzeichnet werden?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Jedes Video enthält standardmäßig den dezenten Hinweis „KI-animiert aus Originalfotos“. Der EU AI Act sieht Transparenzpflichten für KI-erzeugte und KI-veränderte Inhalte vor. Wie weit diese im Einzelfall reichen, ist eine Rechtsfrage, die wir nicht verbindlich beantworten können. Mit dem Hinweis im Video sind Sie auf der transparenten Seite; wir empfehlen, ihn nicht zu entfernen." }
           },
           {
             "@type": "Question",
-            "name": "How do I pay?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Card, Apple Pay, Google Pay and other common methods through Stripe. We never see or store your card details." }
+            "name": "Kann ich das Video bei ImmoScout24 nutzen?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Zum Beispiel als Video-Link im Exposé, je nach Ihrem Paket bei ImmoScout24. Welche Video-Funktionen Ihnen dort zur Verfügung stehen, hängt von Ihrem Vertrag mit dem Portal ab. Sie erhalten beide Filme als MP4-Datei und können sie zum Beispiel auf Ihrer Website oder bei YouTube hochladen und den Link im Exposé hinterlegen. Für Immowelt und andere Portale gilt das sinngemäß." }
           },
           {
             "@type": "Question",
-            "name": "Can I use the video on multiple platforms?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. You own the video and can use it on Airbnb, Booking.com, VRBO, Instagram, TikTok and your own website." }
+            "name": "Wem gehören die Rechte am Video?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sie dürfen das Video zeitlich unbegrenzt für die Vermarktung nutzen: für das Objekt selbst und zur Darstellung Ihrer Maklerleistung, etwa in der Eigentümer-Akquise. Die Musik ist für diese Nutzung lizenziert. Die Fotos, die Sie uns schicken, müssen Sie für diesen Zweck verwenden dürfen. Als Referenz zeigen wir Ihr Video nur mit Ihrer ausdrücklichen Einwilligung." }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie funktioniert das Abo und die Übertragung?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Im Abo erhalten Sie jeden Monat ein festes Kontingent: 2 Objekt-Filme im Abo Starter, 5 im Abo Büro. Nicht genutzte Objekte werden einmalig in den Folgemonat übertragen und dort zuerst verbraucht; was danach noch offen ist, verfällt. Beispiel: Sie nutzen im März 3 von 5 Objekten, dann stehen Ihnen im April 7 zur Verfügung. Die 2 aus dem März verfallen, wenn Sie sie im April nicht nutzen." }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie kündige ich?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Monatlich zum Ende des laufenden Abrechnungsmonats, ohne Mindestlaufzeit. Am einfachsten über das Stripe-Kundenportal (Link „Abo verwalten“ unten auf dieser Seite) oder formlos per E-Mail an artofwalks@gmail.com. Fotos, die vor Vertragsende bei uns eingehen, produzieren wir noch fertig." }
+          },
+          {
+            "@type": "Question",
+            "name": "Brauchen Sie Zugang zu meinem Portal-Account?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Nein. Wir brauchen nur die Bilddateien. Wir fragen nie nach Zugangsdaten zu ImmoScout24, Immowelt, Ihrer Website oder Ihren Social-Media-Konten." }
+          },
+          {
+            "@type": "Question",
+            "name": "Was, wenn mir am Film etwas nicht gefällt?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Für Gestaltungswünsche wie andere Musik, eine andere Reihenfolge oder andere Texte ist eine Korrekturrunde inklusive. Zeigt der Film etwas, das nicht dem Objekt entspricht, korrigieren wir das unabhängig davon kostenlos, so oft wie nötig." }
+          },
+          {
+            "@type": "Question",
+            "name": "Kann ich auch als Privatverkäufer bestellen?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Nein. Das Angebot richtet sich ausschließlich an Unternehmer im Sinne von § 14 BGB, zum Beispiel Maklerbüros, Bauträger und Hausverwaltungen." }
           }
         ]
       }
@@ -114,476 +185,478 @@
 
   <svg hidden aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <symbol id="i-check" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></symbol>
-    <symbol id="i-caret-left" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></symbol>
-    <symbol id="i-caret-right" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></symbol>
     <symbol id="i-play" viewBox="0 0 256 256"><path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"/></symbol>
     <symbol id="i-pause" viewBox="0 0 256 256"><path d="M200,32H160a16,16,0,0,0-16,16V208a16,16,0,0,0,16,16h40a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm0,176H160V48h40ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Zm0,176H56V48H96Z"/></symbol>
     <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
     <symbol id="i-arrow-right" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol>
     <symbol id="i-envelope" viewBox="0 0 256 256"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></symbol>
     <symbol id="i-lock" viewBox="0 0 256 256"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Z"/></symbol>
-    <symbol id="i-shield" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol>
     <symbol id="i-clock" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/></symbol>
-    <symbol id="i-camera-slash" viewBox="0 0 256 256"><path d="M128,96a32,32,0,1,0,32,32A32,32,0,0,0,128,96Zm0,48a16,16,0,1,1,16-16A16,16,0,0,1,128,144ZM208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8Z"/></symbol>
+    <symbol id="i-camera-slash" viewBox="0 0 256 256"><path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L51.73,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H197.19l4.89,5.38a8,8,0,1,0,11.84-10.76Zm51.66,80.61,37,40.69A27.71,27.71,0,0,1,128,160a28,28,0,0,1-22.42-44.77ZM48,200a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H66.28l28.41,31.26A44,44,0,0,0,128,176a44.21,44.21,0,0,0,25.44-8.12L182.64,200ZM232,80V186a8,8,0,0,1-16,0V80a8,8,0,0,0-8-8H176a8,8,0,0,1-6.65-3.56L155.71,48H100.24a8,8,0,0,1-12.91-9.42l2-3A8,8,0,0,1,96,32h64a8,8,0,0,1,6.66,3.56L180.28,56H208A24,24,0,0,1,232,80Z"/></symbol>
     <symbol id="i-list" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></symbol>
     <symbol id="i-x" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
   </svg>
 
-  <header class="site-nav" id="top">
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-nav" id="top" data-overlay>
     <div class="nav-inner">
-      <a class="wordmark" href="#top" aria-label="ArtOfWalks, back to top">Art<span>Of</span>Walks</a>
-      <nav class="nav-links" aria-label="Sections">
-        <a href="#before-after">How It Looks</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#examples">Examples</a>
-        <a href="#pricing">Pricing</a>
+      <a class="wordmark" href="#top" aria-label="ArtOfWalks, zum Seitenanfang">Art<span>Of</span>Walks</a>
+      <nav class="nav-links" aria-label="Abschnitte">
+        <a href="#beispiele">Beispiele</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#preise">Preise</a>
+        <a href="#probevideo">Probevideo</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-solid btn-nav" href="#pricing">Get Your Video</a>
-      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <a class="btn btn-solid btn-nav" href="#preise">Paket wählen</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü öffnen">
         <svg class="icon icon-open" aria-hidden="true"><use href="#i-list"/></svg>
         <svg class="icon icon-close" aria-hidden="true"><use href="#i-x"/></svg>
       </button>
     </div>
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Sections" hidden>
-      <a href="#before-after">How It Looks</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#examples">Examples</a>
-      <a href="#pricing">Pricing</a>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Abschnitte" hidden>
+      <a href="#beispiele">Beispiele</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#preise">Preise</a>
+      <a href="#probevideo">Kostenloses Probevideo</a>
+      <a href="#rechtssicher">Rechtssicher vermarkten</a>
       <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="#kontakt">Kontakt</a>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
 
     <!-- 1 · HERO -->
-    <section class="hero" aria-label="Showcase">
-      <div class="hero-carousel" data-carousel>
-        <div class="slide is-active" data-slot="1">
-          <div class="slide-poster poster-1" aria-hidden="true"></div>
-          <video class="slide-video" poster="assets/posters/poster-1.jpg" muted loop playsinline preload="none" tabindex="-1">
-            <source src="assets/videos/video-1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="slide" data-slot="3">
-          <div class="slide-poster poster-3" aria-hidden="true"></div>
-          <video class="slide-video" poster="assets/posters/poster-3.jpg" muted loop playsinline preload="none" tabindex="-1">
-            <source src="assets/videos/video-3.mp4" type="video/mp4">
-          </video>
-        </div>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" data-hero>
+        <div class="hero-poster" aria-hidden="true"></div>
+        <video class="hero-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true">
+          <source src="assets/videos/video-3.mp4" data-portrait-src="assets/videos/video-3-hochkant.mp4" type="video/mp4">
+        </video>
         <div class="hero-scrim" aria-hidden="true"></div>
       </div>
 
       <div class="hero-content">
-        <h1 class="hero-title">
-          <span class="line"><span>Turn Your Listing Photos Into</span></span>
-          <span class="line"><span><em>Cinematic</em> Walkthrough Videos</span></span>
+        <p class="eyebrow eyebrow-light hero-eyebrow">Immobilienvideos für Makler</p>
+        <h1 class="hero-title" id="hero-title">
+          <span class="line"><span>Aus Ihren Exposé-Fotos</span></span>
+          <span class="line"><span>wird ein <em>Immobilienfilm.</em></span></span>
         </h1>
-        <p class="hero-sub">Send the photos already on your listing. Get back a scroll-stopping walkthrough video. No photoshoot, no camera crew, no waiting weeks.</p>
+        <p class="hero-sub">Sie schicken nur die Fotos, die Sie ohnehin fürs Exposé haben – kein Dreh, kein Termin, kein Aufwand. Zurück kommen ein Querformat-Film und ein Hochkant-Reel, innerhalb von 24&nbsp;Stunden (werktags).</p>
         <div class="hero-cta">
-          <a class="btn btn-solid btn-lg" href="#pricing">
-            Get Your Video — from €50
+          <a class="btn btn-solid btn-lg" href="#preise">
+            Paket wählen – ab 199&nbsp;€
             <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
           </a>
-          <a class="btn btn-ghost btn-lg" href="#before-after">See a real example</a>
+          <a class="btn btn-ghost btn-lg" href="#probevideo">Kostenloses Probevideo</a>
         </div>
         <ul class="hero-trust">
-          <li><svg class="icon" aria-hidden="true"><use href="#i-camera-slash"/></svg>No photoshoot needed</li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Delivered in 3 days</li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>14-day money-back guarantee</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-camera-slash"/></svg>Kein Dreh vor Ort</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Lieferung in 24&nbsp;h (werktags)</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Objekttreue-Garantie</li>
         </ul>
       </div>
 
-      <div class="hero-controls">
-        <div class="dots" role="tablist" aria-label="Showcase videos">
-          <button class="dot is-active" data-goto="0" role="tab" aria-selected="true" aria-label="Video 1"><span class="dot-fill"></span></button>
-          <button class="dot" data-goto="1" role="tab" aria-selected="false" aria-label="Video 2"><span class="dot-fill"></span></button>
-        </div>
-        <div class="arrows">
-          <button class="ctrl" data-playpause aria-label="Pause showcase">
-            <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
-            <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
-          </button>
-          <button class="ctrl" data-prev aria-label="Previous video">
-            <svg class="icon" aria-hidden="true"><use href="#i-caret-left"/></svg>
-          </button>
-          <button class="ctrl" data-next aria-label="Next video">
-            <svg class="icon" aria-hidden="true"><use href="#i-caret-right"/></svg>
-          </button>
-        </div>
+      <div class="hero-meta">
+        <p class="hero-label">Beispielobjekt · Ausgangsfotos KI-generiert</p>
+        <button class="ctrl" type="button" data-hero-toggle aria-label="Hintergrundvideo anhalten">
+          <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+          <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
+        </button>
       </div>
     </section>
 
-    <!-- 2 · BEFORE & AFTER -->
-    <section class="section" id="before-after">
+    <!-- 2 · BEISPIELE
+         Ein Beispiel = ein <article class="example">. Für ein weiteres Objekt den
+         ganzen Block kopieren und Dateinamen, Titel und Hinweise anpassen. -->
+    <section class="section" id="beispiele" aria-labelledby="beispiele-title">
       <div class="container">
         <div class="section-head reveal">
-          <h2 class="section-title">From Static Photos to Living Spaces</h2>
-          <p class="section-sub">These are ordinary listing photos on the left. On the right is what we made from them.</p>
+          <p class="eyebrow">Beispiele</p>
+          <h2 class="section-title" id="beispiele-title">Ein Objekt – zwei Formate</h2>
+          <p class="section-sub">Aus einem Fotosatz entstehen der Querformat-Film für Website, Portal und YouTube und das Hochkant-Reel für Instagram, TikTok und Facebook. Beide sind in jedem Paket enthalten.</p>
         </div>
-        <div class="ba reveal">
-          <div class="ba-side">
-            <p class="ba-label">Your photos</p>
-            <div class="ba-photos">
-              <div class="ba-photo" data-photo="1">
-                <img src="assets/photos/photo-1.jpg" alt="Original listing photo: pool terrace in Santorini" loading="lazy" width="864" height="576">
-              </div>
-              <div class="ba-photo" data-photo="2">
-                <img src="assets/photos/photo-2.jpg" alt="Original listing photo: aerial view of Santorini" loading="lazy" width="1000" height="667">
-              </div>
+
+        <div class="examples">
+          <article class="example reveal" aria-labelledby="example-1-title">
+            <header class="example-head">
+              <h3 class="example-title" id="example-1-title">Landhaus</h3>
+              <p class="example-note">Beispielobjekt · Ausgangsfotos KI-generiert</p>
+            </header>
+            <div class="example-formats">
+              <figure class="format format-landscape">
+                <div class="format-media has-poster" data-playable="preview">
+                  <video poster="assets/posters/poster-3.jpg" muted loop playsinline preload="none">
+                    <source src="assets/videos/video-3.mp4" type="video/mp4">
+                  </video>
+                  <button class="play-btn" type="button" aria-label="Querformat-Film mit Bedienelementen abspielen">
+                    <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption><strong>Querformat 16:9</strong><span>Website · Portal · YouTube</span></figcaption>
+              </figure>
+              <figure class="format format-portrait">
+                <div class="format-media has-poster" data-playable="preview">
+                  <video poster="assets/posters/poster-3-hochkant.jpg" muted loop playsinline preload="none">
+                    <source src="assets/videos/video-3-hochkant.mp4" type="video/mp4">
+                  </video>
+                  <button class="play-btn" type="button" aria-label="Hochkant-Reel mit Bedienelementen abspielen">
+                    <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption><strong>Hochkant 9:16</strong><span>Instagram · TikTok · Facebook</span></figcaption>
+              </figure>
             </div>
-          </div>
-          <div class="ba-arrow" aria-hidden="true">
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-          </div>
-          <div class="ba-side ba-side-result">
-            <p class="ba-label ba-label-accent">Your video</p>
-            <div class="ba-video has-poster" data-slot="1" data-playable="preview">
-              <div class="slide-poster poster-1" aria-hidden="true"></div>
-              <video poster="assets/posters/poster-1.jpg" muted loop playsinline preload="none">
-                <source src="assets/videos/video-1.mp4" type="video/mp4">
-              </video>
-              <button class="play-btn" aria-label="Play the walkthrough video">
-                <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
-              </button>
-            </div>
-          </div>
+            <p class="example-foot">Gezeigt wird ein Ausschnitt von 13&nbsp;Sekunden, ohne Musik und Abspann. Der fertige Querformat-Film läuft 45 bis 60&nbsp;Sekunden, das Reel 20 bis 30&nbsp;Sekunden.</p>
+          </article>
         </div>
-        <p class="ba-caption reveal">Same photos. Completely different experience.</p>
+
+        <div class="uses reveal">
+          <h3 class="uses-title">Wo Sie den Film einsetzen</h3>
+          <dl class="uses-list">
+            <div>
+              <dt>Eigene Website</dt>
+              <dd>Als Film auf der Objektseite, dort, wo Interessenten ohnehin suchen.</dd>
+            </div>
+            <div>
+              <dt>ImmoScout24, Immowelt &amp; Co.</dt>
+              <dd>Zum Beispiel als Video-Link im Exposé, je nach Ihrem Paket beim Portal.</dd>
+            </div>
+            <div>
+              <dt>Social Media</dt>
+              <dd>Das Reel für Instagram, Facebook und TikTok, den Querformat-Film für YouTube.</dd>
+            </div>
+            <div>
+              <dt>Eigentümer-Akquise</dt>
+              <dd>Zeigen Sie Verkäufern im Gespräch, wie Sie vermarkten.</dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </section>
 
-    <!-- 3 · HOW IT WORKS -->
-    <section class="section section-tint" id="how-it-works">
+    <!-- 3 · SO FUNKTIONIERT'S -->
+    <section class="section section-stone" id="ablauf" aria-labelledby="ablauf-title">
       <div class="container">
-        <h2 class="section-title reveal">From Photos to Cinematic Video <br>in 3 Simple Steps</h2>
-        <div class="steps">
-          <article class="step reveal" style="--i:0">
+        <div class="section-head reveal">
+          <p class="eyebrow">Ablauf</p>
+          <h2 class="section-title" id="ablauf-title">So funktioniert’s</h2>
+        </div>
+        <ol class="steps">
+          <li class="step reveal" style="--i:0">
             <span class="step-index" aria-hidden="true">01</span>
-            <h3>Pick Your Package</h3>
-            <p>Choose the package that fits your listing and pay securely by card, Apple Pay or Google Pay. Takes about a minute.</p>
-          </article>
-          <article class="step reveal" style="--i:1">
+            <h3>Paket wählen und bezahlen</h3>
+            <p>Einzelner Objekt-Film oder Abo: Sie bezahlen sicher über Stripe. Das dauert etwa eine Minute.</p>
+          </li>
+          <li class="step reveal" style="--i:1">
             <span class="step-index" aria-hidden="true">02</span>
-            <h3>Email Us Your Photos</h3>
-            <p>Reply to your receipt with the photos already on your Airbnb or Instagram listing. That's all we need — no extra photoshoot, no scheduling.</p>
-          </article>
-          <article class="step reveal" style="--i:2">
+            <h3>Exposé-Fotos senden</h3>
+            <p>Antworten Sie auf die Quittung oder schreiben Sie an <a href="mailto:artofwalks@gmail.com">artofwalks@gmail.com</a>. Ein WeTransfer- oder Drive-Link ist ebenso in Ordnung. Optional: Logo, Kontaktdaten für den Abspann und die Angaben aus dem Energieausweis.</p>
+          </li>
+          <li class="step reveal" style="--i:2">
             <span class="step-index" aria-hidden="true">03</span>
-            <h3>Get Your Video</h3>
-            <p>Your finished walkthrough lands in your inbox in 3 to 7 days, ready to upload to Airbnb, Instagram or your own website.</p>
-          </article>
-        </div>
+            <h3>Fertige Videos erhalten</h3>
+            <p>Innerhalb von 24&nbsp;Stunden (werktags) nach Eingang der Fotos bekommen Sie Querformat-Film und Hochkant-Reel per E-Mail, bereit zum Hochladen.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <!-- 4 · PORTFOLIO -->
-    <section class="section" id="examples">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2 class="section-title">See the Difference</h2>
-          <p class="section-sub">Every film below was created from standard listing photos — the exact process we use for your property. Click any of them to watch full size.</p>
-        </div>
-        <div class="portfolio">
-          <figure class="work work-a reveal" style="--i:0" data-slot="1">
-            <div class="work-media has-poster" data-playable="hover">
-              <div class="slide-poster poster-1" aria-hidden="true"></div>
-              <video poster="assets/posters/poster-1.jpg" muted loop playsinline preload="none">
-                <source src="assets/videos/video-1.mp4" type="video/mp4">
-              </video>
-              <button class="play-btn" aria-label="Play film: Caldera Villas, Santorini">
-                <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
-              </button>
-            </div>
-            <figcaption><strong>Caldera Villas</strong><span>Santorini · Greece</span></figcaption>
-          </figure>
-          <figure class="work work-c reveal" style="--i:1" data-slot="2">
-            <div class="work-media has-poster" data-playable="hover">
-              <div class="slide-poster poster-2" aria-hidden="true"></div>
-              <video poster="assets/posters/poster-2.jpg" muted loop playsinline preload="none">
-                <source src="assets/videos/video-2.mp4" type="video/mp4">
-              </video>
-              <button class="play-btn" aria-label="Play film: Panorama Cabin, Iceland">
-                <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
-              </button>
-            </div>
-            <figcaption><strong>Panorama Cabin</strong><span>Iceland</span></figcaption>
-          </figure>
-          <figure class="work work-b reveal" style="--i:2" data-slot="3">
-            <div class="work-media has-poster" data-playable="hover">
-              <div class="slide-poster poster-3" aria-hidden="true"></div>
-              <video poster="assets/posters/poster-3.jpg" muted loop playsinline preload="none">
-                <source src="assets/videos/video-3.mp4" type="video/mp4">
-              </video>
-              <button class="play-btn" aria-label="Play film: Spain Coast">
-                <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
-              </button>
-            </div>
-            <figcaption><strong>Spain Coast</strong><span>Spain</span></figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5 · WHY HOSTS -->
-    <section class="section section-tint" id="why">
+    <!-- 4 · VORTEILE -->
+    <section class="section" id="vorteile" aria-labelledby="vorteile-title">
       <div class="container">
         <div class="why-grid">
-          <h2 class="section-title why-title reveal">Why Hosts Love ArtOfWalks</h2>
+          <div class="why-head reveal">
+            <p class="eyebrow">Vorteile</p>
+            <h2 class="section-title" id="vorteile-title">Was der Film Ihnen abnimmt</h2>
+          </div>
           <div class="benefits">
             <div class="benefit reveal" style="--i:0">
-              <h3>No Photoshoot Needed</h3>
-              <p>We work with the photos you already have. No scheduling, no strangers in your property, no travel to the listing.</p>
+              <h3>Kein zusätzlicher Aufwand</h3>
+              <p>Kein Videodreh, kein zweiter Termin beim Eigentümer, keine Technik. Sie verwenden die Fotos, die fürs Exposé ohnehin vorliegen.</p>
             </div>
             <div class="benefit reveal" style="--i:1">
-              <h3>Stand Out in the Feed</h3>
-              <p>A moving listing catches the eye where twenty static photos scroll past. Give guests something they remember.</p>
+              <h3>Mehr Aufmerksamkeit im Portal und im Feed</h3>
+              <p>Ein bewegtes Bild hebt sich von statischen Fotostrecken ab: auf Ihrer Website, über den Video-Link im Exposé und zwischen den Beiträgen im Social-Media-Feed.</p>
             </div>
             <div class="benefit reveal" style="--i:2">
-              <h3>Ready in Days, Not Weeks</h3>
-              <p>Fast turnaround so you can start converting guests immediately, not next season.</p>
+              <h3>Eindruck bei Eigentümern</h3>
+              <p>In der Akquise zeigen Sie nicht nur, dass Sie vermarkten, sondern wie: mit einem fertigen Film eines vergleichbaren Objekts.</p>
             </div>
             <div class="benefit reveal" style="--i:3">
-              <h3>Built for Short-Term Rental</h3>
-              <p>We understand the Airbnb aesthetic. Every video is cut for the platforms you actually post on.</p>
+              <h3>Schnell genug für jede Neuaufnahme</h3>
+              <p>Lieferung innerhalb von 24&nbsp;Stunden (werktags) nach Eingang der Fotos. Das Video ist da, solange das Objekt neu am Markt ist.</p>
+            </div>
+            <div class="benefit reveal" style="--i:4">
+              <h3>Beide Formate in einem Paket</h3>
+              <p>Querformat für Website, Portal und YouTube, Hochkant für Instagram, TikTok und Facebook. Ohne Aufpreis, ohne zweiten Auftrag.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6 · PRICING -->
-    <section class="section" id="pricing">
+    <!-- 5 · PREISE -->
+    <section class="section section-stone" id="preise" aria-labelledby="preise-title">
       <div class="container">
-        <h2 class="section-title reveal">Simple, Transparent Pricing</h2>
-        <p class="pricing-sale reveal" data-sale-end="2026-09-15">☀ Summer Sale — <strong>25% off</strong> the Full Walkthrough. <span data-sale-countdown></span></p>
+        <div class="section-head reveal">
+          <p class="eyebrow">Preise</p>
+          <h2 class="section-title" id="preise-title">Ein Objekt oder ein festes Kontingent</h2>
+          <p class="section-sub">Jedes Paket enthält Querformat-Film und Hochkant-Reel pro Objekt.</p>
+        </div>
+
         <div class="pricing">
-          <article class="price-card reveal" style="--i:0">
-            <h3>Single Clip</h3>
-            <p class="price"><span class="currency">€</span>50</p>
-            <p class="price-desc">One polished clip highlighting a specific room or area.</p>
+          <article class="price-card reveal" style="--i:0" aria-labelledby="plan-single">
+            <h3 id="plan-single">Objekt-Film</h3>
+            <p class="price"><span class="price-amount">199&nbsp;€</span><span class="price-unit">einmalig</span></p>
+            <p class="price-desc">Für ein einzelnes Objekt.</p>
             <ul class="features">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>10 to 15 seconds</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Professional transitions</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ambient background music</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Delivered in 3 business days</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Perfect for Instagram Reels &amp; Stories</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Querformat-Film 16:9, <span class="nowrap">45–60&nbsp;s</span><small>Website, Portal, YouTube</small></span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Hochkant-Reel 9:16, <span class="nowrap">20–30&nbsp;s</span><small>Instagram, TikTok, Facebook</small></span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Ihr Logo und Ihre Kontaktdaten im Abspann</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Lizenzierte Musik</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Auf Wunsch Energieausweis-Pflichtangaben im Abspann, inklusive</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Dezenter Hinweis „KI-animiert aus Originalfotos“ im Video</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>1 Korrekturrunde für Wünsche zu Musik, Reihenfolge und Texten</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Lieferung innerhalb von 24&nbsp;Stunden (werktags) nach Eingang der Fotos</span></li>
             </ul>
-            <a class="btn btn-outline" data-buy="single" data-package="Single Clip" data-price="50" href="https://buy.stripe.com/5kQ8wPg5R7KZ9355ZV7g400">Buy for €50</a>
+            <a class="btn btn-outline" data-buy data-package="Objekt-Film" data-price="199 € einmalig" href="https://buy.stripe.com/REPLACE_OBJEKT_FILM">Objekt-Film bestellen</a>
           </article>
-          <article class="price-card is-popular reveal" style="--i:1">
-            <p class="badge badge-popular">Most popular</p>
-            <h3>5 Clip Pack</h3>
-            <p class="price"><span class="currency">€</span>200</p>
-            <p class="price-desc">Five clips covering your property's best angles.</p>
+
+          <article class="price-card reveal" style="--i:1" aria-labelledby="plan-starter">
+            <h3 id="plan-starter">Abo Starter</h3>
+            <p class="price"><span class="price-amount">349&nbsp;€</span><span class="price-unit">pro Monat</span></p>
+            <p class="price-desc">2 Objekt-Filme pro Monat, rechnerisch ca. 175&nbsp;€ pro Objekt.</p>
             <ul class="features">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>5 clips, 10 to 15 seconds each</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Just €40 per clip — save €50</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Professional transitions &amp; music</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Delivered in 5 business days</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Two weeks of social content</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>2 Objekt-Filme pro Monat</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Alles aus dem Objekt-Film</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Nicht genutzte Objekte einmalig in den Folgemonat übertragbar</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Monatlich kündbar, keine Mindestlaufzeit</span></li>
             </ul>
-            <a class="btn btn-solid" data-buy="pack5" data-package="5 Clip Pack" data-price="200" href="https://buy.stripe.com/6oUaEXbPBc1fdjl3RN7g401">Buy for €200</a>
+            <a class="btn btn-outline" data-buy data-package="Abo Starter" data-price="349 € pro Monat" href="https://buy.stripe.com/REPLACE_ABO_STARTER">Starter abonnieren</a>
           </article>
-          <article class="price-card reveal" style="--i:2">
-            <h3>10 Clip Pack</h3>
-            <p class="price"><span class="currency">€</span>399</p>
-            <p class="price-desc">A complete clip library to post for weeks.</p>
+
+          <article class="price-card is-popular reveal" style="--i:2" aria-labelledby="plan-office">
+            <p class="badge">Beliebt</p>
+            <h3 id="plan-office">Abo Büro</h3>
+            <p class="price"><span class="price-amount">790&nbsp;€</span><span class="price-unit">pro Monat</span></p>
+            <p class="price-desc">5 Objekt-Filme pro Monat, 158&nbsp;€ pro Objekt.</p>
             <ul class="features">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>10 clips, 10 to 15 seconds each</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Under €40 per clip — save €101</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Professional transitions &amp; music</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Delivered in 7 business days</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>A month of social content</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>5 Objekt-Filme pro Monat</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Bevorzugte Bearbeitung</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Alles aus dem Objekt-Film</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Nicht genutzte Objekte einmalig in den Folgemonat übertragbar</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Monatlich kündbar, keine Mindestlaufzeit</span></li>
             </ul>
-            <a class="btn btn-outline" data-buy="pack10" data-package="10 Clip Pack" data-price="399" href="https://buy.stripe.com/28EeVd9Ht7KZcfh4VR7g403">Buy for €399</a>
+            <a class="btn btn-solid" data-buy data-package="Abo Büro" data-price="790 € pro Monat" href="https://buy.stripe.com/REPLACE_ABO_BUERO">Büro abonnieren</a>
           </article>
-          <article class="price-card is-featured reveal" style="--i:3">
-            <p class="badge">Summer Sale · −25%</p>
-            <h3>Full Walkthrough</h3>
-            <p class="price">
-              <s class="price-old"><span class="sr-only">Regular price </span>€999</s>
-              <span class="currency">€</span>749
-            </p>
-            <p class="price-desc">A complete cinematic walkthrough of your entire property.</p>
+
+          <article class="price-card price-card-quiet reveal" style="--i:3" aria-labelledby="plan-team">
+            <h3 id="plan-team">Team / Bauträger</h3>
+            <p class="price"><span class="price-amount price-amount-text">Auf Anfrage</span></p>
+            <p class="price-desc">Für größere Büros, Teams und Projekte mit vielen Einheiten.</p>
             <ul class="features">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>1 to 2 minutes runtime</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Full property walkthrough flow</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cinematic camera movements &amp; transitions</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Licensed background music</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Delivered in 5 business days</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ideal for Airbnb, Booking.com &amp; your website</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>1 revision round included</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Mehr als 5 Objekte pro Monat</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Kontingent nach Ihrem Bedarf</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Alles aus dem Objekt-Film</span></li>
             </ul>
-            <a class="btn btn-solid" data-buy="full" data-package="Full Walkthrough" data-price="749" href="https://buy.stripe.com/9B64gz5rdd5j4MP1JF7g402">
-              Buy for €749
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-            </a>
+            <a class="btn btn-outline" href="mailto:artofwalks@gmail.com?subject=Anfrage%20Team%20%2F%20Bautr%C3%A4ger&amp;body=Guten%20Tag%2C%0A%0Awir%20interessieren%20uns%20f%C3%BCr%20ein%20Kontingent%20f%C3%BCr%20mehrere%20Objekte.%0A%0AFirma%3A%0AObjekte%20pro%20Monat%20(ca.)%3A%0AAnsprechpartner%3A%0ATelefon%3A%0A%0AViele%20Gr%C3%BC%C3%9Fe">Anfrage senden</a>
           </article>
         </div>
-        <ul class="pricing-assurance reveal">
-          <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Secure checkout via Stripe</li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>14-day money-back guarantee</li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>No subscription, pay once</li>
-        </ul>
-        <p class="pricing-vat reveal">All prices are total prices in euro. What you see is what you pay — no additional charges at checkout.</p>
-        <p class="pricing-note reveal">Managing several properties? <a href="mailto:artofwalks@gmail.com?subject=Custom%20package%20for%20multiple%20properties">Ask for a custom package.</a></p>
+
+        <div class="pricing-terms reveal">
+          <div class="pricing-rules">
+            <h3>So funktioniert das Abo</h3>
+            <ul>
+              <li>Monatlich kündbar zum Ende des Abrechnungsmonats, keine Mindestlaufzeit.</li>
+              <li>Nicht genutzte Objekte werden einmalig in den Folgemonat übertragen und verfallen danach.</li>
+              <li>Verwaltung und Kündigung über das <a href="https://billing.stripe.com/p/login/REPLACE_KUNDENPORTAL" data-portal>Stripe-Kundenportal</a> oder per E-Mail an <a href="mailto:artofwalks@gmail.com">artofwalks@gmail.com</a>.</li>
+            </ul>
+          </div>
+          <ul class="pricing-assurance">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Sichere Zahlung über Stripe</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><a href="#rechtssicher">Objekttreue-Garantie</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Lieferung in 24&nbsp;h (werktags)</li>
+          </ul>
+        </div>
+
+        <div class="pricing-legal reveal">
+          <p>Alle Preise sind Endpreise. Gemäß §&nbsp;19 UStG wird keine Umsatzsteuer berechnet.</p>
+          <p>Angebot ausschließlich für Unternehmer (§&nbsp;14 BGB).</p>
+        </div>
       </div>
     </section>
 
-    <!-- 7 · GUARANTEE -->
-    <section class="section section-tint" id="guarantee">
-      <div class="container container-narrow">
+    <!-- 6 · PROBEVIDEO -->
+    <section class="section" id="probevideo" aria-labelledby="probevideo-title">
+      <div class="container">
+        <div class="trial reveal">
+          <div class="trial-text">
+            <p class="eyebrow">Kostenlos testen</p>
+            <h2 class="section-title" id="probevideo-title">Erst sehen, dann entscheiden: Ihr Probevideo</h2>
+            <p class="trial-lead">Schicken Sie uns die Fotos eines aktuellen Objekts per E-Mail. Sie erhalten ein kurzes Reel aus Ihren eigenen Fotos – kostenlos und ohne Zahlungsdaten.</p>
+            <a class="btn btn-solid btn-lg" href="mailto:artofwalks@gmail.com?subject=Kostenloses%20Probevideo&amp;body=Guten%20Tag%2C%0A%0Aanbei%20die%20Fotos%20eines%20aktuellen%20Objekts%20f%C3%BCr%20ein%20kostenloses%20Probevideo.%0A%0AMaklerb%C3%BCro%3A%0AAnsprechpartner%3A%0AWebsite%3A%0A%0AViele%20Gr%C3%BC%C3%9Fe">
+              <svg class="icon" aria-hidden="true"><use href="#i-envelope"/></svg>
+              Probevideo anfordern
+            </a>
+          </div>
+          <ul class="trial-facts">
+            <li><strong>10–15&nbsp;Sekunden</strong><span>Hochkant-Reel aus Ihren Fotos, mit Wasserzeichen „Probe“</span></li>
+            <li><strong>Kostenlos</strong><span>Keine Zahlungsdaten, keine Verpflichtung</span></li>
+            <li><strong>Eins pro Maklerbüro</strong><span>Für ein Objekt, das Sie gerade vermarkten</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · RECHTSSICHER VERMARKTEN -->
+    <section class="section section-stone" id="rechtssicher" aria-labelledby="rechtssicher-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Sorgfalt</p>
+          <h2 class="section-title" id="rechtssicher-title">Rechtssicher vermarkten</h2>
+          <p class="section-sub">Ein Film, der ein Objekt anders zeigt, als es ist, schadet mehr, als er nützt. Deshalb gehören diese Schritte bei uns zu jedem Auftrag.</p>
+        </div>
+        <div class="care">
+          <div class="care-item reveal" style="--i:0">
+            <h3>Prüfung auf Objekttreue</h3>
+            <p>Jedes Video wird vor der Auslieferung mit Ihren Ausgangsfotos abgeglichen. Szenen mit hinzugefügten oder veränderten Bauteilen, falschen Farben oder Bildfehlern werden neu erzeugt.</p>
+          </div>
+          <div class="care-item reveal" style="--i:1">
+            <h3>KI-Kennzeichnung im Video</h3>
+            <p>Jedes Video trägt den dezenten Hinweis „KI-animiert aus Originalfotos“. Das hilft Ihnen bei den Transparenzpflichten, die der EU AI Act für KI-erzeugte Inhalte vorsieht.</p>
+          </div>
+          <div class="care-item reveal" style="--i:2">
+            <h3>Energieausweis im Abspann</h3>
+            <p>Auf Wunsch blenden wir die Pflichtangaben aus dem Energieausweis im Abspann ein, ohne Aufpreis. Sie schicken uns die Werte, wir übernehmen sie unverändert.</p>
+          </div>
+        </div>
+
         <div class="guarantee reveal">
           <svg class="guarantee-icon icon" aria-hidden="true"><use href="#i-shield"/></svg>
-          <h2 class="guarantee-title">You Only Keep It If You Love It</h2>
-          <p class="guarantee-text">
-            ArtOfWalks is young, and you have no reason to take our word for it yet. So we take the risk instead:
-            if the video isn't what you hoped for, tell us within 14 days of delivery and you get every cent back.
-            No forms, no argument, no "but you already downloaded it".
-          </p>
-          <div class="guarantee-sample">
-            <h3>Still not sure? Try it for free.</h3>
-            <p>Send us one photo of your property and we'll turn it into a short clip and send it back — free, no card details, no obligation. If you like what you see, come back and order.</p>
-            <a class="btn btn-solid" href="mailto:artofwalks@gmail.com?subject=Free%20sample%20clip&amp;body=Hi!%20Here%20is%20one%20photo%20of%20my%20listing.%20Please%20send%20me%20a%20free%20sample%20clip.">
-              <svg class="icon" aria-hidden="true"><use href="#i-envelope"/></svg>
-              Get a free sample clip
-            </a>
+          <div>
+            <h3>Objekttreue-Garantie</h3>
+            <p>Zeigt das Video etwas, das nicht dem Objekt entspricht – hinzugefügte oder veränderte Bauteile, falsche Farben, Bildfehler –, korrigieren wir das kostenlos, so oft wie nötig. Davon getrennt ist die eine Korrekturrunde für Gestaltungswünsche wie Musik, Reihenfolge oder Texte.</p>
           </div>
         </div>
+
+        <p class="care-disclaimer reveal">Diese Punkte sind ein Service bei der Produktion, keine Rechtsberatung. Für Inhalt und Rechtskonformität Ihrer Anzeigen bleiben Sie als Anbieter verantwortlich; Einzelfragen klären Sie bitte mit Ihrer Rechtsberatung oder Ihrem Verband.</p>
       </div>
     </section>
 
-    <!-- 8 · FAQ -->
-    <section class="section" id="faq">
+    <!-- 8 · FAQ (Antworten synchron halten mit dem FAQPage-Block im <head>) -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
       <div class="container container-narrow">
-        <h2 class="section-title reveal">Frequently Asked Questions</h2>
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section-title" id="faq-title">Häufige Fragen</h2>
+        </div>
         <div class="faq-list reveal">
           <details class="faq-item" name="faq">
-            <summary>
-              What photos do I need to send?
-              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
-            </summary>
+            <summary>Welche Fotos brauche ich?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq-body">
-              <p>Just the ones already on your Airbnb or Instagram listing. We work with standard property photos, no professional photography required. The more rooms and angles you have, the better the final video.</p>
+              <p>Die Fotos, die Sie ohnehin fürs Exposé haben. Gut funktionieren 10 bis 20 Fotos, die Außenansicht und die wichtigsten Räume zeigen, idealerweise im Querformat und mit mindestens 1920&nbsp;Pixeln an der langen Seite. Je schärfer und ruhiger belichtet die Fotos sind, desto besser wird der Film. Ein Fotograf oder ein neuer Termin ist nicht nötig.</p>
             </div>
           </details>
           <details class="faq-item" name="faq">
-            <summary>
-              How do I send them after I pay?
-              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
-            </summary>
+            <summary>Erfindet die KI Dinge dazu?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq-body">
-              <p>Straight after checkout you land on a confirmation page and get a receipt by email. Reply to that receipt with your photos attached, or send them to <a href="mailto:artofwalks@gmail.com">artofwalks@gmail.com</a>. A WeTransfer or Google Drive link works too if the files are large.</p>
+              <p>Das kann passieren: Bei Kamerabewegungen ergänzt ein KI-Modell Bildbereiche, die auf dem Foto nicht zu sehen sind. Deshalb gleichen wir jedes Video vor der Auslieferung mit Ihren Fotos ab und verwerfen Szenen mit hinzugefügten oder veränderten Bauteilen, falschen Farben oder Bildfehlern. Rutscht trotzdem etwas durch, greift die <a href="#rechtssicher">Objekttreue-Garantie</a>: Wir korrigieren kostenlos, so oft wie nötig.</p>
             </div>
           </details>
           <details class="faq-item" name="faq">
-            <summary>
-              How long does delivery take?
-              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
-            </summary>
+            <summary>Muss das Video als KI gekennzeichnet werden?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq-body">
-              <p>Single clips within 3 business days, clip packs within 5 to 7 business days, and full walkthrough videos within 5 business days. The clock starts when your photos arrive, not at checkout. Rush delivery is available on request.</p>
+              <p>Jedes Video enthält standardmäßig den dezenten Hinweis „KI-animiert aus Originalfotos“. Der EU AI Act sieht Transparenzpflichten für KI-erzeugte und KI-veränderte Inhalte vor. Wie weit diese im Einzelfall reichen, ist eine Rechtsfrage, die wir nicht verbindlich beantworten können. Mit dem Hinweis im Video sind Sie auf der transparenten Seite; wir empfehlen, ihn nicht zu entfernen.</p>
             </div>
           </details>
           <details class="faq-item" name="faq">
-            <summary>
-              What if I don't like the result?
-              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
-            </summary>
+            <summary>Kann ich das Video bei ImmoScout24 nutzen?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq-body">
-              <p>You get your money back. Tell us within 14 days of delivery and we refund the full amount — no questions asked. The Full Walkthrough also includes one revision round, so in most cases we simply fix what bothers you.</p>
+              <p>Zum Beispiel als Video-Link im Exposé, je nach Ihrem Paket bei ImmoScout24. Welche Video-Funktionen Ihnen dort zur Verfügung stehen, hängt von Ihrem Vertrag mit dem Portal ab. Sie erhalten beide Filme als MP4-Datei und können sie zum Beispiel auf Ihrer Website oder bei YouTube hochladen und den Link im Exposé hinterlegen. Für Immowelt und andere Portale gilt das sinngemäß.</p>
             </div>
           </details>
           <details class="faq-item" name="faq">
-            <summary>
-              How do I pay, and is it secure?
-              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
-            </summary>
+            <summary>Wem gehören die Rechte am Video?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq-body">
-              <p>Checkout runs entirely on Stripe, the same payment provider used by companies like Shopify and Booking.com. You can pay by card, Apple Pay, Google Pay and other common methods. Your card details go straight to Stripe — we never see or store them.</p>
+              <p>Sie dürfen das Video zeitlich unbegrenzt für die Vermarktung nutzen: für das Objekt selbst und zur Darstellung Ihrer Maklerleistung, etwa in der Eigentümer-Akquise. Die Musik ist für diese Nutzung lizenziert. Die Fotos, die Sie uns schicken, müssen Sie für diesen Zweck verwenden dürfen. Als Referenz zeigen wir Ihr Video nur mit Ihrer ausdrücklichen Einwilligung.</p>
             </div>
           </details>
           <details class="faq-item" name="faq">
-            <summary>
-              Do you need access to my Airbnb account?
-              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
-            </summary>
+            <summary>Wie funktioniert das Abo und die Übertragung?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq-body">
-              <p>No, never. We only need image files. We will never ask for your Airbnb login, and you should never give it to anyone who does.</p>
+              <p>Im Abo erhalten Sie jeden Monat ein festes Kontingent: 2 Objekt-Filme im Abo Starter, 5 im Abo Büro. Nicht genutzte Objekte werden einmalig in den Folgemonat übertragen und dort zuerst verbraucht; was danach noch offen ist, verfällt. Beispiel: Sie nutzen im März 3 von 5 Objekten, dann stehen Ihnen im April 7 zur Verfügung. Die 2 aus dem März verfallen, wenn Sie sie im April nicht nutzen.</p>
             </div>
           </details>
           <details class="faq-item" name="faq">
-            <summary>
-              Can I use the video on multiple platforms?
-              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
-            </summary>
+            <summary>Wie kündige ich?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq-body">
-              <p>Absolutely. You own the video and can use it on Airbnb, Booking.com, VRBO, Instagram, TikTok, your personal website, anywhere you want. The background music is licensed for that use, so you won't run into copyright claims.</p>
+              <p>Monatlich zum Ende des laufenden Abrechnungsmonats, ohne Mindestlaufzeit. Am einfachsten über das Stripe-Kundenportal (Link „Abo verwalten“ unten auf dieser Seite) oder formlos per E-Mail an <a href="mailto:artofwalks@gmail.com">artofwalks@gmail.com</a>. Fotos, die vor Vertragsende bei uns eingehen, produzieren wir noch fertig.</p>
             </div>
           </details>
           <details class="faq-item" name="faq">
-            <summary>
-              Do you offer discounts for multiple properties?
-              <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
-            </summary>
+            <summary>Brauchen Sie Zugang zu meinem Portal-Account?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq-body">
-              <p>Yes. If you manage multiple listings, <a href="mailto:artofwalks@gmail.com?subject=Custom%20package%20for%20multiple%20properties">write to us</a> and we'll put together a custom package.</p>
+              <p>Nein. Wir brauchen nur die Bilddateien. Wir fragen nie nach Zugangsdaten zu ImmoScout24, Immowelt, Ihrer Website oder Ihren Social-Media-Konten.</p>
+            </div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary>Was, wenn mir am Film etwas nicht gefällt?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq-body">
+              <p>Für Gestaltungswünsche wie andere Musik, eine andere Reihenfolge oder andere Texte ist eine Korrekturrunde inklusive. Zeigt der Film etwas, das nicht dem Objekt entspricht, korrigieren wir das unabhängig davon kostenlos, so oft wie nötig.</p>
+            </div>
+          </details>
+          <details class="faq-item" name="faq">
+            <summary>Kann ich auch als Privatverkäufer bestellen?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq-body">
+              <p>Nein. Das Angebot richtet sich ausschließlich an Unternehmer im Sinne von §&nbsp;14 BGB, zum Beispiel Maklerbüros, Bauträger und Hausverwaltungen.</p>
             </div>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- 9 · CONTACT -->
-    <section class="contact" id="contact">
-      <div class="contact-backdrop" aria-hidden="true"></div>
+    <!-- 9 · KONTAKT -->
+    <section class="contact" id="kontakt" aria-labelledby="kontakt-title">
       <div class="container contact-inner reveal">
-        <h2 class="contact-title">Ready to Make Your Listing Unforgettable?</h2>
-        <p class="contact-sub">Pick your package and check out in a minute — or write to us first if you'd rather ask something.</p>
+        <p class="eyebrow eyebrow-light">Kontakt</p>
+        <h2 class="contact-title" id="kontakt-title">Fragen vor der Bestellung?</h2>
+        <p class="contact-sub">Schreiben Sie uns. Wir antworten in der Regel innerhalb von 24&nbsp;Stunden (werktags).</p>
         <div class="contact-actions">
-          <a class="btn btn-solid btn-lg" href="#pricing">
-            See packages
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-          </a>
-          <a class="btn btn-ghost btn-lg" href="mailto:artofwalks@gmail.com?subject=Question%20about%20ArtOfWalks">
+          <a class="btn btn-light btn-lg" href="mailto:artofwalks@gmail.com?subject=Frage%20zu%20ArtOfWalks">
             <svg class="icon" aria-hidden="true"><use href="#i-envelope"/></svg>
-            Ask a question
+            E-Mail schreiben
           </a>
+          <a class="btn btn-ghost btn-lg" href="#preise">Pakete ansehen</a>
         </div>
-        <div class="contact-alt">
-          <a href="mailto:artofwalks@gmail.com">
-            <svg class="icon" aria-hidden="true"><use href="#i-envelope"/></svg>
-            artofwalks@gmail.com
-          </a>
-          <span class="contact-reply">We answer within 24 hours.</span>
-        </div>
+        <p class="contact-alt"><a href="mailto:artofwalks@gmail.com">artofwalks@gmail.com</a></p>
       </div>
     </section>
 
   </main>
 
-  <!-- 10 · FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© 2026 ArtOfWalks. All rights reserved.</p>
-      <p class="footer-heart">Made with <span aria-hidden="true">♥</span><span class="sr-only">love</span> for Airbnb Hosts</p>
-      <nav class="footer-links" aria-label="Legal">
-        <a href="terms.html">Terms</a>
-        <a href="terms.html#withdrawal">Right of Withdrawal</a>
-        <a href="legal.html">Legal Notice &amp; Privacy</a>
+      <p class="footer-brand"><span class="wordmark wordmark-sm">Art<span>Of</span>Walks</span> · Immobilienvideos aus Exposé-Fotos</p>
+      <nav class="footer-links" aria-label="Rechtliches und Konto">
+        <a href="terms.html">AGB</a>
+        <a href="legal.html">Impressum &amp; Datenschutz</a>
+        <a href="https://billing.stripe.com/p/login/REPLACE_KUNDENPORTAL" data-portal>Abo verwalten</a>
       </nav>
+      <p class="footer-copy">© 2026 ArtOfWalks, Arthur Frank, Potsdam</p>
     </div>
   </footer>
 
-  <!-- sticky buy bar, mobile only -->
+  <!-- Buy-Bar, nur mobil -->
   <div class="buybar" data-buybar hidden>
     <div class="buybar-text">
-      <strong>From €50</strong>
-      <span>Delivered in 3 days</span>
+      <strong>Ab 199&nbsp;€</strong>
+      <span>Lieferung in 24&nbsp;h (werktags)</span>
     </div>
-    <a class="btn btn-solid" href="#pricing">See packages</a>
+    <a class="btn btn-solid" href="#preise">Pakete ansehen</a>
   </div>
 
   <script src="js/main.js" defer></script>

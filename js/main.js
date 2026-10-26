@@ -1,18 +1,22 @@
-/* ArtOfWalks · carousel, video slots, checkout, reveals */
+/* ArtOfWalks · hero video, example films, checkout fallbacks, nav, reveals */
 (() => {
   "use strict";
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 
   /* Address used when a Stripe link has not been filled in yet. Keep in sync
-     with the address in index.html, legal.html and thanks.html. */
+     with the address in index.html, legal.html, terms.html and thanks.html. */
   const CONTACT_EMAIL = "artofwalks@gmail.com";
+
+  const mailto = (subject, lines) =>
+    `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\r\n"))}`;
 
   /* ---------- video slots (shared) ----------
      Every video fades in once its file is ready. If a file is missing or the
-     browser can't decode it, the poster/gradient simply stays — no error text
-     ever reaches the visitor. */
+     browser can't decode it, the poster simply stays — no error text ever
+     reaches the visitor. */
   function wireSlot(container, video, { onReady } = {}) {
     if (!video) return;
     const markMissing = () => {
@@ -41,115 +45,74 @@
     return r.top < window.innerHeight && r.bottom > 0;
   };
 
-  /* ---------- hero carousel ---------- */
-  const carousel = document.querySelector("[data-carousel]");
-  if (carousel) {
-    const slides = [...carousel.querySelectorAll(".slide")];
-    const dots = [...document.querySelectorAll(".dot")];
-    const hero = carousel.closest(".hero");
-    const playPauseBtn = document.querySelector("[data-playpause]");
-    const AUTOPLAY_MS = 7000;
-    hero.style.setProperty("--slide-ms", AUTOPLAY_MS + "ms");
-
-    let index = 0;
-    let timer = null;
-    let userPaused = false;
+  /* ---------- hero video ----------
+     One background film. Portrait screens get the 9:16 cut, which is what
+     object-fit: cover would show of the 16:9 file anyway, at a third of the
+     size. Reduced motion and data saver start paused; the button plays it. */
+  const heroMedia = document.querySelector("[data-hero]");
+  if (heroMedia) {
+    const hero = heroMedia.closest(".hero");
+    const video = heroMedia.querySelector("video");
+    const source = video && video.querySelector("source");
+    const toggle = document.querySelector("[data-hero-toggle]");
+    let userPaused = reducedMotion.matches || saveData;
     let heroVisible = true;
+    let started = false;
 
-    slides.forEach((slide) => {
-      const video = slide.querySelector("video");
-      wireSlot(slide, video, {
-        onReady: () => {
-          if (slide.classList.contains("is-active") && !userPaused && heroVisible && !reducedMotion.matches) {
-            safePlay(video);
-          }
-        },
-      });
+    if (source && source.dataset.portraitSrc && window.matchMedia("(max-aspect-ratio: 4/5)").matches) {
+      source.src = source.dataset.portraitSrc;
+    }
+
+    const start = () => {
+      if (started || !video) return;
+      started = true;
+      video.load();
+    };
+
+    const sync = () => {
+      hero.classList.toggle("is-paused", userPaused);
+      toggle?.setAttribute("aria-label", userPaused ? "Hintergrundvideo abspielen" : "Hintergrundvideo anhalten");
+    };
+
+    wireSlot(heroMedia, video, {
+      onReady: () => { if (!userPaused && heroVisible) safePlay(video); },
     });
 
-    const loadSlide = (slide) => {
-      const video = slide.querySelector("video");
-      if (video && video.readyState === 0) video.load();
-      return video;
-    };
-
-    const show = (next) => {
-      index = (next + slides.length) % slides.length;
-      slides.forEach((slide, i) => {
-        const active = i === index;
-        slide.classList.toggle("is-active", active);
-        const video = slide.querySelector("video");
-        if (!video) return;
-        if (active) {
-          loadSlide(slide);
-          if (!userPaused && heroVisible && !reducedMotion.matches && slide.classList.contains("has-video")) {
-            safePlay(video);
-          }
-        } else if (!video.paused) {
-          video.pause();
-        }
-      });
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("is-active", i === index);
-        dot.setAttribute("aria-selected", String(i === index));
-      });
-      // warm up the next slide so the crossfade lands on ready footage
-      loadSlide(slides[(index + 1) % slides.length]);
-    };
-
-    const stopTimer = () => { clearInterval(timer); timer = null; };
-    const startTimer = () => {
-      stopTimer();
-      if (userPaused || reducedMotion.matches || !heroVisible) return;
-      timer = setInterval(() => show(index + 1), AUTOPLAY_MS);
-    };
-
-    document.querySelector("[data-next]")?.addEventListener("click", () => { show(index + 1); startTimer(); });
-    document.querySelector("[data-prev]")?.addEventListener("click", () => { show(index - 1); startTimer(); });
-    dots.forEach((dot) => dot.addEventListener("click", () => { show(Number(dot.dataset.goto)); startTimer(); }));
-
-    playPauseBtn?.addEventListener("click", () => {
+    toggle?.addEventListener("click", () => {
       userPaused = !userPaused;
-      hero.classList.toggle("is-paused", userPaused);
-      playPauseBtn.setAttribute("aria-label", userPaused ? "Play showcase" : "Pause showcase");
-      const video = slides[index].querySelector("video");
+      sync();
       if (userPaused) {
-        stopTimer();
         video?.pause();
-      } else {
-        if (video && slides[index].classList.contains("has-video")) safePlay(video);
-        startTimer();
+      } else if (!started) {
+        start();
+      } else if (heroMedia.classList.contains("has-video")) {
+        safePlay(video);
       }
     });
 
     // don't burn battery when the hero is off-screen or the tab is hidden
     new IntersectionObserver(([entry]) => {
       heroVisible = entry.isIntersecting;
-      const video = slides[index].querySelector("video");
-      if (!heroVisible) {
-        stopTimer();
-        video?.pause();
-      } else {
-        if (!userPaused && !reducedMotion.matches && video && slides[index].classList.contains("has-video")) safePlay(video);
-        startTimer();
-      }
+      if (!video) return;
+      if (!heroVisible) video.pause();
+      else if (!userPaused && heroMedia.classList.contains("has-video")) safePlay(video);
     }, { threshold: 0.15 }).observe(hero);
 
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) stopTimer();
-      else startTimer();
+      if (!video) return;
+      if (document.hidden) video.pause();
+      else if (!userPaused && heroVisible && heroMedia.classList.contains("has-video")) safePlay(video);
     });
 
-    show(0);
-    startTimer();
+    sync();
+    if (!userPaused) start();
   }
 
-  /* ---------- playable films: preview, click to open ----------
-     Used by the portfolio cards and by the before/after result. The video
-     loads lazily and starts muted as soon as it is both ready and on screen;
-     the play button hands over to the native controls. The showcase films
-     currently carry no audio track, but unmuting stays wired so adding music
-     later needs no code change. */
+  /* ---------- example films: silent preview, click for controls ----------
+     data-playable="preview" loads and loops muted while on screen;
+     data-playable="hover" previews on mouse-over (desktop) only. The play
+     button hands over to the native controls. The films carry no audio
+     track yet, but unmuting stays wired so adding music needs no code. */
   const playables = [...document.querySelectorAll("[data-playable]")];
 
   const pauseOtherFilms = (current) => {
@@ -159,6 +122,8 @@
       if (v && !v.paused) v.pause();
     });
   };
+
+  const autoplayAllowed = () => !reducedMotion.matches && !saveData;
 
   playables.forEach((media) => {
     const video = media.querySelector("video");
@@ -173,7 +138,7 @@
     // readiness inline would always run before the file has loaded.
     wireSlot(media, video, {
       onReady: () => {
-        if (autoPreview && !reducedMotion.matches && !media.dataset.activated && isVisible(media)) {
+        if (autoPreview && autoplayAllowed() && !media.dataset.activated && isVisible(media)) {
           safePlay(video);
         }
       },
@@ -190,8 +155,7 @@
       safePlay(video);
     });
 
-    // silent preview on hover, desktop only, until the film was opened for real
-    if (canHover.matches && !reducedMotion.matches && !autoPreview) {
+    if (canHover.matches && autoplayAllowed() && !autoPreview) {
       media.addEventListener("mouseenter", () => {
         if (blocked() || media.dataset.activated) return;
         load();
@@ -204,14 +168,12 @@
       });
     }
 
-    // auto-preview films load and loop as soon as they scroll into view
     if (autoPreview) {
       new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-          if (!blocked()) load();
-          if (media.classList.contains("has-video") && !reducedMotion.matches && !media.dataset.activated) {
-            safePlay(video);
-          }
+          if (!autoplayAllowed() || media.dataset.activated || blocked()) return;
+          load();
+          if (media.classList.contains("has-video")) safePlay(video);
         } else if (!video.paused && !media.dataset.activated) {
           video.pause();
         }
@@ -226,57 +188,47 @@
     });
   });
 
-  /* ---------- before & after photos ---------- */
-  document.querySelectorAll(".ba-photo").forEach((box) => {
-    const img = box.querySelector("img");
-    if (!img) return;
-    const ready = () => box.classList.add("has-photo");
-    if (img.complete && img.naturalWidth > 0) ready();
-    else {
-      img.addEventListener("load", ready);
-      img.addEventListener("error", () => {
-        if (!img.dataset.retried) {
-          img.dataset.retried = "true";
-          img.src = img.src.replace(/\.jpg$/, ".png");
-        } else {
-          box.classList.add("no-photo");
-        }
-      });
-    }
-  });
-
   /* ---------- checkout ----------
      Every buy button points at a Stripe payment link. Until a link is filled
-     in, the button falls back to an email order so it is never a dead end. */
+     in (it still contains REPLACE_), the button falls back to an order email
+     so it is never a dead end. */
   document.querySelectorAll("[data-buy]").forEach((btn) => {
     const href = btn.getAttribute("href") || "";
     if (!href.includes("REPLACE_")) return;
-    const pkg = btn.dataset.package || "a video";
+    const pkg = btn.dataset.package || "Objekt-Film";
     const price = btn.dataset.price;
-    const subject = `Order: ${pkg}${price ? ` (€${price})` : ""}`;
-    const body = `Hi! I'd like to order the ${pkg}${price ? ` (€${price})` : ""} for my listing.`;
-    btn.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const label = price ? `${pkg} (${price})` : pkg;
+    btn.href = mailto(`Bestellung: ${label}`, [
+      "Guten Tag,",
+      "",
+      `ich möchte folgendes Paket bestellen: ${label}.`,
+      "",
+      "Firma:",
+      "Ansprechpartner:",
+      "Rechnungsadresse:",
+      "",
+      "Viele Grüße",
+    ]);
     btn.dataset.buyFallback = "true";
   });
 
-  /* ---------- sale countdown ---------- */
-  const sale = document.querySelector("[data-sale-end]");
-  if (sale) {
-    const target = new Date(`${sale.dataset.saleEnd}T23:59:59`);
-    const slot = sale.querySelector("[data-sale-countdown]");
-    if (slot && !Number.isNaN(target.getTime())) {
-      const days = Math.ceil((target - Date.now()) / 86400000);
-      if (days > 1) {
-        slot.textContent = `Ends in ${days} days.`;
-      } else if (days === 1) {
-        slot.textContent = "Ends tomorrow.";
-      } else if (days === 0) {
-        slot.textContent = "Last day.";
-      } else {
-        sale.hidden = true;
-      }
-    }
-  }
+  /* Same for the Stripe customer portal (manage / cancel a subscription). */
+  document.querySelectorAll("[data-portal]").forEach((link) => {
+    const href = link.getAttribute("href") || "";
+    if (!href.includes("REPLACE_")) return;
+    link.href = mailto("Abo verwalten", [
+      "Guten Tag,",
+      "",
+      "ich möchte mein Abo ändern oder kündigen.",
+      "",
+      "Firma:",
+      "E-Mail-Adresse der Bestellung:",
+      "Gewünschte Änderung:",
+      "",
+      "Viele Grüße",
+    ]);
+    link.dataset.portalFallback = "true";
+  });
 
   /* ---------- mobile menu ---------- */
   const navToggle = document.querySelector("[data-nav-toggle]");
@@ -284,7 +236,7 @@
   if (navToggle && mobileMenu) {
     const setOpen = (open) => {
       navToggle.setAttribute("aria-expanded", String(open));
-      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      navToggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
       mobileMenu.hidden = !open;
       document.body.classList.toggle("menu-open", open);
     };
@@ -308,8 +260,7 @@
   const buybar = document.querySelector("[data-buybar]");
   if (buybar) {
     const hero = document.querySelector(".hero");
-    const pricing = document.getElementById("pricing");
-    const footer = document.querySelector(".site-footer");
+    const targets = [document.getElementById("preise"), document.querySelector(".site-footer")].filter(Boolean);
     let pastHero = false;
     let overTarget = false;
 
@@ -326,7 +277,6 @@
       }, { threshold: 0.05 }).observe(hero);
     }
 
-    const targets = [pricing, footer].filter(Boolean);
     if (targets.length) {
       const seen = new Set();
       const io = new IntersectionObserver((entries) => {
@@ -351,20 +301,25 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
     revealables.forEach((el) => io.observe(el));
   } else {
     revealables.forEach((el) => el.classList.add("in-view"));
   }
 
-  /* ---------- nav scroll state ---------- */
-  const nav = document.querySelector(".site-nav");
-  const sentinel = document.createElement("div");
-  sentinel.style.cssText = "position:absolute;top:48px;height:1px;width:1px;pointer-events:none;";
-  document.body.prepend(sentinel);
-  new IntersectionObserver(([entry]) => {
-    nav.classList.toggle("is-scrolled", !entry.isIntersecting);
-  }).observe(sentinel);
+  /* ---------- nav over the hero ----------
+     With JS the nav starts transparent over the hero (see the
+     [data-overlay]:not(.is-scrolled) rules in styles.css) and turns solid
+     once the page scrolls. Without JS it is solid from the start. */
+  const nav = document.querySelector(".site-nav[data-overlay]");
+  if (nav) {
+    const sentinel = document.createElement("div");
+    sentinel.style.cssText = "position:absolute;top:48px;height:1px;width:1px;pointer-events:none;";
+    document.body.prepend(sentinel);
+    new IntersectionObserver(([entry]) => {
+      nav.classList.toggle("is-scrolled", !entry.isIntersecting);
+    }).observe(sentinel);
+  }
 
   /* ---------- environment watchdog ----------
      Some embedded/headless renderers never deliver IntersectionObserver
@@ -379,6 +334,6 @@
     if (ioAlive) return;
     document.documentElement.classList.add("no-motion");
     revealables.forEach((el) => el.classList.add("in-view"));
-    nav.classList.add("is-scrolled");
+    nav?.classList.add("is-scrolled");
   }, 1200);
 })();
