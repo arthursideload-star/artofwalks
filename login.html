@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://xkmbdntdihoioqentofx.supabase.co; base-uri 'none'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://xkmbdntdihoioqentofx.supabase.co https://api.pwnedpasswords.com; base-uri 'none'; form-action 'self'">
   <meta name="referrer" content="no-referrer">
   <title>Login | ArtOfWalks</title>
   <meta name="description" content="Anmeldung zum Kundenkonto von ArtOfWalks mit E-Mail und Passwort oder mit Google.">
@@ -58,6 +58,17 @@
             </div>
             <p class="auth-hint" id="auth-password-hint" data-auth-password-hint hidden>Mindestens 10 Zeichen.</p>
             <p class="auth-error" id="auth-password-error" hidden></p>
+          </div>
+          <div class="auth-consent" data-auth-consent hidden>
+            <label class="auth-check">
+              <input type="checkbox" name="agb" aria-describedby="auth-agb-error">
+              <span>Ich akzeptiere die <a href="terms.html" target="_blank" rel="noopener">AGB</a> und nutze das Konto als Unternehmer. Die <a href="legal.html#datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> habe ich zur Kenntnis genommen.</span>
+            </label>
+            <p class="auth-error" id="auth-agb-error" hidden></p>
+            <label class="auth-check">
+              <input type="checkbox" name="werbe">
+              <span><strong>Freiwillig:</strong> Ich möchte von ArtOfWalks per E-Mail Angebote und Erinnerungen zu Immobilienvideos erhalten. Das kann ich jederzeit im Kundenkonto oder per E-Mail widerrufen.</span>
+            </label>
           </div>
           <button class="btn btn-butter auth-submit" type="submit" data-auth-submit>Anmelden</button>
         </form>

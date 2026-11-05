@@ -10,6 +10,8 @@
   const SUPABASE_KEY = "sb_publishable_yCMFCK-f6XOBJ_5Lgh_Z8A_i2VuYlZq";
   const MIN_PASSWORD = 10;
   const CONTACT = "artofwalks@gmail.com";
+  /* Fassung der Einwilligungstexte. Bei geänderten AGB oder Texten erhöhen. */
+  const CONSENT_VERSION = "2026-11";
 
   const page = document.body.dataset.authPage;
   const statusEl = document.querySelector("[data-auth-status]");
@@ -62,6 +64,25 @@
     return messages[code] || `Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie uns an ${CONTACT}.`;
   };
 
+  /* Prüft ein neues Passwort gegen bekannte Datenlecks. Nur die ersten fünf
+     Zeichen des SHA-1-Werts verlassen den Browser. Ist der Dienst nicht
+     erreichbar, blockiert das die Anmeldung nicht. */
+  const isLeakedPassword = async (value) => {
+    try {
+      const digest = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(value));
+      const hash = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+      const res = await fetch(`https://api.pwnedpasswords.com/range/${hash.slice(0, 5)}`, { headers: { "Add-Padding": "true" } });
+      if (!res.ok) return false;
+      const suffix = hash.slice(5);
+      return (await res.text()).split("\n").some((line) => {
+        const [candidate, count] = line.trim().split(":");
+        return candidate === suffix && Number(count) > 0;
+      });
+    } catch {
+      return false;
+    }
+  };
+
   /* ---------- Login ---------- */
   const initLogin = async () => {
     const form = document.querySelector("[data-auth-form]");
@@ -79,10 +100,14 @@
     const password = form.elements.password;
     const emailError = document.getElementById("auth-email-error");
     const passwordError = document.getElementById("auth-password-error");
+    const consentBlock = document.querySelector("[data-auth-consent]");
+    const agb = form.elements.agb;
+    const werbe = form.elements.werbe;
+    const agbError = document.getElementById("auth-agb-error");
 
     const MODES = {
       anmelden: { title: "Anmelden", submit: "Anmelden", google: true, email: true, password: true, label: "Passwort", autocomplete: "current-password", hint: false, links: ["vergessen", "registrieren"] },
-      registrieren: { title: "Konto anlegen", submit: "Konto anlegen", google: true, email: true, password: true, label: "Passwort wählen", autocomplete: "new-password", hint: true, links: ["anmelden"] },
+      registrieren: { title: "Konto anlegen", submit: "Konto anlegen", google: true, email: true, password: true, label: "Passwort wählen", autocomplete: "new-password", hint: true, consent: true, links: ["anmelden"] },
       vergessen: { title: "Passwort zurücksetzen", submit: "Link per E-Mail senden", google: false, email: true, password: false, links: ["anmelden"] },
       neu: { title: "Neues Passwort festlegen", submit: "Passwort speichern", google: false, email: false, password: true, label: "Neues Passwort", autocomplete: "new-password", hint: true, links: [] },
     };
@@ -99,6 +124,7 @@
     const clearErrors = () => {
       setFieldError(email, emailError, "");
       setFieldError(password, passwordError, "");
+      setFieldError(agb, agbError, "");
     };
 
     const setMode = (next, { keepStatus = false, focus = false } = {}) => {
@@ -119,6 +145,7 @@
         passwordHint.hidden = !m.hint;
         password.value = "";
       }
+      consentBlock.hidden = !m.consent;
       modeLinks.forEach((link) => { link.hidden = !m.links.includes(link.dataset.authMode); });
       clearErrors();
       if (!keepStatus) showStatus("");
@@ -145,6 +172,10 @@
         setFieldError(password, passwordError, `Das Passwort braucht mindestens ${MIN_PASSWORD} Zeichen.`);
         firstInvalid = firstInvalid || password;
       }
+      if (m.consent && !agb.checked) {
+        setFieldError(agb, agbError, "Bitte akzeptieren Sie die AGB, um ein Konto anzulegen.");
+        firstInvalid = firstInvalid || agb;
+      }
       if (firstInvalid) firstInvalid.focus();
       return !firstInvalid;
     };
@@ -163,6 +194,13 @@
       modeLinks.forEach((link) => { link.hidden = link.dataset.authMode !== "anmelden"; });
     };
 
+    const rejectLeakedPassword = async () => {
+      if (!(await isLeakedPassword(password.value))) return false;
+      setFieldError(password, passwordError, "Dieses Passwort steht in bekannten Datenlecks. Bitte wählen Sie ein anderes.");
+      password.focus();
+      return true;
+    };
+
     const handlers = {
       anmelden: async () => {
         const { error } = await client.auth.signInWithPassword({ email: email.value.trim(), password: password.value });
@@ -170,10 +208,14 @@
         window.location.replace("konto.html");
       },
       registrieren: async () => {
+        if (await rejectLeakedPassword()) return;
         const { data, error } = await client.auth.signUp({
           email: email.value.trim(),
           password: password.value,
-          options: { emailRedirectTo: loginUrl("bestaetigt") },
+          options: {
+            emailRedirectTo: loginUrl("bestaetigt"),
+            data: { agb_version: CONSENT_VERSION, werbe_mails: werbe.checked },
+          },
         });
         if (error) return showStatus(errorText(error), "error");
         if (data.session) return window.location.replace("konto.html");
@@ -185,6 +227,7 @@
         showMailSent("Wenn zu dieser Adresse ein Konto besteht, haben wir Ihnen einen Link zum Zurücksetzen geschickt. Bitte öffnen Sie ihn im selben Browser.");
       },
       neu: async () => {
+        if (await rejectLeakedPassword()) return;
         const { error } = await client.auth.updateUser({ password: password.value });
         if (error) return showStatus(errorText(error), "error");
         window.location.replace("konto.html");
@@ -204,7 +247,7 @@
       setBusy(false);
     });
 
-    [[email, emailError], [password, passwordError]].forEach(([input, el]) => {
+    [[email, emailError], [password, passwordError], [agb, agbError]].forEach(([input, el]) => {
       input.addEventListener("input", () => setFieldError(input, el, ""));
     });
 
@@ -293,7 +336,11 @@
   /* ---------- Konto ---------- */
   const initKonto = async () => {
     const konto = document.querySelector("[data-konto]");
-    const signOutBtn = document.querySelector("[data-auth-signout]");
+    const gate = document.querySelector("[data-konto-gate]");
+    const gateForm = document.querySelector("[data-konto-gate-form]");
+    const prefs = document.querySelector("[data-konto-prefs]");
+    const werbeBox = document.querySelector("[data-konto-werbe]");
+    const prefsStatus = document.querySelector("[data-konto-prefs-status]");
     const toLogin = () => window.location.replace("login.html");
 
     const { data: { session } } = await client.auth.getSession();
@@ -302,13 +349,86 @@
     const name = session.user.user_metadata && session.user.user_metadata.full_name;
     document.querySelector("[data-konto-email]").textContent = session.user.email || "";
     if (name) document.querySelector("[data-konto-title]").textContent = `Guten Tag, ${name}`;
-    konto.hidden = false;
-    showStatus("");
 
-    signOutBtn.addEventListener("click", async () => {
-      signOutBtn.disabled = true;
-      await client.auth.signOut({ scope: "local" });
-      toLogin();
+    document.querySelectorAll("[data-auth-signout]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        await client.auth.signOut({ scope: "local" });
+        toLogin();
+      });
+    });
+
+    const saveConsent = (entries) => client.from("einwilligungen")
+      .insert(entries.map(([art, erteilt]) => ({ art, erteilt, version: CONSENT_VERSION })));
+
+    const showKonto = (werbeOn) => {
+      gate.hidden = true;
+      konto.hidden = false;
+      prefs.hidden = false;
+      werbeBox.checked = werbeOn;
+      showStatus("");
+    };
+
+    /* Neueste Zeile je Art zählt. Wer sich über Google anmeldet, hat noch keine
+       und bestätigt die Bedingungen hier einmalig. */
+    const { data: rows, error: rowsError } = await client.from("einwilligungen")
+      .select("art, erteilt").order("created_at", { ascending: false }).order("id", { ascending: false });
+    if (rowsError) {
+      /* Das Konto bleibt nutzbar, auch wenn die Einstellungen gerade nicht laden. */
+      konto.hidden = false;
+      showStatus("");
+    } else {
+      const latest = (art) => rows.find((row) => row.art === art);
+      if (latest("agb") && latest("agb").erteilt) {
+        const werbeRow = latest("werbe_mails");
+        showKonto(Boolean(werbeRow && werbeRow.erteilt));
+      } else {
+        gate.hidden = false;
+        showStatus("");
+      }
+    }
+
+    gateForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const agb = gateForm.elements.agb;
+      const agbError = document.getElementById("konto-agb-error");
+      const submit = gateForm.querySelector("[type=submit]");
+      if (!agb.checked) {
+        agbError.textContent = "Bitte akzeptieren Sie die AGB, um Ihr Konto zu nutzen.";
+        agbError.hidden = false;
+        agb.setAttribute("aria-invalid", "true");
+        agb.focus();
+        return;
+      }
+      agbError.hidden = true;
+      agb.removeAttribute("aria-invalid");
+      submit.disabled = true;
+      const werbeOn = gateForm.elements.werbe.checked;
+      const entries = [["agb", true]];
+      if (werbeOn) entries.push(["werbe_mails", true]);
+      const { error } = await saveConsent(entries);
+      submit.disabled = false;
+      if (error) {
+        agbError.textContent = `Das konnte nicht gespeichert werden. Bitte versuchen Sie es noch einmal oder schreiben Sie uns an ${CONTACT}.`;
+        agbError.hidden = false;
+        return;
+      }
+      showKonto(werbeOn);
+    });
+
+    werbeBox.addEventListener("change", async () => {
+      const wanted = werbeBox.checked;
+      werbeBox.disabled = true;
+      const { error } = await saveConsent([["werbe_mails", wanted]]);
+      werbeBox.disabled = false;
+      prefsStatus.classList.toggle("is-error", Boolean(error));
+      if (error) {
+        werbeBox.checked = !wanted;
+        prefsStatus.textContent = "Das konnte nicht gespeichert werden. Bitte versuchen Sie es noch einmal.";
+      } else {
+        prefsStatus.textContent = wanted ? "Gespeichert: Sie erhalten E-Mails mit Angeboten und Erinnerungen." : "Gespeichert: Sie erhalten keine E-Mails mit Angeboten und Erinnerungen mehr.";
+      }
+      prefsStatus.hidden = false;
     });
 
     client.auth.onAuthStateChange((event) => {

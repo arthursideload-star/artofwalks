@@ -332,6 +332,20 @@ button { cursor: pointer; background: none; border: 0; }
 .legal-main .auth-hint, .legal-main .auth-error { margin-top: 0; font-size: 15px; line-height: 1.35; }
 .auth-hint { color: var(--ink-2); }
 .auth-error { color: var(--terra-deep); font-weight: 650; }
+.auth-consent { display: grid; gap: 14px; }
+.auth-consent[hidden] { display: none; }
+.auth-check { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; align-items: start; font-size: 16px; line-height: 1.4; color: var(--ink-2); cursor: pointer; }
+.auth-check strong { color: var(--ink); }
+.auth-check input { width: 24px; height: 24px; margin: 0; accent-color: var(--terra); cursor: pointer; }
+.auth-check input[aria-invalid="true"] { outline: 2px solid var(--terra-deep); outline-offset: 2px; }
+.konto-gate { max-width: 40rem; }
+.konto-gate form { margin-top: 26px; }
+.konto-gate .auth-submit { margin-top: 8px; }
+.konto-prefs { margin-top: 30px; }
+.legal-main .konto-prefs h2 { font-size: 26px; margin-top: 0; margin-bottom: 14px; }
+.konto-prefs .auth-check { max-width: 46rem; }
+.legal-main .konto-prefs-status { margin-top: 10px; font-size: 15px; color: var(--ink-2); }
+.legal-main .konto-prefs-status.is-error { color: var(--terra-deep); font-weight: 650; }
 .auth-submit { width: 100%; margin-top: 4px; }
 .auth-submit:disabled, .auth-google:disabled { opacity: .65; cursor: progress; }
 .auth-links { display: grid; justify-items: start; gap: 2px; margin-top: 16px; }

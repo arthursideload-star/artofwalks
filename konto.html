@@ -32,6 +32,25 @@
       <p class="auth-status" data-auth-status role="status">Ihr Konto wird geladen …</p>
       <noscript><p class="auth-status is-error">Für das Kundenkonto braucht Ihr Browser JavaScript. Rechnungen und Abo erreichen Sie auch über das <a href="https://billing.stripe.com/p/login/5kQ8wPg5R7KZ9355ZV7g400">Stripe-Kundenportal</a>.</p></noscript>
 
+      <section class="konto-gate" data-konto-gate hidden>
+        <p class="eyebrow">Kundenkonto</p>
+        <h1>Noch ein Schritt</h1>
+        <p class="legal-intro">Bitte bestätigen Sie die Bedingungen für Ihr Konto.</p>
+        <form class="auth-consent" data-konto-gate-form novalidate>
+          <label class="auth-check">
+            <input type="checkbox" name="agb" aria-describedby="konto-agb-error">
+            <span>Ich akzeptiere die <a href="terms.html" target="_blank" rel="noopener">AGB</a> und nutze das Konto als Unternehmer. Die <a href="legal.html#datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> habe ich zur Kenntnis genommen.</span>
+          </label>
+          <p class="auth-error" id="konto-agb-error" hidden></p>
+          <label class="auth-check">
+            <input type="checkbox" name="werbe">
+            <span><strong>Freiwillig:</strong> Ich möchte von ArtOfWalks per E-Mail Angebote und Erinnerungen zu Immobilienvideos erhalten. Das kann ich jederzeit im Kundenkonto oder per E-Mail widerrufen.</span>
+          </label>
+          <button class="btn btn-butter auth-submit" type="submit">Weiter zum Konto</button>
+        </form>
+        <p class="konto-signout"><button class="btn btn-line btn-sm" type="button" data-auth-signout>Abmelden</button></p>
+      </section>
+
       <div data-konto hidden>
         <p class="eyebrow">Kundenkonto</p>
         <h1 data-konto-title>Guten Tag</h1>
@@ -54,6 +73,15 @@
             <a class="btn btn-line" href="mailto:artofwalks@gmail.com?subject=Frage%20zum%20Kundenkonto">E-Mail schreiben</a>
           </section>
         </div>
+
+        <section class="konto-prefs" data-konto-prefs hidden>
+          <h2>E-Mail-Mitteilungen</h2>
+          <label class="auth-check">
+            <input type="checkbox" data-konto-werbe>
+            <span>Ich möchte von ArtOfWalks per E-Mail Angebote und Erinnerungen zu Immobilienvideos erhalten. Das ist freiwillig und jederzeit änderbar.</span>
+          </label>
+          <p class="konto-prefs-status" data-konto-prefs-status role="status" hidden></p>
+        </section>
 
         <p class="konto-signout"><button class="btn btn-line btn-sm" type="button" data-auth-signout>Abmelden</button></p>
       </div>
