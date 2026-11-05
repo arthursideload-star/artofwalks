@@ -1,0 +1,12 @@
+PRODUCT.md
+DESIGN.md
+SETUP.md
+scripts/
+CLAUDE.md
+artofwalks/
+.claude/
+.env*
+*.csv
+*.xlsx
+*.pdf
+*.log
