@@ -332,6 +332,10 @@ button { cursor: pointer; background: none; border: 0; }
 .legal-main .auth-hint, .legal-main .auth-error { margin-top: 0; font-size: 15px; line-height: 1.35; }
 .auth-hint { color: var(--ink-2); }
 .auth-error { color: var(--terra-deep); font-weight: 650; }
+.auth-resend { display: grid; justify-items: start; gap: 12px; margin-top: 20px; }
+.auth-resend[hidden] { display: none; }
+.legal-main .auth-resend p { margin-top: 0; font-size: 17px; color: var(--ink-2); }
+.legal-main .auth-resend .auth-hint { font-size: 15px; line-height: 1.4; }
 .auth-consent { display: grid; gap: 14px; }
 .auth-consent[hidden] { display: none; }
 .auth-check { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; align-items: start; font-size: 16px; line-height: 1.4; color: var(--ink-2); cursor: pointer; }

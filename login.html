@@ -73,6 +73,15 @@
           <button class="btn btn-butter auth-submit" type="submit" data-auth-submit>Anmelden</button>
         </form>
 
+        <div class="auth-resend" data-auth-resend-block hidden>
+          <p>Keine E-Mail da? Bitte schauen Sie auch in den Spam-Ordner.</p>
+          <button class="btn btn-line" type="button" data-auth-resend>E-Mail noch einmal senden</button>
+          <button class="auth-link" type="button" data-auth-resend-google>Schneller: mit Google anmelden</button>
+          <button class="auth-link" type="button" data-auth-resend-change hidden>Adresse falsch? Neu registrieren</button>
+          <p>Kommt trotzdem nichts an? Schreiben Sie uns an <a href="mailto:artofwalks@gmail.com?subject=Login%3A%20E-Mail%20kommt%20nicht%20an">artofwalks@gmail.com</a>.</p>
+          <p class="auth-hint" data-auth-resend-note hidden>Haben Sie sich mit dieser Adresse schon einmal registriert? Dann gelten weiter Ihr erstes Passwort und Ihre erste Wahl zu den Werbe-Mails. Das Passwort ändern Sie über „Passwort vergessen“, die Werbe-Mails nach der Anmeldung im Kundenkonto.</p>
+        </div>
+
         <div class="auth-links">
           <button class="auth-link" type="button" data-auth-mode="vergessen">Passwort vergessen?</button>
           <button class="auth-link" type="button" data-auth-mode="registrieren">Noch kein Konto? Jetzt registrieren</button>

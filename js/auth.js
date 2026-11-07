@@ -104,6 +104,12 @@
     const agb = form.elements.agb;
     const werbe = form.elements.werbe;
     const agbError = document.getElementById("auth-agb-error");
+    const resendBlock = document.querySelector("[data-auth-resend-block]");
+    const resendBtn = document.querySelector("[data-auth-resend]");
+    const resendChange = document.querySelector("[data-auth-resend-change]");
+    const resendNote = document.querySelector("[data-auth-resend-note]");
+    let sendAgain = null;
+    let sentAgainText = "";
 
     const MODES = {
       anmelden: { title: "Anmelden", submit: "Anmelden", google: true, email: true, password: true, label: "Passwort", autocomplete: "current-password", hint: false, links: ["vergessen", "registrieren"] },
@@ -146,6 +152,7 @@
         password.value = "";
       }
       consentBlock.hidden = !m.consent;
+      resendBlock.hidden = true;
       modeLinks.forEach((link) => { link.hidden = !m.links.includes(link.dataset.authMode); });
       clearErrors();
       if (!keepStatus) showStatus("");
@@ -186,12 +193,30 @@
       googleBtn.disabled = busy;
     };
 
-    /* Zeigt nach dem Versand einer E-Mail nur noch die Meldung und den Weg zurück. */
+    /* Hilfe, falls die E-Mail nicht ankommt. Nur bei der Registrierung kann die
+       Adresse falsch sein, und nur dort kann es schon eine frühere geben: Der
+       Anmeldedienst übernimmt beim zweiten Versuch weder Passwort noch Häkchen. */
+    const showMailHelp = (send, doneText, { signup = false } = {}) => {
+      sendAgain = send;
+      sentAgainText = doneText;
+      resendChange.hidden = !signup;
+      resendNote.hidden = !signup;
+      resendBlock.hidden = false;
+    };
+
+    const confirmationMail = (address) => () => client.auth.resend({
+      type: "signup",
+      email: address,
+      options: { emailRedirectTo: loginUrl("bestaetigt") },
+    });
+
+    /* Zeigt nach dem Versand einer E-Mail nur noch die Meldung und die nächsten Schritte. */
     const showMailSent = (text) => {
       showStatus(text, "success");
       form.hidden = true;
       googleBlock.hidden = true;
       modeLinks.forEach((link) => { link.hidden = link.dataset.authMode !== "anmelden"; });
+      title.focus();
     };
 
     const rejectLeakedPassword = async () => {
@@ -204,13 +229,20 @@
     const handlers = {
       anmelden: async () => {
         const { error } = await client.auth.signInWithPassword({ email: email.value.trim(), password: password.value });
+        if (error && error.code === "email_not_confirmed") {
+          const address = email.value.trim();
+          showStatus(errorText(error), "error");
+          showMailHelp(confirmationMail(address), `Wir haben die E-Mail an ${address} noch einmal geschickt. Das kann einige Minuten dauern.`);
+          return;
+        }
         if (error) return showStatus(errorText(error), "error");
         window.location.replace("konto.html");
       },
       registrieren: async () => {
         if (await rejectLeakedPassword()) return;
+        const address = email.value.trim();
         const { data, error } = await client.auth.signUp({
-          email: email.value.trim(),
+          email: address,
           password: password.value,
           options: {
             emailRedirectTo: loginUrl("bestaetigt"),
@@ -219,12 +251,16 @@
         });
         if (error) return showStatus(errorText(error), "error");
         if (data.session) return window.location.replace("konto.html");
-        showMailSent("Fast geschafft: Wir haben Ihnen eine E-Mail mit einem Bestätigungslink geschickt. Falls Sie schon ein Konto haben, melden Sie sich einfach an.");
+        showMailSent(`Fast geschafft: Wir haben Ihnen eine E-Mail mit einem Bestätigungslink an ${address} geschickt. Falls Sie schon ein Konto haben, melden Sie sich einfach an.`);
+        showMailHelp(confirmationMail(address), `Wir haben die E-Mail an ${address} noch einmal geschickt. Das kann einige Minuten dauern. Falls Sie schon ein Konto haben, melden Sie sich einfach an.`, { signup: true });
       },
       vergessen: async () => {
-        const { error } = await client.auth.resetPasswordForEmail(email.value.trim(), { redirectTo: loginUrl("neu") });
+        const address = email.value.trim();
+        const sendLink = () => client.auth.resetPasswordForEmail(address, { redirectTo: loginUrl("neu") });
+        const { error } = await sendLink();
         if (error) return showStatus(errorText(error), "error");
-        showMailSent("Wenn zu dieser Adresse ein Konto besteht, haben wir Ihnen einen Link zum Zurücksetzen geschickt. Bitte öffnen Sie ihn im selben Browser.");
+        showMailSent(`Wenn zu ${address} ein Konto besteht, haben wir Ihnen einen Link zum Zurücksetzen geschickt. Bitte öffnen Sie ihn im selben Browser.`);
+        showMailHelp(sendLink, `Wenn zu ${address} ein Konto besteht, haben wir den Link noch einmal geschickt. Das kann einige Minuten dauern. Bitte öffnen Sie ihn im selben Browser.`);
       },
       neu: async () => {
         if (await rejectLeakedPassword()) return;
@@ -237,6 +273,7 @@
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       showStatus("");
+      resendBlock.hidden = true;
       if (!validate()) return;
       setBusy(true);
       try {
@@ -254,6 +291,21 @@
     modeLinks.forEach((link) => {
       link.addEventListener("click", () => setMode(link.dataset.authMode, { focus: true }));
     });
+
+    resendBtn.addEventListener("click", async () => {
+      resendBtn.disabled = true;
+      try {
+        const { error } = await sendAgain();
+        if (error) showStatus(errorText(error), "error");
+        else showStatus(sentAgainText, "success");
+      } catch {
+        showStatus(errorText({ code: "AuthRetryableFetchError" }), "error");
+      }
+      resendBtn.disabled = false;
+    });
+
+    document.querySelector("[data-auth-resend-google]").addEventListener("click", () => googleBtn.click());
+    resendChange.addEventListener("click", () => setMode("registrieren", { focus: true }));
 
     toggle.addEventListener("click", () => {
       const show = password.type === "password";
@@ -310,7 +362,7 @@
       setMode(modus === "neu" ? "vergessen" : "anmelden");
       showStatus(modus === "neu"
         ? "Dieser Link ist abgelaufen oder wurde schon benutzt. Bitte fordern Sie hier einen neuen an."
-        : "Dieser Link ist abgelaufen oder wurde schon benutzt. Bitte melden Sie sich an.", "error");
+        : "Dieser Link ist abgelaufen oder wurde schon benutzt. Bitte melden Sie sich an. Ist Ihre Adresse noch nicht bestätigt, können Sie danach eine neue E-Mail anfordern.", "error");
     } else if (urlError === "access_denied") {
       showStatus("Die Anmeldung wurde abgebrochen. Sie können es jederzeit noch einmal versuchen.", "error");
     } else if (urlError) {
