@@ -9,7 +9,7 @@
   const SUPABASE_URL = "https://xkmbdntdihoioqentofx.supabase.co";
   const SUPABASE_KEY = "sb_publishable_yCMFCK-f6XOBJ_5Lgh_Z8A_i2VuYlZq";
   const MIN_PASSWORD = 10;
-  const CONTACT = "artofwalks@gmail.com";
+  const CONTACT = "kontakt@artofwalks.com";
   /* Fassung der Einwilligungstexte. Bei geänderten AGB oder Texten erhöhen. */
   const CONSENT_VERSION = "2026-11";
 

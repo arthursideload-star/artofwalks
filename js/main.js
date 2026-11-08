@@ -9,7 +9,7 @@
 
   /* Address used when a Stripe link has not been filled in yet. Keep in sync
      with the address in index.html, legal.html, terms.html and thanks.html. */
-  const CONTACT_EMAIL = "artofwalks@gmail.com";
+  const CONTACT_EMAIL = "kontakt@artofwalks.com";
 
   const mailto = (subject, lines) =>
     `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\r\n"))}`;
