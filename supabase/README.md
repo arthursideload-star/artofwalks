@@ -9,7 +9,7 @@ Gehört zu `upload.html` und `js/upload.js`. Projekt `xkmbdntdihoioqentofx` (Fra
 
 ## Einrichten
 
-Stand 10.11.2026: Schritt 1 und 2 sind im Projekt erledigt (Migration `foto_upload`, Function Version 1). Offen ist Schritt 3.
+Stand 10.11.2026: alle drei Schritte sind erledigt (Migration `foto_upload`, Function Version 1, Secret `RESEND_API_KEY`). Test-Upload mit Mail an kontakt@ erfolgreich.
 
 1. **Migration anwenden:** Inhalt der SQL-Datei im Dashboard unter *SQL Editor* ausführen (oder `supabase db push`). Sie ist rein additiv.
 2. **Edge Function deployen** mit `verify_jwt = false` (der Publishable Key ist kein JWT; die Funktion prüft selbst):
