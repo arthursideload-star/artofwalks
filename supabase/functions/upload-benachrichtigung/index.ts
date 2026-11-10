@@ -174,7 +174,6 @@ Deno.serve(async (req) => {
     headers: {
       Authorization: `Bearer ${resendKey}`,
       "Content-Type": "application/json",
-      "Idempotency-Key": `upload-${id}`,
     },
     body: JSON.stringify({
       from: ABSENDER,
