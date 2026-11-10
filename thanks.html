@@ -20,6 +20,7 @@
   <svg hidden aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <symbol id="i-check" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></symbol>
     <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 256 256"><path d="M240,136v64a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V136a16,16,0,0,1,16-16H80a8,8,0,0,1,0,16H32v64H224V136H176a8,8,0,0,1,0-16h48A16,16,0,0,1,240,136ZM85.66,77.66,120,43.31V128a8,8,0,0,0,16,0V43.31l34.34,34.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,77.66ZM200,168a12,12,0,1,0-12,12A12,12,0,0,0,200,168Z"/></symbol>
     <symbol id="i-envelope" viewBox="0 0 256 256"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></symbol>
   </svg>
 
@@ -41,7 +42,7 @@
       <ol class="thanks-steps">
         <li>
           <h2>Fotos senden</h2>
-          <p>Antworten Sie auf die Zahlungsbestätigung oder schreiben Sie an <a href="mailto:kontakt@artofwalks.com?subject=Fotos%20f%C3%BCr%20meine%20Bestellung">kontakt@artofwalks.com</a>. Große Dateien gern per WeTransfer- oder Google-Drive-Link. Im Abo bitte eine E-Mail pro Objekt, mit Objektadresse oder Objektnummer im Betreff.</p>
+          <p>Am einfachsten laden Sie die Fotos direkt <a href="upload.html?art=auftrag">auf unserer Upload-Seite</a> hoch, ohne E-Mail-Anhänge. Oder Sie antworten auf die Zahlungsbestätigung bzw. schreiben an <a href="mailto:kontakt@artofwalks.com?subject=Fotos%20f%C3%BCr%20meine%20Bestellung">kontakt@artofwalks.com</a>, große Dateien gern per WeTransfer- oder Google-Drive-Link. Im Abo bitte ein Upload oder eine E-Mail pro Objekt, mit Objektadresse oder Objektnummer.</p>
         </li>
         <li>
           <h2>Wir produzieren</h2>
@@ -63,9 +64,13 @@
       </ul>
 
       <div class="thanks-actions">
-        <a class="btn btn-ink" href="mailto:kontakt@artofwalks.com?subject=Fotos%20f%C3%BCr%20meine%20Bestellung">
+        <a class="btn btn-ink" href="upload.html?art=auftrag">
+          <svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>
+          Fotos jetzt hochladen
+        </a>
+        <a class="btn btn-line" href="mailto:kontakt@artofwalks.com?subject=Fotos%20f%C3%BCr%20meine%20Bestellung">
           <svg class="icon" aria-hidden="true"><use href="#i-envelope"/></svg>
-          Fotos jetzt senden
+          Per E-Mail senden
         </a>
         <a class="btn btn-line" href="index.html">Zur Startseite</a>
       </div>
