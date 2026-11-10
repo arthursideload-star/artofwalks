@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://xkmbdntdihoioqentofx.supabase.co; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <title>Fotos hochladen | ArtOfWalks</title>
+  <meta name="description" content="Laden Sie die Exposé-Fotos Ihres Objekts direkt hoch, für ein kostenloses Probevideo oder Ihren Auftrag. Ohne E-Mail-Anhänge und ohne Konto.">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://artofwalks.com/upload.html">
+  <meta name="theme-color" content="#B5452A">
+  <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="page-sub">
+
+  <svg hidden aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-check" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 256 256"><path d="M240,136v64a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V136a16,16,0,0,1,16-16H80a8,8,0,0,1,0,16H32v64H224V136H176a8,8,0,0,1,0-16h48A16,16,0,0,1,240,136ZM85.66,77.66,120,43.31V128a8,8,0,0,0,16,0V43.31l34.34,34.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,77.66ZM200,168a12,12,0,1,0-12,12A12,12,0,0,0,200,168Z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-nav" id="top">
+    <div class="nav-inner">
+      <a class="wordmark" href="index.html" aria-label="ArtOfWalks, zur Startseite">ArtOfWalks</a>
+      <a class="btn btn-ghost btn-sm nav-back" href="index.html">Zur Startseite</a>
+    </div>
+  </header>
+
+  <main class="legal-main" id="main">
+    <div class="container auth-grid upload-grid">
+      <section class="auth-card upload-card" aria-labelledby="upload-title">
+        <p class="eyebrow">Fotos senden</p>
+        <h1 id="upload-title" tabindex="-1" data-upload-title>Fotos hochladen</h1>
+        <p class="legal-intro upload-intro">Für Ihr kostenloses Probevideo oder Ihren Auftrag. Ohne Konto, ohne E-Mail-Anhänge.</p>
+        <p class="auth-status" data-upload-status role="status" hidden></p>
+
+        <noscript><p class="auth-status is-error">Zum Hochladen braucht Ihr Browser JavaScript. Sie können uns die Fotos auch an <a href="mailto:kontakt@artofwalks.com?subject=Fotos%20f%C3%BCr%20mein%20Objekt">kontakt@artofwalks.com</a> schicken.</p></noscript>
+
+        <form class="auth-form upload-form" data-upload-form novalidate>
+          <fieldset class="upload-art">
+            <legend>Worum geht es?</legend>
+            <label class="upload-choice">
+              <input type="radio" name="art" value="probevideo" checked>
+              <span><strong>Kostenloses Probevideo</strong> Unverbindlich, ohne Zahlungsdaten</span>
+            </label>
+            <label class="upload-choice">
+              <input type="radio" name="art" value="auftrag">
+              <span><strong>Bezahlter Auftrag</strong> Sie haben schon bestellt oder ein Abo</span>
+            </label>
+          </fieldset>
+
+          <div class="upload-pair">
+            <div class="auth-field">
+              <label for="up-buero">Maklerbüro</label>
+              <input id="up-buero" name="maklerbuero" type="text" autocomplete="organization" maxlength="200" required aria-describedby="up-buero-error">
+              <p class="auth-error" id="up-buero-error" hidden></p>
+            </div>
+            <div class="auth-field">
+              <label for="up-name">Ansprechpartner</label>
+              <input id="up-name" name="ansprechpartner" type="text" autocomplete="name" maxlength="200" required aria-describedby="up-name-error">
+              <p class="auth-error" id="up-name-error" hidden></p>
+            </div>
+          </div>
+
+          <div class="upload-pair">
+            <div class="auth-field">
+              <label for="up-email">E-Mail-Adresse</label>
+              <input id="up-email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" maxlength="254" required aria-describedby="up-email-error">
+              <p class="auth-error" id="up-email-error" hidden></p>
+            </div>
+            <div class="auth-field">
+              <label for="up-tel">Telefon <span class="upload-optional">optional</span></label>
+              <input id="up-tel" name="telefon" type="tel" inputmode="tel" autocomplete="tel" maxlength="50">
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label for="up-objekt">Objektadresse oder Objektnummer</label>
+            <input id="up-objekt" name="objekt" type="text" maxlength="300" required aria-describedby="up-objekt-hint up-objekt-error">
+            <p class="auth-hint" id="up-objekt-hint">So ordnen wir die Fotos richtig zu, zum Beispiel „Lindenstraße 4, Potsdam“ oder „Objekt 2026-118“.</p>
+            <p class="auth-error" id="up-objekt-error" hidden></p>
+          </div>
+
+          <div class="auth-field">
+            <label for="up-link">Link zum Inserat <span class="upload-optional">optional</span></label>
+            <input id="up-link" name="inserat_link" type="url" inputmode="url" spellcheck="false" maxlength="500" placeholder="https://" aria-describedby="up-link-error">
+            <p class="auth-error" id="up-link-error" hidden></p>
+          </div>
+
+          <div class="auth-field">
+            <span class="upload-label" id="up-fotos-label">Fotos</span>
+            <div class="upload-drop" data-upload-drop>
+              <svg class="icon upload-drop-icon" aria-hidden="true"><use href="#i-upload"/></svg>
+              <p class="upload-drop-text"><span class="upload-drop-wide">Fotos hierher ziehen oder </span><label class="upload-pick" for="up-fotos">Fotos auswählen</label></p>
+              <p class="upload-drop-hint" id="up-fotos-hint">10 bis 20 Fotos sind ideal, höchstens 30. JPG, PNG, WebP oder HEIC, bis 25&nbsp;MB pro Foto.</p>
+              <input class="upload-file" id="up-fotos" name="fotos" type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.heic,.heif" aria-labelledby="up-fotos-label" aria-describedby="up-fotos-hint up-fotos-error">
+            </div>
+            <p class="auth-error" id="up-fotos-error" hidden></p>
+            <p class="upload-summary" data-upload-summary aria-live="polite" hidden></p>
+            <ul class="upload-list" data-upload-list aria-label="Ausgewählte Fotos"></ul>
+          </div>
+
+          <div class="auth-field">
+            <label for="up-logo">Logo <span class="upload-optional">optional</span></label>
+            <input class="upload-logo" id="up-logo" name="logo" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" aria-describedby="up-logo-hint up-logo-error">
+            <p class="auth-hint" id="up-logo-hint">Für den Abspann, am besten als PNG mit transparentem Hintergrund. Ein SVG-Logo schicken Sie bitte per E-Mail.</p>
+            <p class="auth-error" id="up-logo-error" hidden></p>
+          </div>
+
+          <div class="auth-field">
+            <label for="up-energie">Energieausweis-Angaben <span class="upload-optional">optional</span></label>
+            <textarea id="up-energie" name="energieausweis" rows="3" maxlength="2000" aria-describedby="up-energie-hint"></textarea>
+            <p class="auth-hint" id="up-energie-hint">Für den Abspann: Art des Ausweises, Endenergiebedarf oder -verbrauch, Energieträger, Baujahr, Effizienzklasse. Wir übernehmen die Werte unverändert.</p>
+          </div>
+
+          <div class="auth-field">
+            <label for="up-hinweise">Wünsche und Hinweise <span class="upload-optional">optional</span></label>
+            <textarea id="up-hinweise" name="hinweise" rows="3" maxlength="2000" aria-describedby="up-hinweise-hint"></textarea>
+            <p class="auth-hint" id="up-hinweise-hint">Reihenfolge der Räume, Musikrichtung, Kontaktdaten für den Abspann. Ohne Angabe führen wir von außen nach innen.</p>
+          </div>
+
+          <div class="upload-hp" aria-hidden="true">
+            <label for="up-website">Website (bitte leer lassen)</label>
+            <input id="up-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="auth-consent">
+            <label class="auth-check">
+              <input type="checkbox" name="einwilligung" aria-describedby="up-consent-error">
+              <span>Ich darf diese Fotos weitergeben. ArtOfWalks darf sie nutzen, um daraus das Video zu erstellen, und dafür an den KI-Dienst übermitteln, der in der <a href="legal.html#ki-dienste" target="_blank" rel="noopener">Datenschutzerklärung</a> genannt ist.</span>
+            </label>
+            <p class="auth-error" id="up-consent-error" hidden></p>
+            <p class="auth-hint upload-privacy">Bitte möglichst keine Fotos mit erkennbaren Personen, Kfz-Kennzeichen oder Namensschildern. Wie wir Ihre Angaben und Fotos speichern, steht in der <a href="legal.html#upload" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+          </div>
+
+          <div class="upload-progress" data-upload-progress hidden>
+            <progress max="100" value="0" data-upload-bar aria-labelledby="up-progress-text"></progress>
+            <p class="upload-progress-text" id="up-progress-text" data-upload-progress-text aria-live="polite"></p>
+          </div>
+
+          <button class="btn btn-butter auth-submit" type="submit" data-upload-submit>Fotos hochladen und absenden</button>
+        </form>
+
+        <div class="upload-done" data-upload-done hidden>
+          <ol class="thanks-steps">
+            <li>
+              <h2>Fotos sind angekommen</h2>
+              <p data-upload-done-count>Wir haben Ihre Fotos und Angaben erhalten.</p>
+            </li>
+            <li>
+              <h2>Wir produzieren</h2>
+              <p>Wir prüfen die Fotos und melden uns sofort, wenn etwas fehlt oder ein Foto ungeeignet ist.</p>
+            </li>
+            <li>
+              <h2>Sie erhalten Ihr Video</h2>
+              <p data-upload-done-next>Wir schicken Ihnen das Video per E-Mail.</p>
+            </li>
+          </ol>
+          <div class="thanks-actions">
+            <button class="btn btn-line" type="button" data-upload-again>Weiteres Objekt hochladen</button>
+            <a class="btn btn-line" href="index.html">Zur Startseite</a>
+          </div>
+        </div>
+      </section>
+
+      <aside class="auth-side" aria-label="Hinweise zu den Fotos">
+        <h2>Was wir brauchen</h2>
+        <ul class="checklist">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Exposé-Fotos:</strong> Außenansicht und wichtigste Räume, möglichst im Querformat und mit mindestens 1920&nbsp;Pixeln an der langen Seite.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Objektadresse oder -nummer,</strong> damit wir zuordnen können.</span></li>
+          <li class="is-optional"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span><strong>Logo und Energieausweis</strong> für den Abspann, wenn Sie möchten.</span></li>
+        </ul>
+        <p class="auth-side-note">Ein Objekt pro Upload. Für mehrere Objekte laden Sie einfach nacheinander hoch.</p>
+        <p class="auth-side-note">Lieber per E-Mail oder Link? Schreiben Sie an <a href="mailto:kontakt@artofwalks.com?subject=Fotos%20f%C3%BCr%20mein%20Objekt">kontakt@artofwalks.com</a>, gern mit WeTransfer- oder Google-Drive-Link.</p>
+        <p class="auth-side-note">Fragen? Rufen Sie an: <a href="tel:+491725360412">+49&nbsp;172&nbsp;5360412</a> (Arthur Frank).</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-line"></div>
+      <p class="footer-brand"><span class="wordmark wordmark-sm">ArtOfWalks</span> · Immobilienvideos aus Exposé-Fotos</p>
+      <nav class="footer-links" aria-label="Rechtliches und Konto">
+        <a href="terms.html">AGB</a>
+        <a href="legal.html">Impressum &amp; Datenschutz</a>
+        <a href="login.html">Login</a>
+      </nav>
+      <p class="footer-copy">© 2026 ArtOfWalks GbR, Arthur Frank und Dean Herrman, Potsdam</p>
+    </div>
+  </footer>
+
+  <script src="js/upload.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
