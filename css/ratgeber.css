@@ -1,0 +1,40 @@
+/* Ratgeber-Seiten (zusätzlich zu styles.css) */
+.ratgeber-main .container-narrow { max-width: calc(48rem + 2 * clamp(20px, 4vw, 56px)); }
+.crumbs { font-size: 15px; color: var(--ink-2); margin-bottom: 18px; }
+.crumbs ol { display: flex; align-items: center; flex-wrap: wrap; gap: 0 8px; list-style: none; padding: 0; }
+.crumbs li { margin: 0; }
+.crumbs li + li::before { content: "›"; margin-right: 8px; color: var(--terra-deep); }
+.crumbs li:last-child { white-space: nowrap; }
+.crumbs a { padding-block: 10px; display: inline-block; }
+.ratgeber-main h1 { font-size: clamp(32px, 5vw, 58px); hyphens: auto; -webkit-hyphens: auto; }
+.ratgeber-main h2 { hyphens: auto; -webkit-hyphens: auto; }
+.ratgeber-meta { margin-top: 14px !important; font-size: 15px; color: var(--ink-2); }
+.ratgeber-main .answer-box, .ratgeber-main .note-box { margin-top: 26px; padding: 20px 24px; background: var(--tint); border-radius: 12px; box-shadow: inset 4px 0 0 var(--terra); }
+.ratgeber-main .answer-box p, .ratgeber-main .note-box p { margin-top: 0; }
+.ratgeber-main .answer-box p + p, .ratgeber-main .note-box p + p { margin-top: 10px; }
+.ratgeber-main .answer-box strong, .ratgeber-main .note-box strong { display: block; margin-bottom: 4px; }
+.ratgeber-main ol.steps { padding-left: 24px; list-style: decimal; margin-top: 12px; }
+.table-wrap { margin-top: 18px; overflow-x: auto; }
+.ratgeber-main table { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.4; min-width: 30rem; }
+.ratgeber-main th, .ratgeber-main td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 2px solid var(--line); }
+.ratgeber-main th { font-weight: 700; background: var(--tint); }
+.ratgeber-main details.faq-item { margin-top: 0; }
+.ratgeber-main .faq-list { margin-top: 18px; }
+.cta-box { margin-top: 44px; padding: clamp(22px, 4vw, 34px); background: var(--terra); color: var(--on-terra); border-radius: 14px; }
+.cta-box h2 { margin-top: 0 !important; font-size: clamp(26px, 3.4vw, 34px) !important; }
+.cta-box p { margin-top: 12px; max-width: 38em; }
+.cta-box .btn { margin-top: 20px; }
+.ratgeber-main .cta-box a:not(.btn) { color: var(--on-terra); }
+.related { margin-top: 40px; padding-top: 26px; border-top: 3px dotted var(--line); }
+.related h2 { margin-top: 0 !important; font-size: 24px !important; }
+.sources { font-size: 16px; line-height: 1.45; }
+.sources li { margin-top: 8px; }
+.guide-list { display: grid; gap: 18px; margin-top: 30px; }
+.guide-card { display: block; padding: 24px 26px; border: 2px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--ink); transition: border-color .2s var(--ease), background-color .2s var(--ease); }
+.guide-card:hover, .guide-card:focus-visible { border-color: var(--terra); background: var(--tint); }
+.guide-card h2 { margin: 0 !important; font-size: 26px !important; }
+.guide-card p { margin-top: 8px; color: var(--ink-2); }
+.guide-card .more { margin-top: 12px; font-weight: 650; color: var(--terra-deep); }
+.nav-actions-sub { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.nav-actions-sub .nav-login { display: none; }
+@media (min-width: 700px) { .nav-actions-sub .nav-login { display: inline; } }
