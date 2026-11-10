@@ -110,7 +110,8 @@
 
           <div class="auth-field">
             <label for="up-logo">Logo <span class="upload-optional">optional</span></label>
-            <input class="upload-logo" id="up-logo" name="logo" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" aria-describedby="up-logo-hint up-logo-error">
+            <div class="upload-logo-pick"><label class="btn btn-line btn-sm" for="up-logo">Logo auswählen</label><span class="upload-logo-name" data-logo-name>Keine Datei ausgewählt</span></div>
+            <input class="upload-logo upload-file" id="up-logo" name="logo" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" aria-describedby="up-logo-hint up-logo-error">
             <p class="auth-hint" id="up-logo-hint">Für den Abspann, am besten als PNG mit transparentem Hintergrund. Ein SVG-Logo schicken Sie bitte per E-Mail.</p>
             <p class="auth-error" id="up-logo-error" hidden></p>
           </div>

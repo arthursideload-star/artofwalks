@@ -195,7 +195,7 @@ button { cursor: pointer; background: none; border: 0; }
 .risk-main { scroll-margin-top: 20px; background: var(--terra); color: var(--on-terra); padding: clamp(26px, 3.4vw, 42px); border-radius: 12px; }
 .risk-main h3 { font-size: clamp(30px, 3vw, 40px); }
 .risk-main p { margin-top: 14px; font-size: 19px; }
-.risk-main .btn { margin-top: 22px; }
+.risk-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 24px; }
 .risk-side { display: grid; gap: 26px; }
 .risk-side article + article { padding-top: 26px; border-top: 3px dotted var(--terra); }
 .risk-side h3 { font-size: 27px; letter-spacing: -0.015em; }
@@ -423,6 +423,12 @@ button { cursor: pointer; background: none; border: 0; }
 .upload-item.is-done .upload-thumb::after { content: "✓"; position: absolute; right: 6px; bottom: 6px; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--terra); color: var(--on-terra); font-weight: 750; font-size: 15px; }
 .upload-logo { width: 100%; min-height: 54px; padding: 10px 12px; font-size: 16px; background: var(--white); border: 2px solid var(--ink-2); border-radius: 8px; }
 .upload-logo::file-selector-button { margin-right: 12px; padding: 6px 12px; border: 2px solid var(--ink); border-radius: 6px; background: var(--white); font: inherit; font-weight: 650; cursor: pointer; }
+.upload-logo.upload-file { width: 1px; height: 1px; min-height: 0; padding: 0; border: 0; overflow: hidden; clip-path: inset(50%); }
+.auth-field:has(> .upload-logo) { position: relative; }
+.upload-logo-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; min-height: 54px; }
+.upload-logo-name { font-size: 16px; color: var(--ink-2); overflow-wrap: anywhere; }
+.upload-logo-pick label { cursor: pointer; }
+.upload-logo-pick:has(+ .upload-logo:focus-visible) label { outline: 3px solid var(--butter); outline-offset: 2px; }
 .upload-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .legal-main .upload-privacy { margin-top: 0; }
 .upload-progress { display: grid; gap: 6px; }

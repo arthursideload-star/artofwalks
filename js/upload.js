@@ -210,6 +210,8 @@
     if (file && !LOGO_TYPES.includes(extOf(file.name))) msg = "Bitte ein Logo als PNG, JPG oder WebP wählen. Ein SVG-Logo schicken Sie bitte per E-Mail.";
     else if (file && file.size > MAX_BYTES) msg = "Das Logo ist größer als 25 MB.";
     if (msg) logoInput.value = "";
+    const logoName = document.querySelector("[data-logo-name]");
+    if (logoName) logoName.textContent = logoInput.files[0] ? logoInput.files[0].name : "Keine Datei ausgewählt";
     setError("up-logo-error", msg);
     logoDone = false;
   });
